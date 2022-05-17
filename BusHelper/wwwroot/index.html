@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link href="./css/index.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body id="loginBg">
+    <div id="loginDiv">
+        <form action="" id="form">
+            <h1 style="text-align: center;color: aliceblue;">立即登录</h1>
+            <p>邮箱:<input id="email" type="text"></p>
+            <p>密码:<input id="password" type="password" placeholder="密码长度至少为6位"></p>
+            <p style="text-align: center;"><a href="#">忘记密码?</a></p>
+            <div style="text-align: center;margin-top: 30px;">
+                <input type="button" class="button" value="登录" onclick="login_click()">
+                <input type="button" class="button" value="注册" onclick="register_click()">
+            </div>
+        </form>
+
+        <script>
+            //获取注册时存储在localStorage中的值
+            var sex = localStorage.getItem("sex");
+            var password = localStorage.getItem("password");
+            var email = localStorage.getItem("email");
+            var username = localStorage.getItem("username");
+
+            //注册按钮跳转
+            function register_click() {
+                window.location.href = "register.html";
+            }
+
+            //判断登录是否成功
+            function login_click() {
+                //获取用户输入的信息
+                var email1 = document.getElementById("email").value;
+                var password1 = document.getElementById("password").value;
+
+                //判断输入的信息和注册的信息是否一致
+                if (email1 != '' && password1 != '') {
+                    if (email1 == email && password == password1) {
+                        window.location.href = "My_Album.html";
+                    } else {
+                        alert("邮箱或密码错误，请重新输入！");
+                    }
+                } else {
+                    alert("邮箱或密码不能为空！");
+                }
+
+            }
+        </script>
+    </div>
+</body>
+
+</html>
