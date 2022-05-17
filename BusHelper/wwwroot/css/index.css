@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background: url(../img/background.png) no-repeat 0px 0px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+#loginDiv {
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    background-color: rgba(133, 149, 187, 0.3);
+    border-radius: 250px;
+}
+
+p {
+    margin-top: 30px;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: azure;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a:link {
+    text-decoration: none;
+    color: rgb(215, 243, 250);
+}
+
+a:visited {
+    color: rgb(215, 243, 250);
+}
+
+a:hover {
+    color: rgb(245, 255, 254);
+}
+
+a:active {
+    color: rgb(245, 255, 255);
+}
+
+input {
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border-style: hidden;
+    height: 30px;
+    width: auto;
+    background-color: rgba(216, 191, 216, 0.5);
+    outline: none;
+    color: #f0edf3;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.button {
+    border-color: cornsilk;
+    background-color: rgba(100, 149, 237, .7);
+    color: aliceblue;
+    border-style: hidden;
+    border-radius: 5px;
+    width: 100px;
+    height: 31px;
+    font-size: 16px;
+}
+
+#loginBg {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+input::-moz-placeholder {
+    text-align: center;
+    color: darkgrey;
+}
+
+input::-ms-input-placeholder {
+    text-align: center;
+    color: darkgrey;
+}
+
+input::-webkit-input-placeholder {
+    text-align: center;
+    color: darkgrey;
+}
