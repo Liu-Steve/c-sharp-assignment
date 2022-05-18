@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../JS/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>hello,{{name}}</h1>
+        <a :href="url">点我跳转到登录界面</a>//v-bind也可以简写为:
+    </div>
+    <script type="text/javascript">
+        Vue.config.productionTip = false
+
+        new Vue({
+            el: "#root", //el用于指定当前Vue实例为哪个容器服务，值为CSS选择器字符串
+            /*data:{
+                name:"vue"
+            }*/ //需要用函数式的写法，不能用对象式的
+            data: function() { //data中存储数据，数据供el指定的容器使用
+                return {
+                    name: "vue",
+                    url: "index.html"
+                }
+            }
+        })
+    </script>
+
+
+</body>
+
+</html>
