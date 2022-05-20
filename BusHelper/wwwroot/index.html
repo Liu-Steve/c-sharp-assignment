@@ -22,10 +22,12 @@
 
         <script>
             //获取注册时存储在localStorage中的值
-            var sex = localStorage.getItem("sex");
-            var password = localStorage.getItem("password");
-            var email = localStorage.getItem("email");
-            var username = localStorage.getItem("username");
+            //var sex = localStorage.getItem("sex");
+            //var password = localStorage.getItem("password");
+            //var email = localStorage.getItem("email");
+            //var username = localStorage.getItem("username");
+            var password = "123456"
+            var email = "steve_liu@whu.edu.cn"
 
             //注册按钮跳转
             function register_click() {
@@ -41,7 +43,7 @@
                 //判断输入的信息和注册的信息是否一致
                 if (email1 != '' && password1 != '') {
                     if (email1 == email && password == password1) {
-                        window.location.href = "My_Album.html";
+                        window.location.href = "map.html";
                     } else {
                         alert("邮箱或密码错误，请重新输入！");
                     }
