@@ -4,65 +4,67 @@
 <head>
     <meta charset="utf-8">
     <title>公交管家-司机信息显示界面</title>
-
-    <link rel="preconnect" href="https://fonts.gstatic.com/">
-    <link href="static/css/css2.css" rel="stylesheet">
-
-    <link href="static/css/all.min.css" rel="stylesheet">
-
-    <link href="static/css/owl.carousel.min.css" rel="stylesheet">
-    <link href="static/css/lightbox.min.css" rel="stylesheet">
+    <script src="../JS/vue.js"></script>
+    <link href="css/info.css" rel="stylesheet">
 
     <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-lg-5">
-        <div class="navbar-collapse justify-content-between" id="navbarCollapse">
+    <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-dark py-3 py-lg-0 px-lg-5">
+        <div class="navbar-collapse justify-content-between" id="toolbar">
             <a href="index1.html" class="navbar-brand mx-5 d-lg-block">
-                <h1 class="font-secondary text-white mb-n2">Bus Helper</h1>
+                <img src="img/logo.png" width="250px">
+                <!-- <h5 class="text-white my-n2">云端可视化交互平台</h5> -->
             </a>
             <div class="navbar-nav ml-auto py-0">
-                <a href="#about" class="nav-item nav-link">概况</a>
-                <a href="#story" class="nav-item nav-link">路线</a>
-                <a href="#gallery" class="nav-item nav-link">司机</a>
-                <a href="#gallery" class="nav-item nav-link">信箱</a>
+                <a href="#about" class="fontsize"><img src="img/概况.svg" class="gap" width="30px" />概况</a>
+                <a href="#story" class="fontsize"><img src="img/路线.svg" class="gap" width="30px" />路线</a>
+                <a href="#gallery" class="fontsize"><img src="img/司机.svg" class="gap" width="30px" />司机</a>
+                <a href="#gallery" class="fontsize"><img src="img/信箱.svg" class="gap" width="30px" />信箱</a>
+            </div>
+            <div id="box">
+                <input type="search" name="search" placeholder="请输入查找司机关键词">
+                <div id="search">搜索</div>
             </div>
         </div>
     </nav>
 
 
-    <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-<span aria-hidden="true">&times;</span>
-</button>
-
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="" id="video" allowscriptaccess="always" allow="autoplay"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="container-fluid py-5" id="about">
+    <div class="container-fluid py-5" id="real-time">
         <div class="container py-5">
-            <div class="row m-0">
+            <div class="row mt-5">
                 <div class="col-md-6 p-0" style="min-height: 400px;">
                     <img class="position-absolute w-100 h-100" src="img/bus.jpg" style="object-fit: cover;">
+                    <p id="time" class="left-up text-white">{{time}}</p>
+                    <script>
+                        var vm = new Vue({
+                            el: "#time",
+                            data: {
+                                time: Date()
+                            }
+                        })
+                        window.setInterval(() => {
+                            setTimeout(() => {
+                                vm.time = Date()
+                            }, 0)
+                        }, 1000)
+                    </script>
                 </div>
                 <div class="col-md-6 p-0 text-center text-md-left">
                     <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-5">
                         <h3 class="mb-3">司机概况</h3>
-                        <div class="position-relative color:#000000">
-                            <p>心率：100</p>
-                            <p>血压：100</p>
-                            <p>体温：100</p>
-                            <p>血氧：100</p>
+                        <h5 class="text-teal">生理指标</h5>
+                        <div class="position-relative text-teal rounded-pill">
+                            <p>心率：100 血压：100 体温：100 血氧：100</p>
+                        </div>
+                        <h5 class="text-teal">实时图像</h5>
+                        <div class="position-relative text-teal">
+                            <p>状态正常</p>
+                        </div>
+                        <h3 class="mb-3">疑似异常</h3>
+                        <div class="position-relative text-teal">
+                            <h5 class="text-teal">无</h5>
                         </div>
                     </div>
                 </div>
@@ -70,8 +72,31 @@
         </div>
     </div>
 
+    <div class="container-fluid bg-dark text-white py-5" id="contact" style="margin-top: 90px;">
+        <div class="container text-center py-5">
+            <div class="section-title position-relative text-center">
+                <h1 class="font-secondary display-3 text-white">公交管家</h1>
+                <!-- <i class="far fa-heart text-white"></i> -->
+            </div>
+            <!-- <div class="d-flex justify-content-center mb-4">
+                <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
+                <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a class="btn btn-lg btn-outline-light btn-lg-square" href="#"><i class="fab fa-instagram"></i></a>
+            </div> -->
+            <div class="position-relative text-center">
+                Bus management system<br/> an integrated monitering system involving cloud interaction and wearable devices
+            </div>
+            <div class="d-flex justify-content-center py-2">
+                <p class="text-white" href="#"><a href="email-protection.html" class="__cf_email__" data-cfemail="9ef7f0f8f1defbe6fff3eef2fbb0fdf1f3">[联系方式]</a></p>
+                <span class="px-3">|</span>
+                <p class="text-white" href="#"><a href="email-protection.html" class="__cf_email__" data-cfemail="9ef7f0f8f1defbe6fff3eef2fbb0fdf1f3">[关于我们]</a></p>
+            </div>
+            <p class="m-0">Copyright &copy; 2022.Bus Manager System.
+            </p>
+        </div>
+    </div>
 
-    <script data-cfasync="false" src="static/js/email-decode.min.js"></script>
     <script src="static/js/jquery-3.4.1.min.js" type="9d47a5dc52c82fb37a1ef233-text/javascript"></script>
     <script src="static/js/bootstrap.bundle.min.js" type="9d47a5dc52c82fb37a1ef233-text/javascript"></script>
     <script src="static/js/easing.min.js" type="9d47a5dc52c82fb37a1ef233-text/javascript"></script>
@@ -79,9 +104,7 @@
     <script src="static/js/owl.carousel.min.js" type="9d47a5dc52c82fb37a1ef233-text/javascript"></script>
     <script src="static/js/isotope.pkgd.min.js" type="9d47a5dc52c82fb37a1ef233-text/javascript"></script>
     <script src="static/js/lightbox.min.js" type="9d47a5dc52c82fb37a1ef233-text/javascript"></script>
-
     <script src="static/js/main.js" type="9d47a5dc52c82fb37a1ef233-text/javascript"></script>
-    <script src="static/js/rocket-loader.min.js" data-cf-settings="9d47a5dc52c82fb37a1ef233-|49" defer=""></script>
 </body>
 
 </html>
