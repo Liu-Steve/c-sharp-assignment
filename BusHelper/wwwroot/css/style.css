@@ -76,6 +76,10 @@ body {
     background-color: #FFFFFF;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 [tabindex="-1"]:focus:not(:focus-visible) {
     outline: 0 !important;
 }
