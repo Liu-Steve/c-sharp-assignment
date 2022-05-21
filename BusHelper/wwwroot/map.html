@@ -16,14 +16,22 @@
             height: 100vh;
             width: 100vw;
         }
+        
+        .pointer_none {
+            pointer-events: none;
+        }
+        
+        .pointer_all {
+            pointer-events: all;
+        }
     </style>
     <link href="css/bar.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <div class="fixed-top">
-        <nav class="navbar shadow-sm navbar-expand-lg bg-dark py-3 py-lg-0 px-lg-5">
+    <div class="fixed-top pointer_none">
+        <nav class="navbar shadow-sm navbar-expand-lg bg-dark py-3 py-lg-0 px-lg-5 pointer_all">
             <div class="navbar-collapse justify-content-between" id="toolbar">
                 <a href="index1.html" class="navbar-brand mx-5 d-lg-block">
                     <img src="img/logo.png" width="250px">
@@ -40,7 +48,7 @@
                 </div>
             </div>
         </nav>
-        <div class="sidebar">
+        <div class="sidebar pointer_all">
             <ul>
                 <li>
                     <div style="background: #FFFFFF;padding-left: 5px;">
@@ -73,7 +81,7 @@
 
             </ul>
         </div>
-        <a class="btn">单车概况</a>
+        <a class="btn pointer_all">单车概况</a>
     </div>
     <div id="map"></div>
 </body>
