@@ -4250,8 +4250,8 @@ input[type="button"].btn-block {
 
 .navbar-brand {
     display: inline-block;
-    padding-top: 1rem;
-    padding-bottom: 1.25rem;
+    padding-top: 0.7rem;
+    padding-bottom: 0.75rem;
     margin-right: 1rem;
     font-size: 1.25rem;
     line-height: inherit;
@@ -9901,7 +9901,7 @@ a.text-dark:focus {
 }
 
 .section-title {
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 
 .section-title::before {
@@ -9911,7 +9911,7 @@ a.text-dark:focus {
     height: 2px;
     bottom: 11px;
     left: calc(50% - 80px);
-    background: #E47A2E;
+    background: #54B5E7;
 }
 
 .section-title::after {
@@ -9921,7 +9921,7 @@ a.text-dark:focus {
     height: 2px;
     bottom: 11px;
     right: calc(50% - 80px);
-    background: #E47A2E;
+    background: #54B5E7;
 }
 
 .btn-play {
