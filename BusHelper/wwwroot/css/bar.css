@@ -22,7 +22,7 @@ input {
     width: 78px;
     height: 32px;
     float: right;
-    background: #C77433;
+    background: #DE903A;
     color: white;
     text-align: center;
     line-height: 32px;
@@ -38,9 +38,13 @@ input {
     padding-right: 10px;
 }
 
+.left-10 {
+    padding-left: 10px;
+}
+
 .left-up {
     position: relative;
-    top: 10px;
+    top: -20px;
     left: 10px;
 }
 
@@ -50,4 +54,41 @@ input {
 
 .border-teal {
     border-color: #20c997;
+}
+
+.text-blue {
+    color: #54B5E7 !important;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr 1.2fr 1.5fr 1.5fr 0.25fr;
+    grid-row-gap: 0px;
+    align-items: center;
+    justify-content: center;
+    grid-auto-rows: minmax(20px, auto);
+}
+
+.mini-text {
+    font-size: 12px !important;
+}
+
+.left-up-exceed {
+    width: 200px;
+    height: 30px;
+    border: 2px solid #54B5E7;
+    background-color: #54B5E7;
+    border-radius: 10px 10px 0px 0px;
+    position: relative;
+    top: -30px;
+    left: 0px;
+    line-height: 30px;
+    font-size: 16px;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: bold;
+}
+
+.bottom {
+    margin-bottom: 2px;
 }
