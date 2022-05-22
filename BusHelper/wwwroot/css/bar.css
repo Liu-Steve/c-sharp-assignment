@@ -1,3 +1,7 @@
+* {
+    user-select: none;
+}
+
 #box {
     width: 350px;
     margin: 0px auto;
@@ -11,7 +15,7 @@ input {
     height: 40px;
     border-radius: 50px;
     float: left;
-    background-image: url(../img/搜索.svg);
+    background-image: url(../img/search.svg);
     background-repeat: no-repeat;
     background-size: 25px;
     background-position: 5px center;
@@ -119,4 +123,8 @@ input {
 
 .layer-2 {
     z-index: 2;
+}
+
+.sidebar p {
+    margin-bottom: 0px;
 }

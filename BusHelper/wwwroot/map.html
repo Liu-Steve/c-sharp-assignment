@@ -30,7 +30,7 @@
 </head>
 
 <body>
-    <div class="fixed-top pointer_none">
+    <div class="fixed-top pointer_none w100-h100">
         <nav class="navbar shadow-sm navbar-expand-lg bg-dark py-3 py-lg-0 px-lg-5 pointer_all">
             <div class="navbar-collapse justify-content-between" id="toolbar">
                 <a href="index1.html" class="navbar-brand mx-5 d-lg-block">
@@ -49,48 +49,57 @@
             </div>
         </nav>
         <div class="sidebar pointer_all">
-            <ul>
-                <li>
-                    <div style="background: #FFFFFF;padding-left: 5px;">
-                        <p>a</p>
-                    </div>
+            <ul id="bus-list">
+                <li id="city">
+                    <h5>城市线路</h5>
                 </li>
-                <li>
-                    <div style="background: #FFFFFF;padding-left: 5px;">
-                        <p>a</p>
-                    </div>
-                </li>
-                <li>
-                    <p>a</p>
-                </li>
-                <li>
-                    <p>a</p>
-                </li>
-                <li>
-                    <p>a</p>
-                </li>
-                <li>
-                    <p>a</p>
-                </li>
-                <li>
-                    <p>a</p>
-                </li>
-                <li>
-                    <p>a</p>
-                </li>
+                <ul id="city-list">
 
+                </ul>
+                <li>
+                    <h5>东西湖区</h5>
+                </li>
+                <li>
+                    <h5>黄陂区</h5>
+                </li>
+                <li>
+                    <h5>江夏区</h5>
+                </li>
+                <li>
+                    <h5>新洲区</h5>
+                </li>
+                <li>
+                    <h5>蔡甸区</h5>
+                </li>
             </ul>
         </div>
-        <a class="btn pointer_all">单车概况</a>
+        <div class="btn pointer_all" id="scoll"><img src="img/左滑 (1).svg" width="20px">单车概况</div>
     </div>
     <div id="map"></div>
 </body>
 <script src="./JS/map.js"></script>
 <script type="text/javascript">
     $('.btn').on('click', function() {
-        $('.btn').toggleClass('btnc');
         $('.sidebar').toggleClass('side');
 
+    })
+    var isSpread = false;
+    $('#city').on('click', function() {
+        if (!isSpread) {
+            for (i = 0; i < 30; i++) {
+                let li = document.createElement('li');
+                let cont = document.createElement('div');
+                cont.setAttribute('style', 'background: #FFFFFF;padding: 5px;');
+                let p = document.createElement('p');
+                p.innerHTML = '301-鄂A·JD343';
+                cont.appendChild(p);
+                li.appendChild(cont);
+                document.getElementById('city-list').appendChild(li);
+            }
+        } else {
+            document.getElementById('city-list').innerHTML = "";
+        }
+        isSpread = !isSpread;
     })
 </script>
 
