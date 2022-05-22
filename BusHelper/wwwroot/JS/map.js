@@ -85,3 +85,33 @@ let updateBuses = function() {
 
 updateBuses();
 setInterval(updateBuses, 1000);
+
+// side bar
+let slide_img_rotate = false;
+$('.btn').on('click', function() {
+    $('.sidebar').toggleClass('side');
+    let slide_img = document.getElementById('slide-img')
+    if (!slide_img_rotate)
+        slide_img.setAttribute('style', 'transform:rotate(180deg)');
+    else
+        slide_img.removeAttribute('style');
+    slide_img_rotate = !slide_img_rotate;
+})
+var isSpread = false;
+$('#city').on('click', function() {
+    if (!isSpread) {
+        for (i = 0; i < 30; i++) {
+            let li = document.createElement('li');
+            let cont = document.createElement('div');
+            cont.setAttribute('style', 'background: #FFFFFF;padding: 5px;');
+            let p = document.createElement('p');
+            p.innerHTML = '301-鄂A·JD343';
+            cont.appendChild(p);
+            li.appendChild(cont);
+            document.getElementById('city-list').appendChild(li);
+        }
+    } else {
+        document.getElementById('city-list').innerHTML = "";
+    }
+    isSpread = !isSpread;
+})
