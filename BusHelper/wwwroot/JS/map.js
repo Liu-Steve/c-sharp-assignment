@@ -97,21 +97,47 @@ $('.btn').on('click', function() {
         slide_img.removeAttribute('style');
     slide_img_rotate = !slide_img_rotate;
 })
-var isSpread = false;
-$('#city').on('click', function() {
-    if (!isSpread) {
-        for (i = 0; i < 30; i++) {
+var isSpread1 = false;
+$('#1-100').on('click', function() {
+    if (!isSpread1) {
+        let arry = new Array('-鄂A·JD343', '-鄂L·13495', '-鄂H·C6103', '-鄂E·C1180', '-鄂A·888U8', '-鄂N·H6213',
+            '-鄂N·E3923', '-鄂A·6265B', '-鄂A·A9965', '-鄂A·M5852', '-鄂A·54374', '-鄂R·15466', '-鄂J·B0888',
+            '-鄂A·V6600', '-鄂A·9P80M')
+        for (i = 0; i < 15; i++) {
+
             let li = document.createElement('li');
             let cont = document.createElement('div');
-            cont.setAttribute('style', 'background: #FFFFFF;padding: 5px;');
+            cont.setAttribute('style', 'background: #060C20;');
             let p = document.createElement('p');
-            p.innerHTML = '301-鄂A·JD343';
+            p.innerHTML = (i + 1) + arry[i];
             cont.appendChild(p);
             li.appendChild(cont);
-            document.getElementById('city-list').appendChild(li);
+            document.getElementById('1-100-list').appendChild(li);
         }
     } else {
-        document.getElementById('city-list').innerHTML = "";
+        document.getElementById('1-100-list').innerHTML = "";
     }
-    isSpread = !isSpread;
+    isSpread1 = !isSpread1;
+})
+
+var isSpread2 = false;
+$('#101-200').on('click', function() {
+    if (!isSpread2) {
+        let arry = new Array('-鄂A·00266', '-鄂L·09475', '-鄂H·k2332', '-鄂E·WB527', '-鄂A·R3399', '-鄂N·K0755',
+            '-鄂N·0E2A7', '-鄂A·0D2G7', '-鄂A·0E2G7', '-鄂A·0G2X7', '-鄂A·027EZ', '-鄂R·KC256', '-鄂J·0190D',
+            '-鄂A·0H2S7', '-鄂A·H37D2')
+        for (i = 0; i < 15; i++) {
+            let li = document.createElement('li');
+            let cont = document.createElement('div');
+            cont.setAttribute('style', 'background: #060C20;');
+            let p = document.createElement('p');
+            p.innerHTML = (i + 101) + arry[i];
+            cont.appendChild(p);
+            li.appendChild(cont);
+            document.getElementById('101-200-list').appendChild(li);
+        }
+    } else {
+        document.getElementById('101-200-list').innerHTML = "";
+    }
+    isSpread2 = !isSpread2;
 })

@@ -32,60 +32,85 @@
 
     <!-- py-*可以调整司机图标到顶部的距离 -->
     <div class="container-fluid py-5" id="real-time">
-        <div class="container py-5">
-            <div class="row mt-5">
-                <div class="col-md-6 p-0" style="min-height: 400px;">
-                    <img class="position-absolute w-100 h-100" src="img/bus.jpg" style="object-fit: cover;">
-                    <div class="left-up-exceed">301-鄂A·JD343</div>
-                    <p id="time" class="left-up text-white">{{time}}</p>
+        <div class="container py-5 mt-5">
+            <div class="float-left p-4">
+                <img class="position-absolute" width="600px" src="img/bus.jpg" style="object-fit: cover;">
+                <div class="left-up-exceed">1-鄂A·JD343</div>
+                <p id="time" class="left-up text-white bottom">{{time}}</p>
+                <p class="left-up text-white bottom">当前站：八一路小洪山</p>
+                <p class="left-up text-white bottom">下一站：珞狮路北段</p>
+            </div>
+
+            <div class="float-right d-flex flex-column justify-content-center bg-secondary p-4">
+                <h3 class="text-dark-blue">司机详情 </h3>
+                <h5 class="text-teal">生理指标</h5>
+                <div class="position-relative text-teal">
+                    <p id="con">心率：{{condition[0]}} 血压：{{condition[1]}}/{{condition[2]}} 体温：{{condition[3]}} 血氧：{{condition[4]}}</p>
                 </div>
-                <div class="col-md-6 p-0 text-center text-md-left">
-                    <div class="h-100 d-flex flex-column justify-content-center bg-secondary p-4">
-                        <h3 class="text-blue">司机概况</h3>
-                        <h5 class="text-teal">生理指标</h5>
-                        <div class="position-relative text-teal">
-                            <p id="con">心率：{{condition[0]}} 血压：{{condition[1]}}/{{condition[2]}} 体温：{{condition[3]}} 血氧：{{condition[4]}}</p>
-                        </div>
-                        <h5 class="text-teal">实时图像</h5>
-                        <div id="po" class="text-teal">
-                            <div class="wrapper bottom">
-                                <p class="bottom">抽烟</p>
-                                <canvas class="bottom" id="rectangle0" width="100px" height="10px"></canvas>
-                                <p class="bottom">{{possible[0]}}</p>
-                                <p class="bottom">闭眼</p>
-                                <canvas class="bottom" id="rectangle1" width="100px" height="10px"></canvas>
-                                <p class="bottom">{{possible[1]}}</p>
-                                <p class="bottom">打哈欠</p>
-                                <canvas class="bottom" id="rectangle2" width="100px" height="10px"></canvas>
-                                <p class="bottom">{{possible[2]}}</p>
-                                <p class="bottom">使用手机</p>
-                                <canvas class="bottom" id="rectangle3" width="100px" height="10px"></canvas>
-                                <p class="bottom">{{possible[3]}}</p>
-                                <p class="bottom mini-text">未系安全带</p>
-                                <canvas class="bottom" id="rectangle4" width="100px" height="10px"></canvas>
-                                <p class="bottom">{{possible[4]}}</p>
-                                <p class="bottom mini-text">视角未看前方</p>
-                                <canvas class="bottom" id="rectangle5" width="100px" height="10px"></canvas>
-                                <p class="bottom">{{possible[5]}}</p>
-                                <p class="bottom mini-text">未正确佩戴口罩</p>
-                                <canvas class="bottom" id="rectangle6" width="100px" height="10px"></canvas>
-                                <p class="bottom">{{possible[6]}}</p>
-                                <p class="bottom mini-text">双手离开方向盘</p>
-                                <canvas class="bottom" id="rectangle7" width="100px" height="10px"></canvas>
-                                <p class="bottom">{{possible[7]}}</p>
-                            </div>
-                        </div>
-                        <h3 class="mb-3 text-blue">疑似异常</h3>
-                        <div class="position-relative text-teal">
-                            <h5 class="text-teal">无</h5>
+                <h5 class="text-teal">实时图像</h5>
+                <div id="po" class="text-teal">
+                    <div class="wrapper bottom">
+                        <p class="bottom">抽烟</p>
+                        <canvas class="bottom" id="rectangle0" width="100px" height="10px"></canvas>
+                        <p class="bottom">{{possible[0]}}</p>
+                        <p class="bottom">闭眼</p>
+                        <canvas class="bottom" id="rectangle1" width="100px" height="10px"></canvas>
+                        <p class="bottom">{{possible[1]}}</p>
+                        <p class="bottom">打哈欠</p>
+                        <canvas class="bottom" id="rectangle2" width="100px" height="10px"></canvas>
+                        <p class="bottom">{{possible[2]}}</p>
+                        <p class="bottom">使用手机</p>
+                        <canvas class="bottom" id="rectangle3" width="100px" height="10px"></canvas>
+                        <p class="bottom">{{possible[3]}}</p>
+                        <p class="bottom mini-text">未系安全带</p>
+                        <canvas class="bottom" id="rectangle4" width="100px" height="10px"></canvas>
+                        <p class="bottom">{{possible[4]}}</p>
+                        <p class="bottom mini-text">视角未看前方</p>
+                        <canvas class="bottom" id="rectangle5" width="100px" height="10px"></canvas>
+                        <p class="bottom">{{possible[5]}}</p>
+                        <p class="bottom mini-text">未正确佩戴口罩</p>
+                        <canvas class="bottom" id="rectangle6" width="100px" height="10px"></canvas>
+                        <p class="bottom">{{possible[6]}}</p>
+                        <p class="bottom mini-text">双手离开方向盘</p>
+                        <canvas class="bottom" id="rectangle7" width="100px" height="10px"></canvas>
+                        <p class="bottom">{{possible[7]}}</p>
+                    </div>
+                </div>
+                <h3 class="mb-3 text-dark-blue">疑似异常</h3>
+                <div class="position-relative text-teal">
+                    <h5 class="text-teal">生理指标</h5>
+                    <div class="position-relative text-teal">
+                        <p>无</p>
+                    </div>
+                    <h5 class="text-teal">实时图像</h5>
+                    <div class="text-teal">
+                        <div class="wrapper-danger bottom">
+                            <p class="bottom">抽烟：</p>
+                            <p class="bottom">0次</p>
+                            <p class="bottom">闭眼：</p>
+                            <p class="bottom">1次</p>
+                            <p class="bottom">打哈欠:</p>
+                            <p class="bottom">0次</p>
+                            <p class="bottom ">使用手机:</p>
+                            <p class="bottom">0次</p>
+                            <p class="bottom mini-text">未系安全带：</p>
+                            <p class="bottom">0次</p>
+                            <p class="bottom mini-text">视角未看前方：</p>
+                            <p class="bottom">0次</p>
+                            <p class="bottom mini-text">未正确佩戴口罩：</p>
+                            <p class="bottom">0次</p>
+                            <p class="bottom mini-text">双手离开方向盘：</p>
+                            <p class="bottom">0次</p>
                         </div>
                     </div>
                 </div>
+                <p class="float-right text-dark-blue">司机电话：18572326828</p>
+                <button class="float-right text-dark-blue">立即联系</button>
             </div>
         </div>
     </div>
 
-    <div class="container-fluid bg-dark text-white py-5" id="contact" style="margin-top: 90px;">
+    <div class="container-fluid bg-dark text-white py-4" id="contact" style="margin-top: 90px;">
         <div class="container text-center py-5">
             <div class="section-title position-relative text-center">
                 <h1 class="font-secondary display-3 text-white">公交管家</h1>

@@ -89,6 +89,15 @@ input {
     grid-auto-rows: minmax(20px, auto);
 }
 
+.wrapper-danger {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr 3fr 1fr 3fr 1fr 3fr 1fr;
+    grid-row-gap: 0px;
+    align-items: center;
+    justify-content: center;
+    grid-auto-rows: minmax(20px, auto);
+}
+
 .mini-text {
     font-size: 12px !important;
 }
@@ -127,4 +136,8 @@ input {
 
 .sidebar p {
     margin-bottom: 0px;
+}
+
+.text-dark-blue {
+    color: #3A7EC6;
 }
