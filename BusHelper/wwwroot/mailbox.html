@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>公交管家-司机信箱</title>
+        <script src="../JS/vue.js"></script>
+        <link href="css/info.css" rel="stylesheet">    
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/mailbox.css" rel="stylesheet">
+        <style>
+            .container{
+                padding-top: 120px;
+                padding-left: 200px;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-dark py-3 py-lg-0 px-lg-5">
+            <div class="navbar-collapse justify-content-between" id="toolbar">
+                <a href="index1.html" class="navbar-brand mx-5 d-lg-block">
+                    <img src="img/logo.png" width="250px">
+                    <!-- <h5 class="text-white my-n2">云端可视化交互平台</h5> -->
+                </a>
+                <div class="navbar-nav ml-auto py-0">
+                    <a href="#about" class="fontsize"><img src="img/概况.svg" class="gap" width="30px" />概况</a>
+                    <a href="#story" class="fontsize"><img src="img/路线.svg" class="gap" width="30px" />路线</a>
+                    <a href="#gallery" class="fontsize"><img src="img/司机.svg" class="gap" width="30px" />司机</a>
+                    <a href="#gallery" class="fontsize"><img src="img/信箱.svg" class="gap" width="30px" />信箱</a>
+                </div>
+                <div id="box">
+                    <input type="search" name="search" placeholder="请输入查找司机关键词">
+                    <div id="search">搜索</div>
+                </div>
+            </div>
+        </nav>
+        <!-- 侧边栏 -->
+        <div class="d-flex flex-column sidebar text-blue"  style="width:200px">
+            <a href="/" class="sidebar_header text-decoration-none" style="margin:100px auto 20px auto;">
+                <img src="img/信箱.svg" width="80" height="80" />                    
+                <p >司机消息</p>
+            </a>
+            <sidebar-hr></sidebar-hr>
+            <ul class="nav flex-column">
+                <li><a href="#" class="nav-link active">全部消息</a></li>
+                <li><a href="#" class="nav-link">未读消息</a></li>
+                <li><a href="#" class="nav-link">已读消息</a></li>                
+            </ul>
+        </div>
+
+
+        <div class="container">      
+            <!-- 司机状态卡片 -->      
+            <div class="row">
+                <div class="driver-col-md-4">                         
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">曹雨欣 | 27路</h3>
+                        </div>
+                    
+                        <ul class="list-group">
+                            <li class="driver-list-group-item ">
+                                <img src="../media/driver.jpg" alt="张三的照片" height="100%" width="100%">                                        
+                            </li>            
+                            <li class="driver-list-group-item">
+                                <audio controls style="width: 98%;">
+                                    <source src="../media/music.mp3" type = "audio/mpeg" >
+                                    您的浏览器不支持 audio 元素
+                                </audio>
+                            </li>
+                            <li class="driver-list-group-item">
+                                <a href="#" class="btn btn-primary" role="button">立即联系</a>
+                            </li>
+                        </ul>
+                                              
+                    </div>  
+                </div>
+                <div class="driver-col-md-4">                         
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">曹雨欣 | 27路</h3>
+                        </div>
+                    
+                        <ul class="list-group">
+                            <li class="driver-list-group-item ">
+                                <img src="../media/driver.jpg" alt="张三的照片" height="100%" width="100%">                                        
+                            </li>            
+                            <li class="driver-list-group-item">
+                                <audio controls style="width: 98%;">
+                                    <source src="../media/music.mp3" type = "audio/mpeg" >
+                                    您的浏览器不支持 audio 元素
+                                </audio>
+                            </li>
+                            <li class="driver-list-group-item">
+                                <a href="#" class="btn btn-primary" role="button">立即联系</a>
+                            </li>
+                        </ul>
+                                              
+                    </div>  
+                </div>
+                <div class="driver-col-md-4">                         
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">曹雨欣 | 27路</h3>
+                        </div>
+                    
+                        <ul class="list-group">
+                            <li class="driver-list-group-item ">
+                                <img src="../media/driver.jpg" alt="张三的照片" height="100%" width="100%">                                        
+                            </li>            
+                            <li class="driver-list-group-item">
+                                <audio controls style="width: 98%;">
+                                    <source src="../media/music.mp3" type = "audio/mpeg" >
+                                    您的浏览器不支持 audio 元素
+                                </audio>
+                            </li>
+                            <li class="driver-list-group-item">
+                                <a href="#" class="btn btn-primary" role="button">立即联系</a>
+                            </li>
+                        </ul>
+                                              
+                    </div>  
+                </div>
+                <div class="driver-col-md-4">                         
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">曹雨欣 | 27路</h3>
+                        </div>
+                    
+                        <ul class="list-group">
+                            <li class="driver-list-group-item ">
+                                <img src="../media/driver.jpg" alt="张三的照片" height="100%" width="100%">                                        
+                            </li>            
+                            <li class="driver-list-group-item">
+                                <audio controls style="width: 98%;">
+                                    <source src="../media/music.mp3" type = "audio/mpeg" >
+                                    您的浏览器不支持 audio 元素
+                                </audio>
+                            </li>
+                            <li class="driver-list-group-item">
+                                <a href="#" class="btn btn-primary" role="button">立即联系</a>
+                            </li>
+                        </ul>
+                                              
+                    </div>  
+                </div>
+                <div class="driver-col-md-4">                         
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">曹雨欣 | 27路</h3>
+                        </div>
+                    
+                        <ul class="list-group">
+                            <li class="driver-list-group-item ">
+                                <img src="../media/driver.jpg" alt="张三的照片" height="100%" width="100%">                                        
+                            </li>            
+                            <li class="driver-list-group-item">
+                                <audio controls style="width: 98%;">
+                                    <source src="../media/music.mp3" type = "audio/mpeg" >
+                                    您的浏览器不支持 audio 元素
+                                </audio>
+                            </li>
+                            <li class="driver-list-group-item">
+                                <a href="#" class="btn btn-primary" role="button">立即联系</a>
+                            </li>
+                        </ul>
+                                              
+                    </div>  
+                </div>
+                
+            </div>
+
+            
+        </div>
+
+
+
+    </body>
