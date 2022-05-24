@@ -5,7 +5,7 @@ html {
 }
 
 .sidebar {
-    background: #FFFFFF;
+    background: #050c20;
     float: right;
     width: 200px;
     height: 100vh;
@@ -14,7 +14,7 @@ html {
 }
 
 .side {
-    background: #FFFFFF;
+    background: #050c20;
     overflow: auto;
     height: 85%;
     margin-right: 0;
@@ -38,9 +38,15 @@ html {
     list-style: none;
     height: 45px;
     width: 100%;
-    font-size: 10px;
+    line-height: 45px;
     transition: 0.2s all;
     cursor: pointer;
+}
+
+.sidebar ul li p {
+    padding-left: 30px;
+    font-size: 15px;
+    color: #FFFFFF;
 }
 
 .sidebar ul li h5 {
@@ -49,8 +55,12 @@ html {
     margin-left: 10px;
 }
 
-.sidebar>ul>li:hover {
-    background: #3A7EC6;
+.sidebar ul li:hover {
+    background: #1f2e54;
+}
+
+.sidebar ul li p:hover {
+    background: #1f2e54;
 }
 
 .btn {
@@ -58,11 +68,11 @@ html {
     height: 45px;
     line-height: 27px !important;
     padding-left: -100px;
-    border: 2px solid #54B5E7 !important;
+    border: 2px solid #3A7EC6 !important;
     color: #FFFFFF !important;
     font-size: 14px !important;
     border-radius: 25px 0px 0px 25px !important;
-    background-color: #54B5E7!important;
+    background-color: #3A7EC6!important;
 }
 
 
