@@ -1,0 +1,62 @@
+.sidebar_item {
+    font-size: calc(1.275rem + .3vw)!important;    
+    color: #fff!important;
+}
+.sidebar_header {
+    font-size: calc(1.275rem + .3vw)!important;    
+    color: #fff!important;
+    padding: 5px;
+}
+
+.text-blue {
+    color: #54B5E7;
+}
+/* 黑色侧边栏 */
+.sidebar{
+    position:fixed;
+    top:0;
+    width: 150px;
+    background-color: #060C20;
+    height: 100%;    
+}
+
+
+.driver-col-md-4{
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 10px;
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+}
+.driver-list-group-item {
+    position: relative;
+    display: block;
+    padding: 0.75rem 1.25rem;   
+    background-color: #fff;
+    border: 2px solid rgba(0, 0, 0, 0.125);    
+}
+.driver-list-img{
+    width: 200;
+    height: 200px;
+    align-self: center;
+}
+.driver-list-group-item+.driver-list-group-item {
+    border-top-width: 0;
+}
+.panel > .list-group .driver-list-group-item{
+    border-width: 1px 0;
+    border-radius: 0;
+}
+sidebar-hr{
+    height: 1px;
+    margin:0 20px 20px 20px;
+    color: #fff;
+    background-color: #fff;
+    border: 0;
+    opacity: .25;  /*不透明度*/  
+}
+.nav-link.active{
+    color: #fff;
+    background-color: #0d6efd;
+}
