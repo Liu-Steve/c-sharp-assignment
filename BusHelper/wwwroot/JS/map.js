@@ -127,8 +127,8 @@ $('.btn').on('click', function() {
 var isSpread1 = false;
 $('#1-100').on('click', function() {
     if (!isSpread1) {
-        let arry = new Array('-鄂A·JD343', '-鄂L·13495', '-鄂H·C6103', '-鄂E·C1180', '-鄂A·888U8', '-鄂N·H6213',
-            '-鄂N·E3923', '-鄂A·6265B', '-鄂A·A9965', '-鄂A·M5852', '-鄂A·54374', '-鄂R·15466', '-鄂J·B0888',
+        let arry = new Array('-鄂A·JD343', '-鄂A·13495', '-鄂A·C6103', '-鄂A·C1180', '-鄂A·888U8', '-鄂A·H6213',
+            '-鄂A·E3923', '-鄂A·6265B', '-鄂A·A9965', '-鄂A·M5852', '-鄂A·54374', '-鄂A·15466', '-鄂A·B0888',
             '-鄂A·V6600', '-鄂A·9P80M')
         for (i = 0; i < 15; i++) {
 
@@ -150,8 +150,8 @@ $('#1-100').on('click', function() {
 var isSpread2 = false;
 $('#101-200').on('click', function() {
     if (!isSpread2) {
-        let arry = new Array('-鄂A·00266', '-鄂L·09475', '-鄂H·k2332', '-鄂E·WB527', '-鄂A·R3399', '-鄂N·K0755',
-            '-鄂N·0E2A7', '-鄂A·0D2G7', '-鄂A·0E2G7', '-鄂A·0G2X7', '-鄂A·027EZ', '-鄂R·KC256', '-鄂J·0190D',
+        let arry = new Array('-鄂A·00266', '-鄂A·09475', '-鄂A·k2332', '-鄂A·WB527', '-鄂A·R3399', '-鄂A·K0755',
+            '-鄂A·0E2A7', '-鄂A·0D2G7', '-鄂A·0E2G7', '-鄂A·0G2X7', '-鄂A·027EZ', '-鄂A·KC256', '-鄂A·0190D',
             '-鄂A·0H2S7', '-鄂A·H37D2')
         for (i = 0; i < 15; i++) {
             let li = document.createElement('li');

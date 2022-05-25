@@ -7,6 +7,7 @@
     <script src="JS/vue.js"></script>
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bar.css" rel="stylesheet">
+    <link href="css/map.css" rel="stylesheet">
     <link href="css/right-menu.css" rel="stylesheet">
 
     <body>
@@ -64,7 +65,7 @@
         <div class="py-5" id="real-time">
             <div class="d-flex container-test justify-content-between py-5 mt-5">
                 <div class="float-left">
-                    <img class="position-absolute" width="660px" src="img/bus.jpg" style="object-fit: cover;">
+                    <img class="position-absolute" id="img-real" width="660px" height="445px" v-bind:src="src" style="object-fit: cover;">
                     <div class="left-up-exceed">1-鄂A·JD343</div>
                     <p id="time" class="left-up text-white bottom">{{time}}</p>
                     <p class="left-up text-white bottom">当前站：八一路小洪山</p>
@@ -150,7 +151,7 @@
                     <h5 class="text-teal">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp当前车内司机状态正常，生理指标处于健康水平，偶有浮动，突发身体疾病概率低。 图像状态正常，无外界因素干扰司机，司机驾驶行为良好，违规次数极低。
                     </h5>
                     <p class="float-left text-dark-blue">司机电话：18572326828</p>
-                    <button class="float-right search pointer-all">立即联系</button>
+                    <div class="float-right search pointer-all">立即联系</div>
                 </div>
             </div>
         </div>
@@ -184,6 +185,13 @@
                 el: "#time",
                 data: {
                     time: Date()
+                }
+            })
+
+            var imgSrc = new Vue({
+                el: "#img-real",
+                data: {
+                    src: "fake_data/1.jpg"
                 }
             })
 
@@ -224,15 +232,27 @@
                 }
             }
 
+            var imgCont = 1;
+
+            function setImg() {
+                if (imgCont == 60) {
+                    imgCont = 1;
+                }
+                imgSrc.src = "fake_data/" + imgCont + ".jpg"
+                imgCont = imgCont + 1;
+            }
+
             window.setInterval(() => {
                 setTimeout(() => {
                     vm.time = Date();
+                    setImg();
                     drawRect();
                     setCon();
                 }, 0)
             }, 1000)
         </script>
-        <script src="JS/map.js"></script>
+        <script src="JS/jquery-3.4.1.min.js"></script>
+        <script src="JS/info.js"></script>
     </body>
 
 </html>
