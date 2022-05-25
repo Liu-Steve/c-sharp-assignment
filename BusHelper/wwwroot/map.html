@@ -2,36 +2,24 @@
 <html>
 
 <head>
-    <title>显示公交线路</title>
+    <title>公交管家-总体实况</title>
     <meta charset="utf-8">
     <!-- leaflet need -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
+    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
     <script src="https://cdn.bootcss.com/proj4js/2.4.3/proj4.js"></script>
-    <script src="https://cdn.bootcss.com/proj4leaflet/1.0.1/proj4leaflet.min.js"></script>
+    <script src="https://cdn.bootcss.com/proj4leaflet/1.0.1/proj4leaflet.min.js"></script> -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/leaflet/1.8.0/leaflet.css">
+    </script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/leaflet/1.8.0/leaflet.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/proj4js/2.8.0/proj4.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/proj4leaflet/1.0.2/proj4leaflet.min.js"></script>
     <script src="./JS/jquery-3.4.1.min.js"></script>
     <link href="css/style.css" rel="stylesheet">
-    <!-- <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-    <!-- <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-    <style type="text/css">
-        #map {
-            height: 100vh;
-            width: 100vw;
-        }
-        
-        .pointer_none {
-            pointer-events: none;
-        }
-        
-        .pointer_all {
-            pointer-events: all;
-        }
-    </style>
+    <link href="css/map.css" rel="stylesheet">
     <link href="css/bar.css" rel="stylesheet">
     <link rel="stylesheet" href="css/right-menu.css" />
+    <link rel="shortcut icon" href="img/htmllogo.ico">
 </head>
 
 <body>
@@ -44,7 +32,7 @@
                 </a>
                 <div class="navbar-nav ml-auto py-0">
                     <a href="#about" class="fontsize"><img src="img/概况.svg" class="gap" width="30px" />实况</a>
-                    <a href="info.html" class="fontsize"><img src="img/司机.svg" class="gap" width="30px" />司机</a>
+                    <a href="info.html" target="_blank" class="fontsize"><img src="img/司机.svg" class="gap" width="30px" />司机</a>
                     <a href="#gallery" class="fontsize"><img src="img/信箱.svg" class="gap" width="30px" />信箱</a>
                 </div>
                 <div id="box">
