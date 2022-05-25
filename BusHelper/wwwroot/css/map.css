@@ -1,0 +1,27 @@
+#map {
+    height: 100vh;
+    width: 100vw;
+}
+
+.pointer_none {
+    pointer-events: none;
+}
+
+.pointer_all {
+    pointer-events: all;
+}
+
+.icon {
+    overflow: hidden;
+    display: inline-block;
+    line-height: 12px;
+}
+
+.icon>img {
+    width: 6px;
+    height: 12px;
+    position: relative;
+    left: -20px;
+    filter: drop-shadow(#333333 20px 0);
+    -webkit-filter: drop-shadow(#333333 20px 0);
+}
