@@ -149,6 +149,16 @@ let updateBuses = function() {
 updateBuses();
 setInterval(updateBuses, 1000);
 
+let focus_bus = function() {
+    let id = "";
+    busIcon.forEach((val, key) => {
+        id = key;
+    });
+    let bus = busIcon.get(id);
+    let new_center = bus.getLatLng();
+    lmap.flyTo(new_center, 15);
+}
+
 // side bar
 let slide_img_rotate = false;
 $('.btn').on('click', function() {
