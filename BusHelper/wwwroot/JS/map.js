@@ -150,11 +150,12 @@ updateBuses();
 setInterval(updateBuses, 1000);
 
 let focus_bus = function() {
-    let id = "";
-    busIcon.forEach((val, key) => {
-        id = key;
+    let bus = undefined;
+    busIcon.forEach((val) => {
+        bus = val;
     });
-    let bus = busIcon.get(id);
+    if (bus == undefined)
+        return;
     let new_center = bus.getLatLng();
     lmap.flyTo(new_center, 15);
 }
@@ -181,6 +182,7 @@ $('#1-100').on('click', function() {
                 cont.setAttribute('style', 'background: #060C20;');
                 let a = document.createElement('a');
                 a.setAttribute('href', '#a');
+                a.setAttribute('onClick', 'focus_bus()');
                 a.innerHTML = (i + 1) + "-" + data[0][i];
                 cont.appendChild(a);
                 li.appendChild(cont);
@@ -204,6 +206,7 @@ $('#101-200').on('click', function() {
                 cont.setAttribute('style', 'background: #060C20;');
                 let a = document.createElement('a');
                 a.setAttribute('href', '#a');
+                a.setAttribute('onClick', 'focus_bus()');
                 a.innerHTML = (i + 101) + "-" + data[0][i];
                 cont.appendChild(a);
                 li.appendChild(cont);
