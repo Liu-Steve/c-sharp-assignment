@@ -133,9 +133,10 @@ $('#1-100').on('click', function() {
                 let li = document.createElement('li');
                 let cont = document.createElement('div');
                 cont.setAttribute('style', 'background: #060C20;');
-                let p = document.createElement('p');
-                p.innerHTML = (i + 1) + "-" + data[0][i];
-                cont.appendChild(p);
+                let a = document.createElement('a');
+                a.setAttribute('href', '#a');
+                a.innerHTML = (i + 1) + "-" + data[0][i];
+                cont.appendChild(a);
                 li.appendChild(cont);
                 document.getElementById('1-100-list').appendChild(li);
             }
@@ -151,12 +152,14 @@ $('#101-200').on('click', function() {
     if (!isSpread2) {
         $.getJSON("json/bus_data.json", function(data) {
             for (i = 0; i < 15; i++) {
+
                 let li = document.createElement('li');
                 let cont = document.createElement('div');
                 cont.setAttribute('style', 'background: #060C20;');
-                let p = document.createElement('p');
-                p.innerHTML = (i + 1) + "-" + data[1][i];
-                cont.appendChild(p);
+                let a = document.createElement('a');
+                a.setAttribute('href', '#a');
+                a.innerHTML = (i + 101) + "-" + data[0][i];
+                cont.appendChild(a);
                 li.appendChild(cont);
                 document.getElementById('101-200-list').appendChild(li);
             }
