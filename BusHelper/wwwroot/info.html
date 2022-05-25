@@ -10,251 +10,252 @@
     <link href="css/map.css" rel="stylesheet">
     <link href="css/right-menu.css" rel="stylesheet">
     <link rel="shortcut icon" href="img/htmllogo.ico">
+</head>
 
-    <body>
-        <!-- navbar可调整菜单宽度 -->
-        <div class="fixed-top pointer_none">
-            <nav class="navbar shadow-sm navbar-expand-lg bg-dark py-3 py-lg-0 px-lg-5 pointer_all">
-                <div class="navbar-collapse justify-content-between" id="toolbar">
-                    <a href="index1.html" class="navbar-brand mx-5 d-lg-block">
-                        <img src="img/logo.png" width="250px">
-                        <!-- <h5 class="text-white my-n2">云端可视化交互平台</h5> -->
-                    </a>
-                    <div class="navbar-nav ml-auto py-0">
-                        <a href="map.html" class="fontsize"><img src="img/概况.svg" class="gap" width="30px" />实况</a>
-                        <a href="info.html" class="fontsize"><img src="img/司机.svg" class="gap" width="30px" />司机</a>
-                        <a href="#gallery" class="fontsize"><img src="img/信箱.svg" class="gap" width="30px" />信箱</a>
-                    </div>
-                    <div id="box">
-                        <input type="search" name="search" placeholder="请输入查找司机关键词">
-                        <div id="search">搜索</div>
-                    </div>
+<body>
+    <!-- navbar可调整菜单宽度 -->
+    <div class="fixed-top pointer_none">
+        <nav class="navbar shadow-sm navbar-expand-lg bg-dark py-3 py-lg-0 px-lg-5 pointer_all">
+            <div class="navbar-collapse justify-content-between" id="toolbar">
+                <a href="index1.html" class="navbar-brand mx-5 d-lg-block">
+                    <img src="img/logo.png" width="250px">
+                    <!-- <h5 class="text-white my-n2">云端可视化交互平台</h5> -->
+                </a>
+                <div class="navbar-nav ml-auto py-0">
+                    <a href="map.html" class="fontsize"><img src="img/概况.svg" class="gap" width="30px" />实况</a>
+                    <a href="info.html" class="fontsize"><img src="img/司机.svg" class="gap" width="30px" />司机</a>
+                    <a href="#gallery" class="fontsize"><img src="img/信箱.svg" class="gap" width="30px" />信箱</a>
                 </div>
-            </nav>
-            <div class="sidebar pointer_all" style="height: 100vh;">
-                <ul id="bus-list">
-                    <li id="1-100">
-                        <h5>1-100</h5>
-                    </li>
-                    <ul id="1-100-list">
-
-                    </ul>
-                    <li id="101-200">
-                        <h5>101-200</h5>
-                    </li>
-                    <ul id="101-200-list">
-
-                    </ul>
-                    <li>
-                        <h5>201-300</h5>
-                    </li>
-                    <li>
-                        <h5>301-400</h5>
-                    </li>
-                    <li>
-                        <h5>401-500</h5>
-                    </li>
-                    <li>
-                        <h5>501-600</h5>
-                    </li>
-                </ul>
+                <div id="box">
+                    <input type="search" name="search" placeholder="请输入查找司机关键词">
+                    <div id="search">搜索</div>
+                </div>
             </div>
-            <div class="btn pointer_all" id="scoll"><img id="slide-img" src="img/slide.svg" width="20px">&nbsp;单车详情</div>
+        </nav>
+        <div class="sidebar pointer_all" style="height: 100vh;">
+            <ul id="bus-list">
+                <li id="1-100">
+                    <h5>1-100</h5>
+                </li>
+                <ul id="1-100-list">
+
+                </ul>
+                <li id="101-200">
+                    <h5>101-200</h5>
+                </li>
+                <ul id="101-200-list">
+
+                </ul>
+                <li>
+                    <h5>201-300</h5>
+                </li>
+                <li>
+                    <h5>301-400</h5>
+                </li>
+                <li>
+                    <h5>401-500</h5>
+                </li>
+                <li>
+                    <h5>501-600</h5>
+                </li>
+            </ul>
         </div>
+        <div class="btn pointer_all" id="scoll"><img id="slide-img" src="img/slide.svg" width="20px">&nbsp;单车详情</div>
+    </div>
 
-        <!-- py-*可以调整司机图标到顶部的距离 -->
-        <div class="py-5" id="real-time">
-            <div class="d-flex container-test justify-content-between py-5 mt-5">
-                <div class="float-left">
-                    <img class="position-absolute" id="img-real" width="660px" height="445px" v-bind:src="src" style="object-fit: cover;">
-                    <div class="left-up-exceed">1-鄂A·JD343</div>
-                    <p id="time" class="left-up text-white bottom">{{time}}</p>
-                    <p class="left-up text-white bottom">当前站：八一路小洪山</p>
-                    <p class="left-up text-white bottom">下一站：珞狮路北段</p>
+    <!-- py-*可以调整司机图标到顶部的距离 -->
+    <div class="py-5" id="real-time">
+        <div class="d-flex container-test justify-content-between py-5 mt-5">
+            <div class="float-left">
+                <img class="position-absolute" id="img-real" width="660px" height="445px" v-bind:src="src" style="object-fit: cover;">
+                <div class="left-up-exceed">1-鄂A·JD343</div>
+                <p id="time" class="left-up text-white bottom">{{time}}</p>
+                <p class="left-up text-white bottom">当前站：八一路小洪山</p>
+                <p class="left-up text-white bottom">下一站：珞狮路北段</p>
+            </div>
+
+            <div class="float-right">
+                <div class="bg-secondary">
+                    <div class="left-up-exceed-no-other">司机详情 </div>
+                    <div class="left-up-bg">
+                        <h5 class="text-teal">生理指标</h5>
+                        <div class="text-teal">
+                            <p class="bottom" id="con">心率：{{condition[0]}} 血压：{{condition[1]}}/{{condition[2]}} 体温：{{condition[3]}} 血氧：{{condition[4]}}</p>
+                        </div>
+                        <h5 class="text-teal">实时图像</h5>
+                        <div id="po" class="text-teal">
+                            <div class="wrapper bottom">
+                                <p class="bottom">抽烟</p>
+                                <canvas class="bottom" id="rectangle0" width="100px" height="10px"></canvas>
+                                <p class="bottom">{{possible[0]}}</p>
+                                <p class="bottom">闭眼</p>
+                                <canvas class="bottom" id="rectangle1" width="100px" height="10px"></canvas>
+                                <p class="bottom">{{possible[1]}}</p>
+                                <p class="bottom">打哈欠</p>
+                                <canvas class="bottom" id="rectangle2" width="100px" height="10px"></canvas>
+                                <p class="bottom">{{possible[2]}}</p>
+                                <p class="bottom">使用手机</p>
+                                <canvas class="bottom" id="rectangle3" width="100px" height="10px"></canvas>
+                                <p class="bottom">{{possible[3]}}</p>
+                                <p class="bottom mini-text">未系安全带</p>
+                                <canvas class="bottom" id="rectangle4" width="100px" height="10px"></canvas>
+                                <p class="bottom">{{possible[4]}}</p>
+                                <p class="bottom mini-text">视角未看前方</p>
+                                <canvas class="bottom" id="rectangle5" width="100px" height="10px"></canvas>
+                                <p class="bottom">{{possible[5]}}</p>
+                                <p class="bottom mini-text">未正确佩戴口罩</p>
+                                <canvas class="bottom" id="rectangle6" width="100px" height="10px"></canvas>
+                                <p class="bottom">{{possible[6]}}</p>
+                                <p class="bottom mini-text">双手离开方向盘</p>
+                                <canvas class="bottom" id="rectangle7" width="100px" height="10px"></canvas>
+                                <p class="bottom">{{possible[7]}}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="float-right">
+                <div class="pt-5">
                     <div class="bg-secondary">
-                        <div class="left-up-exceed-no-other">司机详情 </div>
+                        <div class="left-up-exceed-no-other">疑似异常</div>
                         <div class="left-up-bg">
                             <h5 class="text-teal">生理指标</h5>
                             <div class="text-teal">
-                                <p class="bottom" id="con">心率：{{condition[0]}} 血压：{{condition[1]}}/{{condition[2]}} 体温：{{condition[3]}} 血氧：{{condition[4]}}</p>
+                                <p class="bottom">无</p>
                             </div>
                             <h5 class="text-teal">实时图像</h5>
-                            <div id="po" class="text-teal">
-                                <div class="wrapper bottom">
-                                    <p class="bottom">抽烟</p>
-                                    <canvas class="bottom" id="rectangle0" width="100px" height="10px"></canvas>
-                                    <p class="bottom">{{possible[0]}}</p>
-                                    <p class="bottom">闭眼</p>
-                                    <canvas class="bottom" id="rectangle1" width="100px" height="10px"></canvas>
-                                    <p class="bottom">{{possible[1]}}</p>
-                                    <p class="bottom">打哈欠</p>
-                                    <canvas class="bottom" id="rectangle2" width="100px" height="10px"></canvas>
-                                    <p class="bottom">{{possible[2]}}</p>
-                                    <p class="bottom">使用手机</p>
-                                    <canvas class="bottom" id="rectangle3" width="100px" height="10px"></canvas>
-                                    <p class="bottom">{{possible[3]}}</p>
-                                    <p class="bottom mini-text">未系安全带</p>
-                                    <canvas class="bottom" id="rectangle4" width="100px" height="10px"></canvas>
-                                    <p class="bottom">{{possible[4]}}</p>
-                                    <p class="bottom mini-text">视角未看前方</p>
-                                    <canvas class="bottom" id="rectangle5" width="100px" height="10px"></canvas>
-                                    <p class="bottom">{{possible[5]}}</p>
-                                    <p class="bottom mini-text">未正确佩戴口罩</p>
-                                    <canvas class="bottom" id="rectangle6" width="100px" height="10px"></canvas>
-                                    <p class="bottom">{{possible[6]}}</p>
-                                    <p class="bottom mini-text">双手离开方向盘</p>
-                                    <canvas class="bottom" id="rectangle7" width="100px" height="10px"></canvas>
-                                    <p class="bottom">{{possible[7]}}</p>
+                            <div class="text-teal">
+                                <div class="wrapper-danger bottom">
+                                    <p class="bottom">抽烟：</p>
+                                    <p class="bottom">0次</p>
+                                    <p class="bottom">闭眼：</p>
+                                    <p class="bottom">1次</p>
+                                    <p class="bottom">打哈欠:</p>
+                                    <p class="bottom">0次</p>
+                                    <p class="bottom ">使用手机:</p>
+                                    <p class="bottom">0次</p>
+                                    <p class="bottom mini-text">未系安全带：</p>
+                                    <p class="bottom">0次</p>
+                                    <p class="bottom mini-text">视角未看前方：</p>
+                                    <p class="bottom">0次</p>
+                                    <p class="bottom mini-text">未正确佩戴口罩：</p>
+                                    <p class="bottom">0次</p>
+                                    <p class="bottom mini-text">双手离开方向盘：</p>
+                                    <p class="bottom">0次</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="pt-5">
-                        <div class="bg-secondary">
-                            <div class="left-up-exceed-no-other">疑似异常</div>
-                            <div class="left-up-bg">
-                                <h5 class="text-teal">生理指标</h5>
-                                <div class="text-teal">
-                                    <p class="bottom">无</p>
-                                </div>
-                                <h5 class="text-teal">实时图像</h5>
-                                <div class="text-teal">
-                                    <div class="wrapper-danger bottom">
-                                        <p class="bottom">抽烟：</p>
-                                        <p class="bottom">0次</p>
-                                        <p class="bottom">闭眼：</p>
-                                        <p class="bottom">1次</p>
-                                        <p class="bottom">打哈欠:</p>
-                                        <p class="bottom">0次</p>
-                                        <p class="bottom ">使用手机:</p>
-                                        <p class="bottom">0次</p>
-                                        <p class="bottom mini-text">未系安全带：</p>
-                                        <p class="bottom">0次</p>
-                                        <p class="bottom mini-text">视角未看前方：</p>
-                                        <p class="bottom">0次</p>
-                                        <p class="bottom mini-text">未正确佩戴口罩：</p>
-                                        <p class="bottom">0次</p>
-                                        <p class="bottom mini-text">双手离开方向盘：</p>
-                                        <p class="bottom">0次</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="d-flex flex-column container-test bg-secondary">
-                <div class="left-up-exceed-no-other">概况&建议</div>
-                <div class="left-up-bg">
-                    <h5 class="text-teal">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp当前车内司机状态正常，生理指标处于健康水平，偶有浮动，突发身体疾病概率低。 图像状态正常，无外界因素干扰司机，司机驾驶行为良好，违规次数极低。
-                    </h5>
-                    <p class="float-left text-dark-blue">司机电话：18572326828</p>
-                    <div id="contact" class="float-right search pointer-all">立即联系</div>
                 </div>
             </div>
         </div>
+        <div class="d-flex flex-column container-test bg-secondary">
+            <div class="left-up-exceed-no-other">概况&建议</div>
+            <div class="left-up-bg">
+                <h5 class="text-teal">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp当前车内司机状态正常，生理指标处于健康水平，偶有浮动，突发身体疾病概率低。 图像状态正常，无外界因素干扰司机，司机驾驶行为良好，违规次数极低。
+                </h5>
+                <p class="float-left text-dark-blue">司机电话：18572326828</p>
+                <div id="contact" class="float-right search pointer-all">立即联系</div>
+            </div>
+        </div>
+    </div>
 
-        <div class="bg-dark text-white py-2" id="contact" style="margin-top: 0px;">
-            <div class="container text-center py-5">
-                <div class="section-title position-relative text-center">
-                    <h1 class="font-secondary display-3 text-white">公交管家</h1>
-                    <!-- <i class="far fa-heart text-white"></i> -->
-                </div>
-                <!-- <div class="d-flex justify-content-center mb-4">
+    <div class="bg-dark text-white py-2" id="contact" style="margin-top: 0px;">
+        <div class="container text-center py-5">
+            <div class="section-title position-relative text-center">
+                <h1 class="font-secondary display-3 text-white">公交管家</h1>
+                <!-- <i class="far fa-heart text-white"></i> -->
+            </div>
+            <!-- <div class="d-flex justify-content-center mb-4">
                 <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
                 <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
                 <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
                 <a class="btn btn-lg btn-outline-light btn-lg-square" href="#"><i class="fab fa-instagram"></i></a>
             </div> -->
-                <div class="position-relative text-center">
-                    Bus management system<br/> an integrated monitering system involving cloud interaction and wearable devices
-                </div>
-                <div class="d-flex justify-content-center py-2">
-                    <p class="text-white" href="#"><a href="email-protection.html" class="__cf_email__" data-cfemail="9ef7f0f8f1defbe6fff3eef2fbb0fdf1f3">[联系方式]</a></p>
-                    <span class="px-3">|</span>
-                    <p class="text-white" href="#"><a href="email-protection.html" class="__cf_email__" data-cfemail="9ef7f0f8f1defbe6fff3eef2fbb0fdf1f3">[关于我们]</a></p>
-                </div>
-                <p class="m-0">Copyright &copy; 2022.Bus Manager System.
-                </p>
+            <div class="position-relative text-center">
+                Bus management system<br/> an integrated monitering system involving cloud interaction and wearable devices
             </div>
+            <div class="d-flex justify-content-center py-2">
+                <p class="text-white" href="#"><a href="email-protection.html" class="__cf_email__" data-cfemail="9ef7f0f8f1defbe6fff3eef2fbb0fdf1f3">[联系方式]</a></p>
+                <span class="px-3">|</span>
+                <p class="text-white" href="#"><a href="email-protection.html" class="__cf_email__" data-cfemail="9ef7f0f8f1defbe6fff3eef2fbb0fdf1f3">[关于我们]</a></p>
+            </div>
+            <p class="m-0">Copyright &copy; 2022.Bus Manager System.
+            </p>
         </div>
-        <script>
-            var vm = new Vue({
-                el: "#time",
-                data: {
-                    time: Date()
-                }
-            })
-
-            var imgSrc = new Vue({
-                el: "#img-real",
-                data: {
-                    src: "fake_data/1.jpg"
-                }
-            })
-
-            var po = new Vue({
-                el: "#po",
-                data: {
-                    possible: [0.2, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
-                }
-            })
-
-            var con = new Vue({
-                el: "#con",
-                data: {
-                    condition: [98, 98, 98, 98, 98]
-                }
-            })
-
-            function drawOneRect(name, i) {
-                var canvas = document.getElementById(name);
-                canvas.width = canvas.width;
-                var context = canvas.getContext('2d');
-                context.fillStyle = "#20c997"
-                var random = Math.random();
-                Vue.set(po.possible, i, random.toFixed(2));
-                var l = Math.round(random * 100);
-                context.fillRect(0, 0, l, 2);
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#time",
+            data: {
+                time: Date()
             }
+        })
 
-            function drawRect() {
-                for (i = 0; i < 8; i++) {
-                    drawOneRect("rectangle" + i, i);
-                }
+        var imgSrc = new Vue({
+            el: "#img-real",
+            data: {
+                src: "fake_data/1.jpg"
             }
+        })
 
-            function setCon() {
-                for (i = 0; i < 5; i++) {
-                    Vue.set(con.condition, i, 50 + Math.round(Math.random() * 50));
-                }
+        var po = new Vue({
+            el: "#po",
+            data: {
+                possible: [0.2, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
             }
+        })
 
-            var imgCont = 1;
-
-            function setImg() {
-                if (imgCont == 60) {
-                    imgCont = 1;
-                }
-                imgSrc.src = "fake_data/" + imgCont + ".jpg"
-                imgCont = imgCont + 1;
+        var con = new Vue({
+            el: "#con",
+            data: {
+                condition: [98, 98, 98, 98, 98]
             }
+        })
 
-            window.setInterval(() => {
-                setTimeout(() => {
-                    vm.time = Date();
-                    setImg();
-                    drawRect();
-                    setCon();
-                }, 0)
-            }, 1000)
-        </script>
-        <script src="JS/jquery-3.4.1.min.js"></script>
-        <script src="JS/info.js"></script>
-        <script src="JS/alert.js"></script>
-    </body>
+        function drawOneRect(name, i) {
+            var canvas = document.getElementById(name);
+            canvas.width = canvas.width;
+            var context = canvas.getContext('2d');
+            context.fillStyle = "#20c997"
+            var random = Math.random();
+            Vue.set(po.possible, i, random.toFixed(2));
+            var l = Math.round(random * 100);
+            context.fillRect(0, 0, l, 2);
+        }
+
+        function drawRect() {
+            for (i = 0; i < 8; i++) {
+                drawOneRect("rectangle" + i, i);
+            }
+        }
+
+        function setCon() {
+            for (i = 0; i < 5; i++) {
+                Vue.set(con.condition, i, 50 + Math.round(Math.random() * 50));
+            }
+        }
+
+        var imgCont = 1;
+
+        function setImg() {
+            if (imgCont == 60) {
+                imgCont = 1;
+            }
+            imgSrc.src = "fake_data/" + imgCont + ".jpg"
+            imgCont = imgCont + 1;
+        }
+
+        window.setInterval(() => {
+            setTimeout(() => {
+                vm.time = Date();
+                setImg();
+                drawRect();
+                setCon();
+            }, 0)
+        }, 1000)
+    </script>
+    <script src="JS/jquery-3.4.1.min.js"></script>
+    <script src="JS/info.js"></script>
+    <script src="JS/alert.js"></script>
+</body>
 
 </html>

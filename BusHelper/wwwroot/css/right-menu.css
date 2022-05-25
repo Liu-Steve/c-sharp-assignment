@@ -43,8 +43,14 @@ html {
     cursor: pointer;
 }
 
-.sidebar ul li p {
-    padding-left: 30px;
+.sidebar ul ul li div a {
+    padding-left: 20px;
+    font-size: 15px;
+    color: #FFFFFF;
+}
+
+.sidebar ul ul li div a::before {
+    padding-left: 20px;
     font-size: 15px;
     color: #FFFFFF;
 }
@@ -55,12 +61,13 @@ html {
     margin-left: 10px;
 }
 
-.sidebar ul li:hover {
+.sidebar li:hover {
     background: #1f2e54;
 }
 
-.sidebar ul li p:hover {
+.sidebar ul ul li:hover {
     background: #1f2e54;
+    padding-left: 50px;
 }
 
 .btn {
