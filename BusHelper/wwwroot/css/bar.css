@@ -185,3 +185,10 @@ input {
     margin-left: auto;
     max-width: 1230px;
 }
+
+.linking {
+    color: #4C7FC4;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+}
