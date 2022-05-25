@@ -22,7 +22,9 @@ this.baseLayer = L.tileLayer("http://webrd0{s}.is.autonavi.com/appmaptile?lang=z
 
 this.map.addLayer(this.baseLayer);
 
-// add bus 810
+// add buses
+const staIcons = [];
+
 function make_marker_icon(color_marker) {
     let filter = `filter: drop-shadow(${color_marker} 20px 0);
     -webkit-filter: drop-shadow(${color_marker} 20px 0);`
@@ -36,8 +38,6 @@ function make_marker_icon(color_marker) {
     });
     return staIcon;
 }
-
-
 
 let show = function(data, color_line) {
     let xs = data.data.busline_list[0].xs.split(',').map(Number);
@@ -54,30 +54,53 @@ let show = function(data, color_line) {
         let p = sta[i].xy_coords.split(';').map(Number);
         let staIcon = make_marker_icon(color_line);
         var marker = L.marker([p[1], p[0]], { icon: staIcon });
+        marker.setZIndexOffset(-500);
+        marker.setOpacity(0);
         lmap.addLayer(marker);
+        staIcons.push(marker);
     }
 }
 
 let Ajax = function() {
     $.getJSON("../json/bus287.json", function(data) {
-        show(data, '#770077');
+        show(data, '#5DAC81');
     });
     $.getJSON("../json/bus520.json", function(data) {
-        show(data, '#007777');
+        show(data, '#00AA90');
     });
     $.getJSON("../json/bus521.json", function(data) {
-        show(data, '#777700');
+        show(data, '#24936E');
     });
     $.getJSON("../json/bus725.json", function(data) {
-        show(data, '#000077');
+        show(data, '#00896C');
     });
     $.getJSON("../json/bus740.json", function(data) {
-        show(data, '#770000');
+        show(data, '#227D51');
     });
     $.getJSON("../json/bus810.json", function(data) {
-        show(data, '#007700');
+        show(data, '#1B813E');
     });
 }();
+
+let showStations = function() {
+    staIcons.forEach((item) => {
+        item.setOpacity(1);
+    });
+};
+
+let hideStations = function() {
+    staIcons.forEach((item) => {
+        item.setOpacity(0);
+    });
+};
+
+map.on("zoomend", (e) => {
+    let scale = e.target.getZoom();
+    if (scale > 12)
+        showStations();
+    else
+        hideStations();
+});
 
 // bus icons
 let busGoodIcon = L.icon({
@@ -86,7 +109,14 @@ let busGoodIcon = L.icon({
     iconAnchor: [15, 15]
 })
 
-let busIcon = [];
+let brief = "";
+$.get("../brief.html", function(data, status) {
+    if (status == "success")
+        brief = data;
+});
+
+//let busIcon = [];
+const busIcon = new Map();
 
 let removeBusIcons = function() {
     busIcon.forEach(icon => {
@@ -97,14 +127,20 @@ let removeBusIcons = function() {
 let updateBuses = function() {
     $.get("/BusInfo/GetBusPos", function(data, status) {
         if (status == "success") {
-            removeBusIcons();
+            //removeBusIcons();
             data.forEach(element => {
                 let x = element["x"];
                 let y = element["y"];
-                let marker = L.marker([y, x], { icon: busGoodIcon });
-                marker.bindPopup("<b>Hello world!</b><br>I am a popup.");
-                lmap.addLayer(marker);
-                busIcon.push(marker)
+                let bus_id = element["busID"];
+                if (busIcon.has(bus_id)) {
+                    let icon = busIcon.get(bus_id);
+                    icon.setLatLng([y, x]);
+                } else {
+                    let marker = L.marker([y, x], { icon: busGoodIcon });
+                    marker.bindPopup(brief + "");
+                    lmap.addLayer(marker);
+                    busIcon.set(bus_id, marker);
+                }
             });
         }
     });

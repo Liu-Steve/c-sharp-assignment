@@ -45,41 +45,43 @@
             </a>
             <sidebar-hr></sidebar-hr>
             <ul class="nav flex-column">
-                <li><a href="#" class="nav-link active">全部消息</a></li>
-                <li><a href="#" class="nav-link">未读消息</a><redpoint style="--num:280">280</redpoint></li>
-                <li><a href="#" class="nav-link">已读消息</a></li>                
+                <li><a href="#" class="nav-link" onclick="showAllMsg()" id="allBtn">全部消息</a></li>
+                <li><a href="#" class="nav-link active" onclick="showUnseenMsg()" id="unSeenBtn">未读消息</a><redpoint style="--num:280">280</redpoint></li>
+                <li><a href="#" class="nav-link" onclick="showSeenMsg()"id="seenBtn">已读消息</a></li>                
             </ul>
         </div>
 
 
-        <div class="container">      
+        <div class="container">     
+            <template>
+                <div class="driver-col-md-4" >                         
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <a href="info.html" target="_blank" class="panel-title" id="title">司机名字 | 8路 | 车牌号</a>
+                        </div>
+                    
+                        <ul class="list-group">
+                            <li class="driver-list-group-item ">
+                                <a href="info.html" target="_blank">
+                                <img src="./media/img/driver1.jpg" alt="张三的照片"height="200" width="100%" >  </a>                                      
+                            </li>            
+                            <li class="driver-list-group-item">
+                                <audio controls style="width: 98%;">
+                                    <source src="./media/audio/music.mp3" type = "audio/mpeg" >
+                                    您的浏览器不支持 audio 元素
+                                </audio>
+                            </li>
+                            <li class="driver-list-group-item">
+                                <a href="info.html" target="_blank" class="btn btn-primary" role="button">立即联系</a>
+                            </li>
+                        </ul>
+                                              
+                    </div>  
+                </div>
+            </template> 
             <!-- 司机状态卡片 -->      
             <div class="row"  id="card-group">
-                <template>
-                    <div class="driver-col-md-4" >                         
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title" id="title">司机名字 | 8路 | 车牌号</h3>
-                            </div>
-                        
-                            <ul class="list-group">
-                                <li class="driver-list-group-item ">
-                                    <img src="./media/img/driver1.jpg" alt="张三的照片"height="200" width="100%" >                                        
-                                </li>            
-                                <li class="driver-list-group-item">
-                                    <audio controls style="width: 98%;">
-                                        <source src="./media/audio/music.mp3" type = "audio/mpeg" >
-                                        您的浏览器不支持 audio 元素
-                                    </audio>
-                                </li>
-                                <li class="driver-list-group-item">
-                                    <a href="#" class="btn btn-primary" role="button">立即联系</a>
-                                </li>
-                            </ul>
-                                                  
-                        </div>  
-                    </div>
-                </template>
+                
                 
                 
             </div>
