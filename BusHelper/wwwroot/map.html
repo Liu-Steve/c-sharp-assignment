@@ -21,6 +21,7 @@
     <link href="css/map.css" rel="stylesheet">
     <link href="css/bar.css" rel="stylesheet">
     <link href="css/alert.css" rel="stylesheet">
+    <link href="css/mailbox.css" rel="stylesheet">
     <link rel="stylesheet" href="css/right-menu.css" />
     <link rel="shortcut icon" href="img/htmllogo.ico">
 </head>
@@ -54,7 +55,9 @@
                 <div class="navbar-nav ml-auto py-0">
                     <a href="#about" class="fontsize"><img src="img/概况.svg" class="gap" width="30px" />实况</a>
                     <a href="info.html" target="_blank" class="fontsize"><img src="img/司机.svg" class="gap" width="30px" />司机</a>
-                    <a href="mailbox.html" class="fontsize"><img src="img/信箱.svg" class="gap" width="30px" />信箱</a>
+                    <a href="mailbox.html" class="fontsize"><img src="img/信箱.svg" class="gap" width="30px" />信箱
+                        <div class="redpoint" id="red4" style="--num:2">{{unread}}</div>
+                    </a>
                 </div>
                 <div id="box">
                     <input type="search" name="search" placeholder="请输入查找司机关键词">
@@ -95,6 +98,8 @@
     <div id="map"></div>
     <script src="./JS/map.js"></script>
     <script src="./JS/alert.js"></script>
+    <script src="JS/vue.js"></script>
+    <script src="JS/redpoint.js"></script>
 </body>
 
 
