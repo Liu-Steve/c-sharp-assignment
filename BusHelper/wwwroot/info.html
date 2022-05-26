@@ -81,7 +81,7 @@
                     <div class="left-up-bg">
                         <h5 class="text-teal">生理指标</h5>
                         <div class="text-teal">
-                            <p class="bottom" id="con">心率：{{condition[0]}} 血压：{{condition[1]}}/{{condition[2]}} 体温：{{condition[3]}} 血氧：{{condition[4]}}</p>
+                            <p class="bottom" id="con">心率：{{condition[0]}} 血压：{{condition[1]}}/{{condition[2]}} 体温：{{condition[3]}} 血氧：{{condition[4]}} 酒精是否超标：{{alcohol}}</p>
                         </div>
                         <h5 class="text-teal">实时图像</h5>
                         <div id="po" class="text-teal">
@@ -104,12 +104,15 @@
                                 <p class="bottom mini-text">视角未看前方</p>
                                 <canvas class="bottom" id="rectangle5" width="100px" height="10px"></canvas>
                                 <p class="bottom">{{possible[5]}}</p>
-                                <p class="bottom mini-text">未正确佩戴口罩</p>
+                                <!-- <p class="bottom mini-text">未正确佩戴口罩</p>
                                 <canvas class="bottom" id="rectangle6" width="100px" height="10px"></canvas>
-                                <p class="bottom">{{possible[6]}}</p>
+                                <p class="bottom">{{possible[6]}}</p> -->
                                 <p class="bottom mini-text">双手离开方向盘</p>
                                 <canvas class="bottom" id="rectangle7" width="100px" height="10px"></canvas>
                                 <p class="bottom">{{possible[7]}}</p>
+                                <p class="bottom mini-text">司机乘客冲突</p>
+                                <canvas class="bottom" id="rectangle6" width="100px" height="10px"></canvas>
+                                <p class="bottom">{{possible[6]}}</p>
                             </div>
                         </div>
                     </div>
@@ -137,9 +140,11 @@
                                     <p class="bottom">0次</p>
                                     <p class="bottom mini-text">视角未看前方：</p>
                                     <p class="bottom">0次</p>
-                                    <p class="bottom mini-text">未正确佩戴口罩：</p>
-                                    <p class="bottom">0次</p>
+                                    <!-- <p class="bottom mini-text">未正确佩戴口罩：</p>
+                                    <p class="bottom">0次</p> -->
                                     <p class="bottom mini-text">双手离开方向盘：</p>
+                                    <p class="bottom">0次</p>
+                                    <p class="bottom mini-text">司机乘客冲突：</p>
                                     <p class="bottom">0次</p>
                                 </div>
                             </div>
@@ -217,9 +222,12 @@
         var con = new Vue({
             el: "#con",
             data: {
-                condition: [75, 95, 70, 36.9, 96]
+                condition: [75, 95, 70, 36.9, 96],
+                alcohol: "否"
             }
         })
+
+
 
         function drawOneRect(name, i) {
             var canvas = document.getElementById(name);
