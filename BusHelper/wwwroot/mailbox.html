@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="utf-8">
-        <title>公交管家-司机信箱</title>                    
-        <link href="css/style.css" rel="stylesheet">
-        <link href="css/mailbox.css" rel="stylesheet">
-        <link href="css/bar.css" rel="stylesheet">
-        <style>
-            .container{
-                padding-top: 120px;
-                padding-left: 200px;
-            }
-        </style>
-    </head>
-    
-    <body>
-       <!-- navbar可调整菜单宽度 -->
+<head>
+    <meta charset="utf-8">
+    <title>公交管家-司机信箱</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/mailbox.css" rel="stylesheet">
+    <link href="css/bar.css" rel="stylesheet">
+    <link rel="shortcut icon" href="img/htmllogo.ico">
+    <style>
+        .container {
+            padding-top: 120px;
+            padding-left: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- navbar可调整菜单宽度 -->
     <nav class="navbar fixed-top shadow-sm navbar-expand-lg bg-dark py-3 py-lg-0 px-lg-5">
         <div class="navbar-collapse justify-content-between" id="toolbar">
             <a href="./map.html" class="navbar-brand mx-5 d-lg-block">
@@ -53,8 +54,8 @@
         </div>
 
 
-        <div class="container">     
-            <template>
+    <div class="container">
+        <template>
                 <div class="driver-col-md-4" >                         
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -79,17 +80,15 @@
                                               
                     </div>  
                 </div>
-            </template> 
-            <!-- 司机状态卡片 -->      
-            <div class="row"  id="card-group">
-                
-                
-                
-            </div>
+            </template>
+        <!-- 司机状态卡片 -->
+        <div class="row" id="card-group">
 
-            
+
+
         </div>
         <script src="JS/jquery-3.4.1.min.js"></script>
         <script src="JS/vue.js"></script>
         <script src="JS/mailbox.js"></script>
     </body>
+</html>
