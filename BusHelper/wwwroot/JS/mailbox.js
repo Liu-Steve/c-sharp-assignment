@@ -31,14 +31,14 @@ var seen_msg={
 
 var unseen_msg={
     "driver1":{
-        "name":"张瑟",
+        "name":"zhangse",
         "busNo":"8",
         "plateNum":"鄂A·7788",
         "imgUrl":"./media/img/driver5.jpg",
         "audioUrl":"./media/audio/music.mp3"
     },
     "driver2":{
-        "name":"王二",
+        "name":"wanger",
         "busNo":"84",
         "plateNum":"鄂A·7788",
         "imgUrl":"./media/img/driver6.jpg",
@@ -64,6 +64,7 @@ function showMsg(msg_json){
             =msg_json[keys[i]].name+"&nbsp;|&nbsp;"+msg_json[keys[i]].busNo+"路&nbsp;|&nbsp;"+seen_msg[keys[i]].plateNum;
         tempNode.querySelector("img").src = msg_json[keys[i]].imgUrl;
         tempNode.querySelector("audio").src = msg_json[keys[i]].audioUrl;
+        tempNode.querySelector("audio").setAttribute('id',msg_json[keys[i]].name);
         docFrag.appendChild(tempNode);
         // console.log("tempNode:\n");
         // console.log(tempNode);
@@ -90,3 +91,42 @@ function showSeenMsg(){
     clearRow();
     showMsg(seen_msg);
 }
+
+var un=2;
+
+var red1=new Vue({
+    el:"#red1",
+    data:{
+        unread:2
+    }
+})
+
+var red2=new Vue({
+    el:"#red2",
+    data:{
+        unread:2
+        }
+})
+
+let zhangse=document.getElementById('zhangse');
+zhangse.addEventListener('play', function(){
+ if(un>0)
+ {
+    un=un-1;
+ }
+red1.unread=un;
+red2.unread=un;
+});
+
+$('#wanger').click(function(){
+    if(un>0)
+    {
+       un=un-1;
+    }
+   red1.unread=un;
+   red2.unread=un;
+   })
+
+
+
+

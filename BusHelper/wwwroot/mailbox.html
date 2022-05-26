@@ -28,7 +28,7 @@
                 <a href="./info.html" class="fontsize"><img src="img/司机.svg" class="gap" width="30px" />司机</a>
                 <a href="#" class="fontsize">
                     <img src="img/信箱.svg" class="gap" width="30px" />信箱
-                    <redpoint style="--num:2">2</redpoint>
+                    <div class="redpoint" id="red1" style="--num:2">{{unread}}</div>
                 </a>
             </div>
             <div id="box">
@@ -47,7 +47,7 @@
             <ul class="nav flex-column">
                 <li><a href="#" class="nav-link" onclick="showAllMsg()" id="allBtn">全部消息</a></li>
                 <li><a href="#" class="nav-link " onclick="showUnseenMsg()" id="unSeenBtn">未读消息</a>
-                    <redpoint style="--num:2">2</redpoint></li>
+                    <div class="redpoint" id="red2" style="--num:2">{{unread}}</div></li>
                 <li><a href="#" class="nav-link" onclick="showSeenMsg()"id="seenBtn">已读消息</a></li>                
             </ul>
         </div>
@@ -67,13 +67,13 @@
                                 <img src="./media/img/driver1.jpg" alt="张三的照片"height="200" width="100%" >  </a>                                      
                             </li>            
                             <li class="driver-list-group-item">
-                                <audio controls style="width: 98%;">
+                                <audio controls style="width: 98%;" id="0">
                                     <source src="./media/audio/music.mp3" type = "audio/mpeg" >
                                     您的浏览器不支持 audio 元素
                                 </audio>
                             </li>
                             <li class="driver-list-group-item">
-                                <a href="info.html" target="_blank" class="btn btn-primary" role="button">查看详情</a>
+                                <a href="info.html" target="_blank"  class="btn btn-primary" role="button">查看详情</a>
                             </li>
                         </ul>
                                               
@@ -89,7 +89,7 @@
 
             
         </div>
-        
+        <script src="JS/jquery-3.4.1.min.js"></script>
         <script src="JS/vue.js"></script>
         <script src="JS/mailbox.js"></script>
     </body>
