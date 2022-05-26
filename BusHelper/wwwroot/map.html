@@ -20,16 +20,34 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/map.css" rel="stylesheet">
     <link href="css/bar.css" rel="stylesheet">
+    <link href="css/alert.css" rel="stylesheet">
     <link rel="stylesheet" href="css/right-menu.css" />
     <link rel="shortcut icon" href="img/htmllogo.ico">
 </head>
 
 <body>
+    <div id="simpleModal" class="alert-modal">
+        <div class="alert-modal-content">
+            <div class="alert-modal-header">
+                <span class="closeBtn">&times;</span>
+                <h2 class="text-white">预警</h2>
+            </div>
+            <div class="alert-modal-body">
+                <p class="alert">2号线路-鄂A·13495-张三多次拨打电话</p>
+                <p class="alert">根据系统监测，张三行驶公交车途中多次发生拨打电话行为，请管理员进行核实，及时介入。</p>
+            </div>
+            <div class="alert-modal-footer">
+                <a href="info.html" target="_blank">
+                    <h3 class="text-white">查看详情</h3>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <div class="fixed-top pointer_none w100-h100">
         <nav class="navbar shadow-sm navbar-expand-lg bg-dark py-3 py-lg-0 px-lg-5 pointer_all">
             <div class="navbar-collapse justify-content-between" id="toolbar">
-                <a href="index1.html" class="navbar-brand mx-5 d-lg-block">
+                <a href="index.html" class="navbar-brand mx-5 d-lg-block">
                     <img src="img/logo.png" width="250px">
                     <!-- <h5 class="text-white my-n2">云端可视化交互平台</h5> -->
                 </a>
@@ -75,7 +93,9 @@
         <div class="btn pointer_all" id="scoll"><img id="slide-img" src="img/slide.svg" width="20px">&nbsp;单车概况</div>
     </div>
     <div id="map"></div>
+    <script src="./JS/map.js"></script>
+    <script src="./JS/alert.js"></script>
 </body>
-<script src="./JS/map.js"></script>
+
 
 </html>
