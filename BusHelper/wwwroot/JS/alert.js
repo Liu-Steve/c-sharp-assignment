@@ -1,14 +1,11 @@
 // 获取弹窗元素
 var modal = document.getElementById("simpleModal");
 
-// 获取按钮元素
-var modalBtn = document.getElementById("modalBtn");
+// console.log("Haven getten the modal by id!")
+
 
 // 获取关闭弹窗按钮元素
 var closeBtn = document.getElementsByClassName("closeBtn")[0];
-
-// 监听打开弹窗事件
-modalBtn.addEventListener("click", openModal);
 
 // 监听关闭弹窗事件
 closeBtn.addEventListener("click", closeModal);
@@ -19,6 +16,7 @@ window.addEventListener("click", outsideClick);
 // 弹窗事件
 function openModal() {
     modal.style.display = "block";
+    console.log("open the Model!");
 }
 
 // 关闭弹框事件
@@ -32,3 +30,7 @@ function outsideClick(e) {
         modal.style.display = "none";
     }
 }
+
+setTimeout(() => {
+    openModal();
+}, 1000)

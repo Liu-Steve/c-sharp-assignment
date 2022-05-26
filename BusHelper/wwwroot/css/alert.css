@@ -1,39 +1,41 @@
-.modal {
+.alert-modal {
     display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
+    position: absolute;
+    z-index: 2000;
+    padding: auto;
     height: 100%;
     width: 100%;
-    overflow: hidden;
+    overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal-content {
+.alert-modal-content {
     background-color: #f4f4f4;
     margin: 15% auto;
-    width: 80%;
+    width: 500px;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.2);
     animation-name: modalopen;
     animation-duration: 1s;
 }
 
-.modal-header h2,
-.modal-footer h3 {
+.alert-modal-header h2,
+.alert-modal-footer h3 {
     margin: 0;
 }
 
-.modal-header {
+.alert-modal-header {
     background-color: coral;
     padding: 15px;
     color: #fff;
 }
 
+.alert {
+    color: rgb(240, 95, 43);
+}
+
 .closeBtn {
     color: #fff;
     float: right;
-    font-size: 30px;
 }
 
 .closeBtn:hover,
@@ -43,11 +45,11 @@
     cursor: pointer;
 }
 
-.modal-body {
+.alert-modal-body {
     padding: 10px 20px;
 }
 
-.modal-footer {
+.alert-modal-footer {
     color: #fff;
     background-color: coral;
     padding: 10px;
