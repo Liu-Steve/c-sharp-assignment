@@ -2,28 +2,28 @@ var seen_msg={
     "driver1":{
         "name":"李四",
         "busNo":"8",
-        "plateNum":"鄂A·7788",
+        "plateNum":"鄂A·JD343",
         "imgUrl":"./media/img/driver4.jpg",
         "audioUrl":"./media/audio/music.mp3"
     },
     "driver2":{
         "name":"赵晗",
         "busNo":"84",
-        "plateNum":"鄂A·7788",
+        "plateNum":"鄂A·13495",
         "imgUrl":"./media/img/driver12.jpg",
         "audioUrl":"./media/audio/music.mp3"
     },
     "driver3":{
         "name":"李少波",
         "busNo":"39",
-        "plateNum":"鄂A·7788",
+        "plateNum":"鄂A·C6103",
         "imgUrl":"./media/img/driver17.jpg",
         "audioUrl":"./media/audio/music.mp3"
     },
     "driver4":{
         "name":"王蕊",
         "busNo":"339",
-        "plateNum":"鄂A·73788",
+        "plateNum":"鄂A·C1180",
         "imgUrl":"./media/img/driver21.jpg",
         "audioUrl":"./media/audio/music.mp3"
     }
@@ -31,16 +31,16 @@ var seen_msg={
 
 var unseen_msg={
     "driver1":{
-        "name":"刘瑞",
-        "busNo":"8",
-        "plateNum":"鄂A·7788",
+        "name":"赵晗",
+        "busNo":"84",
+        "plateNum":"鄂A·13495",
         "imgUrl":"./media/img/driver11.jpg",
         "audioUrl":"./media/audio/music.mp3"
     },
     "driver2":{
-        "name":"张瑟",
-        "busNo":"84",
-        "plateNum":"鄂A·7788",
+        "name":"李四",
+        "busNo":"8",
+        "plateNum":"鄂A·JD343",
         "imgUrl":"./media/img/driver7.jpg",
         "audioUrl":"./media/audio/music.mp3"
     }
@@ -61,7 +61,7 @@ function showMsg(msg_json){
     for(var i =0; i<keys.length; i++){
         var tempNode=document.getElementsByTagName("template")[0].content.cloneNode(true);        
         tempNode.getElementById("title").innerHTML 
-            =msg_json[keys[i]].name+"&nbsp;|&nbsp;"+msg_json[keys[i]].busNo+"路&nbsp;|&nbsp;"+seen_msg[keys[i]].plateNum;
+            =msg_json[keys[i]].name+"&nbsp;|&nbsp;"+msg_json[keys[i]].busNo+"路&nbsp;|&nbsp;"+msg_json[keys[i]].plateNum;
         tempNode.querySelector("img").src = msg_json[keys[i]].imgUrl;
         tempNode.querySelector("audio").src = msg_json[keys[i]].audioUrl;
         tempNode.querySelector("audio").setAttribute('id',msg_json[keys[i]].name);
