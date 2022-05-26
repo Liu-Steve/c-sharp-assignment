@@ -192,3 +192,7 @@ input {
     line-height: 30px;
     padding-left: 10px;
 }
+
+.red-bg {
+    background-color: rgb(239, 201, 201);
+}
