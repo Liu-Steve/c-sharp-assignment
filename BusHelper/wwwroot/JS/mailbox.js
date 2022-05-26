@@ -3,28 +3,28 @@ var seen_msg={
         "name":"李四",
         "busNo":"8",
         "plateNum":"鄂A·7788",
-        "imgUrl":"./media/img/driver1.jpg",
+        "imgUrl":"./media/img/driver4.jpg",
         "audioUrl":"./media/audio/music.mp3"
     },
     "driver2":{
         "name":"赵晗",
         "busNo":"84",
         "plateNum":"鄂A·7788",
-        "imgUrl":"./media/img/driver2.jpg",
+        "imgUrl":"./media/img/driver12.jpg",
         "audioUrl":"./media/audio/music.mp3"
     },
     "driver3":{
         "name":"李少波",
         "busNo":"39",
         "plateNum":"鄂A·7788",
-        "imgUrl":"./media/img/driver3.jpg",
+        "imgUrl":"./media/img/driver17.jpg",
         "audioUrl":"./media/audio/music.mp3"
     },
     "driver4":{
         "name":"王蕊",
         "busNo":"339",
         "plateNum":"鄂A·73788",
-        "imgUrl":"./media/img/driver4.jpg",
+        "imgUrl":"./media/img/driver21.jpg",
         "audioUrl":"./media/audio/music.mp3"
     }
 };
@@ -34,14 +34,14 @@ var unseen_msg={
         "name":"刘瑞",
         "busNo":"8",
         "plateNum":"鄂A·7788",
-        "imgUrl":"./media/img/driver5.jpg",
+        "imgUrl":"./media/img/driver11.jpg",
         "audioUrl":"./media/audio/music.mp3"
     },
     "driver2":{
         "name":"张瑟",
         "busNo":"84",
         "plateNum":"鄂A·7788",
-        "imgUrl":"./media/img/driver6.jpg",
+        "imgUrl":"./media/img/driver7.jpg",
         "audioUrl":"./media/audio/music.mp3"
     }
 };
