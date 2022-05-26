@@ -61,7 +61,7 @@ function showMsg(msg_json){
     for(var i =0; i<keys.length; i++){
         var tempNode=document.getElementsByTagName("template")[0].content.cloneNode(true);        
         tempNode.getElementById("title").innerHTML 
-            =msg_json[keys[i]].name+"&amp;nbsp;|&amp;nbsp;"+msg_json[keys[i]].busNo+"路&amp;nbsp;|&amp;nbsp;"+seen_msg[keys[i]].plateNum;
+            =msg_json[keys[i]].name+"&nbsp;|&nbsp;"+msg_json[keys[i]].busNo+"路&nbsp;|&nbsp;"+seen_msg[keys[i]].plateNum;
         tempNode.querySelector("img").src = msg_json[keys[i]].imgUrl;
         tempNode.querySelector("audio").src = msg_json[keys[i]].audioUrl;
         docFrag.appendChild(tempNode);
@@ -81,27 +81,12 @@ function showAllMsg(){
     clearRow();
     showMsg(unseen_msg);
     showMsg(seen_msg);
-    // this.className+=" active";
-    // var btn1=document.getElementById("unSeenBtn");
-    // btn1.removeClass("active");
-    // var btn2=document.getElementById("seenBtn");
-    // btn2.removeClass("active");
 }
 function showUnseenMsg(){
     clearRow();
     showMsg(unseen_msg);
-    // this.className+=" active";
-    // var btn1=document.getElementById("allBtn");
-    // btn1.removeClass("active");
-    // var btn2=document.getElementById("seenBtn");
-    // btn2.removeClass("active");
 }
 function showSeenMsg(){
     clearRow();
     showMsg(seen_msg);
-    // this.className+=" active";
-    // var btn1=document.getElementById("unSeenBtn");
-    // btn1.removeClass("active");
-    // var btn2=document.getElementById("allBtn");
-    // btn2.removeClass("active");
 }
