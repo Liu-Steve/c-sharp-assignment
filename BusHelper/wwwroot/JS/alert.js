@@ -1,11 +1,11 @@
 // 获取弹窗元素
 var modal = document.getElementById("simpleModal");
+
 // console.log("Haven getten the modal by id!")
 
 
 // 获取关闭弹窗按钮元素
 var closeBtn = document.getElementsByClassName("closeBtn")[0];
-
 
 // 监听关闭弹窗事件
 closeBtn.addEventListener("click", closeModal);

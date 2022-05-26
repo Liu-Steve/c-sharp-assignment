@@ -256,10 +256,18 @@
             imgSrc.src = "fake_data/" + imgCont + ".jpg"
             imgCont = imgCont + 1;
         }
+
+        window.setInterval(() => {
+            setTimeout(() => {
+                vm.time = Date();
+                drawRect();
+                setCon();
+                setImg();
+            }, 0)
+        }, 1000)
     </script>
     <script src="JS/jquery-3.4.1.min.js"></script>
     <script src="JS/info.js"></script>
-    <script src="JS/alert.js"></script>
 </body>
 
 </html>
