@@ -68,7 +68,7 @@
         <div class="d-flex container-test justify-content-between py-5 mt-5">
             <div class="float-left">
                 <!-- v-bind:src="src" -->
-                <img class="position-absolute" id="img-real" width="660px" height="445px" src="img/bus_normal.jpg" style="object-fit: cover;">
+                <img class="position-absolute" id="img-real" width="660px" height="445px" :src="src" tyle="object-fit: cover;">
                 <!-- <video class="position-absolute" id="img-real" width="660px" height="445px" src="fake_data/fake.mp4"> -->
                 <div class="left-up-exceed">339-鄂A·73788-王蕊</div>
                 <p id="time" class="left-up text-white bottom">{{time}}</p>
@@ -257,7 +257,7 @@
         var imgCont = 1;
 
         function setImg() {
-            if (imgCont == 60) {
+            if (imgCont == 42) {
                 imgCont = 1;
             }
             imgSrc.src = "fake_data/" + imgCont + ".jpg"
