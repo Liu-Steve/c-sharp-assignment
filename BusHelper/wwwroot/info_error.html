@@ -68,7 +68,7 @@
         <div class="d-flex container-test justify-content-between py-5 mt-5">
             <div class="float-left">
                 <!-- v-bind:src="src" -->
-                <img class="position-absolute" id="img-real" width="660px" height="445px" src="img/bus_abnormal.jpg" style="object-fit: cover;">
+                <img class="position-absolute" id="img-real" width="660px" height="445px" src="fake_data/calling/5.jpg" style="object-fit: cover;">
                 <!-- <video class="position-absolute" id="img-real" width="660px" height="445px" src="fake_data/fake.mp4"> -->
                 <div class="left-up-exceed">1-鄂A·JD343</div>
                 <p id="time" class="left-up text-white bottom">{{time}}</p>
@@ -77,7 +77,7 @@
             </div>
 
             <div class="float-right">
-                <div class="red-bg">
+                <div class="bg-secondary max-550">
                     <div class="left-up-exceed-no-other">司机详情 </div>
                     <div class="left-up-bg">
                         <h5 class="text-dark-teal">生理指标</h5>
@@ -88,65 +88,65 @@
                         <div id="po" class="text-dark-teal">
                             <div class="wrapper bottom">
                                 <p class="bottom">抽烟</p>
-                                <canvas class="bottom" id="rectangle0" width="100px" height="10px"></canvas>
+                                <!-- <canvas class="bottom" id="rectangle0" width="100px" height="10px"></canvas> -->
                                 <p class="bottom">{{possible[0]}}</p>
                                 <p class="bottom">闭眼</p>
-                                <canvas class="bottom" id="rectangle1" width="100px" height="10px"></canvas>
+                                <!-- <canvas class="bottom" id="rectangle1" width="100px" height="10px"></canvas> -->
                                 <p class="bottom">{{possible[1]}}</p>
                                 <p class="bottom">打哈欠</p>
-                                <canvas class="bottom " id="rectangle2" width="100px" height="10px"></canvas>
+                                <!-- <canvas class="bottom " id="rectangle2" width="100px" height="10px"></canvas> -->
                                 <p class="bottom ">{{possible[2]}}</p>
                                 <p class="bottom text-danger">使用手机</p>
-                                <canvas class="bottom text-danger" id="rectangle3" width="100px" height="10px"></canvas>
+                                <!-- <canvas class="bottom text-danger" id="rectangle3" width="100px" height="10px"></canvas> -->
                                 <p class="bottom text-danger">{{possible[3]}}</p>
-                                <p class="bottom mini-text">未系安全带</p>
-                                <canvas class="bottom" id="rectangle4" width="100px" height="10px"></canvas>
+                                <p class="bottom ">未系安全带</p>
+                                <!-- <canvas class="bottom" id="rectangle4" width="100px" height="10px"></canvas> -->
                                 <p class="bottom">{{possible[4]}}</p>
-                                <p class="bottom mini-text">视角未看前方</p>
-                                <canvas class="bottom" id="rectangle5" width="100px" height="10px"></canvas>
+                                <p class="bottom ">视角未看前方</p>
+                                <!-- <canvas class="bottom" id="rectangle5" width="100px" height="10px"></canvas> -->
                                 <p class="bottom">{{possible[5]}}</p>
                                 <!-- <p class="bottom mini-text">未正确佩戴口罩</p>
                                 <canvas class="bottom" id="rectangle6" width="100px" height="10px"></canvas>
                                 <p class="bottom">{{possible[6]}}</p> -->
-                                <p class="bottom mini-text">双手离开方向盘</p>
-                                <canvas class="bottom" id="rectangle7" width="100px" height="10px"></canvas>
+                                <p class="bottom ">双手离开方向盘</p>
+                                <!-- <canvas class="bottom" id="rectangle7" width="100px" height="10px"></canvas> -->
                                 <p class="bottom">{{possible[7]}}</p>
-                                <p class="bottom mini-text">司机乘客冲突</p>
-                                <canvas class="bottom" id="rectangle6" width="100px" height="10px"></canvas>
+                                <p class="bottom ">司机乘客冲突</p>
+                                <!-- <canvas class="bottom" id="rectangle6" width="100px" height="10px"></canvas> -->
                                 <p class="bottom">{{possible[6]}}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="pt-5">
-                    <div class="red-bg">
+                <div class="pt-5 max-550">
+                    <div class="bg-secondary ">
                         <div class="left-up-exceed-no-other">疑似异常</div>
                         <div class="left-up-bg">
-                            <h5 class="text-teal">生理指标</h5>
-                            <div class="text-teal">
+                            <h5 class="text-dark-teal">生理指标</h5>
+                            <div class="text-dark-teal">
                                 <p class="bottom">无</p>
                             </div>
-                            <h5 class="text-teal">实时图像</h5>
-                            <div class="text-teal">
-                                <div class="wrapper-danger bottom">
+                            <h5 class="text-dark-teal">实时图像</h5>
+                            <div class="text-dark-teal">
+                                <div class="wrapper-danger-new bottom">
                                     <p class="bottom">抽烟：</p>
-                                    <p class="bottom">0次</p>
+                                    <p class="bottom"></p>
                                     <p class="bottom">闭眼：</p>
                                     <p class="bottom">1次</p>
                                     <p class="bottom">打哈欠:</p>
-                                    <p class="bottom">0次</p>
+                                    <p class="bottom"></p>
                                     <p class="bottom text-danger">使用手机:</p>
                                     <p class="bottom text-danger">7次</p>
-                                    <p class="bottom mini-text">未系安全带：</p>
-                                    <p class="bottom">0次</p>
-                                    <p class="bottom mini-text">视角未看前方：</p>
-                                    <p class="bottom">0次</p>
+                                    <p class="bottom">未系安全带：</p>
+                                    <p class="bottom"></p>
+                                    <p class="bottom ">视角未看前方：</p>
+                                    <p class="bottom"></p>
                                     <!-- <p class="bottom mini-text">未正确佩戴口罩：</p>
                                     <p class="bottom">0次</p> -->
-                                    <p class="bottom mini-text">双手离开方向盘：</p>
-                                    <p class="bottom">0次</p>
-                                    <p class="bottom mini-text">司机乘客冲突：</p>
-                                    <p class="bottom">0次</p>
+                                    <p class="bottom ">双手离开方向盘：</p>
+                                    <p class="bottom"></p>
+                                    <p class="bottom">司机乘客冲突：</p>
+                                    <p class="bottom"></p>
                                 </div>
                             </div>
                         </div>
@@ -154,7 +154,7 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex flex-column container-test red-bg">
+        <div class="d-flex flex-column container-test bg-secondary">
             <div class="left-up-exceed-no-other">概况&建议</div>
             <div class="left-up-bg">
                 <h5 class="text-danger">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp当前车内司机多次违规拨打电话，存在安全隐患，请管理员及时介入，进行提醒，目前其他情况正常。
@@ -216,7 +216,7 @@
         var po = new Vue({
             el: "#po",
             data: {
-                possible: [0.2, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
+                possible: [0.25, 0.4, 0.31, 0.71, 0.21, 0.12, 0.11, 0.32]
             }
         })
 
