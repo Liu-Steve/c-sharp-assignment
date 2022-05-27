@@ -4,12 +4,13 @@
 <head>
     <meta charset="utf-8">
     <title>公交管家-司机详情</title>
-    <script src="JS/vue.js"></script>
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bar.css" rel="stylesheet">
     <link href="css/map.css" rel="stylesheet">
     <link href="css/right-menu.css" rel="stylesheet">
-    <link rel="shortcut icon" href="img/htmllogo.ico">
+    <link href="css/mailbox.css" rel="stylesheet">
+    <link rel="shortcut icon" href="img/htmllogo.ico">    
+    <script src="JS/vue.js"></script>
 </head>
 
 <body>
@@ -24,7 +25,9 @@
                 <div class="navbar-nav ml-auto py-0">
                     <a href="map.html" class="fontsize"><img src="img/概况.svg" class="gap" width="30px" />实况</a>
                     <a href="info.html" class="fontsize"><img src="img/司机.svg" class="gap" width="30px" />司机</a>
-                    <a href="mailbox.html" class="fontsize"><img src="img/信箱.svg" class="gap" width="30px" />信箱</a>
+                    <a href="mailbox.html" class="fontsize"><img src="img/信箱.svg" class="gap" width="30px" />信箱
+                        <div class="redpoint" id="red3" style="--num:2">{{unread}}</div>
+                    </a>
                 </div>
                 <div id="box">
                     <input type="search" name="search" placeholder="请输入查找司机关键词">
@@ -279,6 +282,7 @@
     </script>
     <script src="JS/jquery-3.4.1.min.js"></script>
     <script src="JS/info.js"></script>
+    <script src="JS/redpoint.js"></script>
 </body>
 
 </html>

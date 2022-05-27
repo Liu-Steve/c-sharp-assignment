@@ -18,7 +18,7 @@
     color: #54B5E7;
 }
 /* 黑色侧边栏 */
-.sidebar{
+.fixed-sidebar{
     position:fixed;
     top:0;
     width: 150px;
