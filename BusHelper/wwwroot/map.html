@@ -33,13 +33,27 @@
                 <h2 class="text-white">预警</h2>
             </div>
             <div class="alert-modal-body">
-                <p class="alert">2号线路-鄂A·13495-张三多次拨打电话</p>
-                <p class="alert">根据系统监测，张三行驶公交车途中多次发生拨打电话行为，请管理员进行核实，及时介入。</p>
+                <img src="img/bus_abnormal.jpg" width="300px" style="padding-left: 120px;">
+                <p class="alert bottom">根据系统监测，339号线路-鄂A·73788-王蕊行驶公交车途中多次发生拨打电话行为，请管理员进行核实，及时介入。</p>
             </div>
             <div class="alert-modal-footer">
-                <a href="info_error.html" target="_blank">
-                    <h3 class="text-white">查看详情</h3>
-                </a>
+                <h3 id="linkBtn" class="text-white">立即联系</h3>
+            </div>
+        </div>
+    </div>
+
+    <div id="link" class="alert-modal">
+        <div class="alert-modal-content">
+            <div class="alert-modal-header">
+                <span class="closeBtn">&times;</span>
+                <h2 class="text-white">实时通话</h2>
+            </div>
+            <div class="alert-modal-body">
+                <img src="img/bus_abnormal.jpg" width="300px" style="padding-left: 120px;"><br>
+                <div id="link" class="d-flex flex-row align-content-center justify-content-center">
+                    <img id="linkImg" class="float-left pt-3" src="img/loading.gif" width="25px" height="35px"></img>
+                    <p id="linkCharacter" class="alert bottom float-right" style="padding-bottom:20px;">链接建立中...</p>
+                </div>
             </div>
         </div>
     </div>
@@ -48,7 +62,7 @@
         <nav class="navbar shadow-sm navbar-expand-lg bg-dark py-3 py-lg-0 px-lg-5 pointer_all">
             <div class="navbar-collapse justify-content-between" id="toolbar">
                 <a href="index.html" class="navbar-brand mx-5 d-lg-block">
-                    <img src="img/logo.png" width="250px">
+                    <img src="img/logo.svg" width="250px">
                     <!-- <h5 class="text-white my-n2">云端可视化交互平台</h5> -->
                 </a>
                 <div class="navbar-nav ml-auto py-0">

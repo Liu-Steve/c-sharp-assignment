@@ -18,7 +18,7 @@
         <nav class="navbar shadow-sm navbar-expand-lg bg-dark py-3 py-lg-0 px-lg-5 pointer_all">
             <div class="navbar-collapse justify-content-between" id="toolbar">
                 <a href="index1.html" class="navbar-brand mx-5 d-lg-block">
-                    <img src="img/logo.png" width="250px">
+                    <img src="img/logo.svg" width="250px">
                     <!-- <h5 class="text-white my-n2">云端可视化交互平台</h5> -->
                 </a>
                 <div class="navbar-nav ml-auto py-0">
@@ -67,85 +67,86 @@
     <div class="py-5" id="real-time">
         <div class="d-flex container-test justify-content-between py-5 mt-5">
             <div class="float-left">
-                <img class="position-absolute" id="img-real" width="660px" height="445px" v-bind:src="src" style="object-fit: cover;">
+                <!-- v-bind:src="src" -->
+                <img class="position-absolute" id="img-real" width="660px" height="445px" src="img/bus_normal.jpg" style="object-fit: cover;">
                 <!-- <video class="position-absolute" id="img-real" width="660px" height="445px" src="fake_data/fake.mp4"> -->
-                <div class="left-up-exceed">1-鄂A·JD343</div>
+                <div class="left-up-exceed">339-鄂A·73788-王蕊</div>
                 <p id="time" class="left-up text-white bottom">{{time}}</p>
                 <p class="left-up text-white bottom">当前站：八一路小洪山</p>
                 <p class="left-up text-white bottom">下一站：珞狮路北段</p>
             </div>
 
             <div class="float-right">
-                <div class="bg-secondary">
+                <div class="bg-secondary max-550">
                     <div class="left-up-exceed-no-other">司机详情 </div>
                     <div class="left-up-bg">
-                        <h5 class="text-teal">生理指标</h5>
-                        <div class="text-teal">
+                        <h5 class="text-dark-teal">生理指标</h5>
+                        <div class="text-dark-teal">
                             <p class="bottom" id="con">心率：{{condition[0]}} 血压：{{condition[1]}}/{{condition[2]}} 体温：{{condition[3]}} 血氧：{{condition[4]}} 酒精是否超标：{{alcohol}}</p>
                         </div>
-                        <h5 class="text-teal">实时图像</h5>
-                        <div id="po" class="text-teal">
+                        <h5 class="text-dark-teal">实时图像</h5>
+                        <div id="po" class="text-dark-teal">
                             <div class="wrapper bottom">
                                 <p class="bottom">抽烟</p>
-                                <canvas class="bottom" id="rectangle0" width="100px" height="10px"></canvas>
+                                <!-- <canvas class="bottom" id="rectangle0" width="100px" height="10px"></canvas> -->
                                 <p class="bottom">{{possible[0]}}</p>
                                 <p class="bottom">闭眼</p>
-                                <canvas class="bottom" id="rectangle1" width="100px" height="10px"></canvas>
+                                <!-- <canvas class="bottom" id="rectangle1" width="100px" height="10px"></canvas> -->
                                 <p class="bottom">{{possible[1]}}</p>
                                 <p class="bottom">打哈欠</p>
-                                <canvas class="bottom" id="rectangle2" width="100px" height="10px"></canvas>
+                                <!-- <canvas class="bottom" id="rectangle2" width="100px" height="10px"></canvas> -->
                                 <p class="bottom">{{possible[2]}}</p>
                                 <p class="bottom">使用手机</p>
-                                <canvas class="bottom" id="rectangle3" width="100px" height="10px"></canvas>
+                                <!-- <canvas class="bottom" id="rectangle3" width="100px" height="10px"></canvas> -->
                                 <p class="bottom">{{possible[3]}}</p>
-                                <p class="bottom mini-text">未系安全带</p>
-                                <canvas class="bottom" id="rectangle4" width="100px" height="10px"></canvas>
+                                <p class="bottom ">未系安全带</p>
+                                <!-- <canvas class="bottom" id="rectangle4" width="100px" height="10px"></canvas> -->
                                 <p class="bottom">{{possible[4]}}</p>
-                                <p class="bottom mini-text">视角未看前方</p>
-                                <canvas class="bottom" id="rectangle5" width="100px" height="10px"></canvas>
+                                <p class="bottom">视角未看前方</p>
+                                <!-- <canvas class="bottom" id="rectangle5" width="100px" height="10px"></canvas> -->
                                 <p class="bottom">{{possible[5]}}</p>
                                 <!-- <p class="bottom mini-text">未正确佩戴口罩</p>
                                 <canvas class="bottom" id="rectangle6" width="100px" height="10px"></canvas>
                                 <p class="bottom">{{possible[6]}}</p> -->
-                                <p class="bottom mini-text">双手离开方向盘</p>
-                                <canvas class="bottom" id="rectangle7" width="100px" height="10px"></canvas>
+                                <p class="bottom">双手离开方向盘</p>
+                                <!-- <canvas class="bottom" id="rectangle7" width="100px" height="10px"></canvas> -->
                                 <p class="bottom">{{possible[7]}}</p>
-                                <p class="bottom mini-text">司机乘客冲突</p>
-                                <canvas class="bottom" id="rectangle6" width="100px" height="10px"></canvas>
+                                <p class="bottom">司机乘客冲突</p>
+                                <!-- <canvas class="bottom" id="rectangle6" width="100px" height="10px"></canvas> -->
                                 <p class="bottom">{{possible[6]}}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="pt-5">
+                <div class="pt-5 max-550">
                     <div class="bg-secondary">
                         <div class="left-up-exceed-no-other">疑似异常</div>
                         <div class="left-up-bg">
-                            <h5 class="text-teal">生理指标</h5>
-                            <div class="text-teal">
+                            <h5 class="text-dakr-teal">生理指标</h5>
+                            <div class="text-dark-teal">
                                 <p class="bottom">无</p>
                             </div>
-                            <h5 class="text-teal">实时图像</h5>
-                            <div class="text-teal">
+                            <h5 class="text-dark-teal">实时图像</h5>
+                            <div class="text-dark-teal">
                                 <div class="wrapper-danger bottom">
                                     <p class="bottom">抽烟：</p>
-                                    <p class="bottom">0次</p>
+                                    <p class="bottom"></p>
                                     <p class="bottom">闭眼：</p>
                                     <p class="bottom">1次</p>
                                     <p class="bottom">打哈欠:</p>
-                                    <p class="bottom">0次</p>
+                                    <p class="bottom"></p>
                                     <p class="bottom ">使用手机:</p>
-                                    <p class="bottom">0次</p>
-                                    <p class="bottom mini-text">未系安全带：</p>
-                                    <p class="bottom">0次</p>
-                                    <p class="bottom mini-text">视角未看前方：</p>
-                                    <p class="bottom">0次</p>
+                                    <p class="bottom"></p>
+                                    <p class="bottom ">未系安全带：</p>
+                                    <p class="bottom"></p>
+                                    <p class="bottom ">视角未看前方：</p>
+                                    <p class="bottom"></p>
                                     <!-- <p class="bottom mini-text">未正确佩戴口罩：</p>
                                     <p class="bottom">0次</p> -->
-                                    <p class="bottom mini-text">双手离开方向盘：</p>
-                                    <p class="bottom">0次</p>
-                                    <p class="bottom mini-text">司机乘客冲突：</p>
-                                    <p class="bottom">0次</p>
+                                    <p class="bottom ">双手离开方向盘：</p>
+                                    <p class="bottom"></p>
+                                    <p class="bottom ">司机乘客冲突：</p>
+                                    <p class="bottom"></p>
                                 </div>
                             </div>
                         </div>
@@ -156,7 +157,7 @@
         <div class="d-flex flex-column container-test bg-secondary">
             <div class="left-up-exceed-no-other">概况&建议</div>
             <div class="left-up-bg">
-                <h5 class="text-teal">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp当前车内司机状态正常，生理指标处于健康水平，偶有浮动，突发身体疾病概率低。 图像状态正常，无外界因素干扰司机，司机驾驶行为良好，违规次数极低。
+                <h5 class="text-dark-teal">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp当前车内司机状态正常，生理指标处于健康水平，偶有浮动，突发身体疾病概率低。 图像状态正常，无外界因素干扰司机，司机驾驶行为良好，违规次数极低。
                 </h5>
                 <p class="float-left text-dark-blue">司机电话：18572326828</p>
                 <div id="contact" class="float-right search pointer-all">立即联系</div>
@@ -234,8 +235,6 @@
             canvas.width = canvas.width; //清空
             var context = canvas.getContext('2d');
             context.fillStyle = "#20c997"
-            var random = Math.random() * 0.2;
-            Vue.set(po.possible, i, random.toFixed(2));
             var l = Math.round(random * 100);
             context.fillRect(0, 0, l, 2);
         }
@@ -268,7 +267,11 @@
         window.setInterval(() => {
             setTimeout(() => {
                 vm.time = Date();
-                drawRect();
+                for (i = 0; i < 8; i++) {
+                    var random = Math.random() * 0.2;
+                    Vue.set(po.possible, i, random.toFixed(2));
+                }
+                // drawRect();
                 setCon();
                 setImg();
             }, 0)

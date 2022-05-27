@@ -18,7 +18,7 @@
         <nav class="navbar shadow-sm navbar-expand-lg bg-dark py-3 py-lg-0 px-lg-5 pointer_all">
             <div class="navbar-collapse justify-content-between" id="toolbar">
                 <a href="index1.html" class="navbar-brand mx-5 d-lg-block">
-                    <img src="img/logo.png" width="250px">
+                    <img src="img/logo.svg" width="250px">
                     <!-- <h5 class="text-white my-n2">云端可视化交互平台</h5> -->
                 </a>
                 <div class="navbar-nav ml-auto py-0">
@@ -67,7 +67,8 @@
     <div class="py-5" id="real-time">
         <div class="d-flex container-test justify-content-between py-5 mt-5">
             <div class="float-left">
-                <img class="position-absolute" id="img-real" width="660px" height="445px" v-bind:src="src" style="object-fit: cover;">
+                <!-- v-bind:src="src" -->
+                <img class="position-absolute" id="img-real" width="660px" height="445px" src="img/bus_abnormal.jpg" style="object-fit: cover;">
                 <!-- <video class="position-absolute" id="img-real" width="660px" height="445px" src="fake_data/fake.mp4"> -->
                 <div class="left-up-exceed">1-鄂A·JD343</div>
                 <p id="time" class="left-up text-white bottom">{{time}}</p>
@@ -79,12 +80,12 @@
                 <div class="red-bg">
                     <div class="left-up-exceed-no-other">司机详情 </div>
                     <div class="left-up-bg">
-                        <h5 class="text-teal">生理指标</h5>
-                        <div class="text-teal">
+                        <h5 class="text-dark-teal">生理指标</h5>
+                        <div class="text-dark-teal">
                             <p class="bottom" id="con">心率：{{condition[0]}} 血压：{{condition[1]}}/{{condition[2]}} 体温：{{condition[3]}} 血氧：{{condition[4]}} 酒精是否超标：{{alcohol}}</p>
                         </div>
-                        <h5 class="text-teal">实时图像</h5>
-                        <div id="po" class="text-teal">
+                        <h5 class="text-dark-teal">实时图像</h5>
+                        <div id="po" class="text-dark-teal">
                             <div class="wrapper bottom">
                                 <p class="bottom">抽烟</p>
                                 <canvas class="bottom" id="rectangle0" width="100px" height="10px"></canvas>
