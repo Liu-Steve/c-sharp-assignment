@@ -16,7 +16,7 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/leaflet/1.8.0/leaflet.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/proj4js/2.8.0/proj4.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/proj4leaflet/1.0.2/proj4leaflet.min.js"></script>
-    <script src="./JS/jquery-3.4.1.min.js"></script>
+    
     <link href="css/style.css" rel="stylesheet">
     <link href="css/map.css" rel="stylesheet">
     <link href="css/bar.css" rel="stylesheet">
@@ -97,8 +97,8 @@
         <div class="btn pointer_all" id="scoll"><img id="slide-img" src="img/slide.svg" width="20px">&nbsp;单车概况</div>
     </div>
 
-    <!-- 左侧司机消息 -->
-    <div class="pop-panel">
+    <!-- 弹出式司机消息 -->
+    <div class="pop-panel" id="pop_panel">
         <div class="panel-heading">
             <a href="info.html" target="_blank" class="panel-title" id="title">司机名字 | 8路 | 车牌号</a>
         </div>
@@ -122,6 +122,8 @@
     </div> 
 
     <div id="map"></div>
+    <script src="JS/jquery-3.4.1.min.js"></script>
+    <script src="JS/map-msg-card.js"></script>
     <script src="./JS/map.js"></script>
     <script src="./JS/alert.js"></script>
     <script src="JS/vue.js"></script>
