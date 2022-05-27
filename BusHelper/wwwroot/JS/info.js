@@ -111,5 +111,5 @@ $('#contact').on('click', function() {
                 linkingTime.linkingTime = "00:00:0" + timer;
             }, 0)
         }, 1000)
-    }, 3000)
+    }, 2000)
 })
