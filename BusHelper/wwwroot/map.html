@@ -98,36 +98,41 @@
     </div>
 
     <!-- 弹出式司机消息 -->
-    <div class="pop-panel" id="pop_panel">
-        <div class="panel-heading">
-            <a href="info.html" target="_blank" class="panel-title" id="title">司机名字 | 8路 | 车牌号</a>
-        </div>
-    
-        <ul class="list-group">
-            <li class="driver-list-group-item ">
-                <a href="info.html" target="_blank">
-                <img src="./media/img/driver1.jpg" alt="张三的照片"height="180" width="100%" >  </a>                                      
-            </li>            
-            <li class="driver-list-group-item">
-                <audio controls style="width: 98%;" id="0">
-                    <source src="./media/audio/music.mp3" type = "audio/mpeg" >
-                    您的浏览器不支持 audio 元素
-                </audio>
-            </li>
-            <li class="driver-list-group-item">
-                <a href="info.html" target="_blank"  class="pop-btn btn-primary" role="button">查看详情</a>
-            </li>
-        </ul>
-                              
-    </div> 
+    <div id="pop-card-root" style="display: block;"></div>
+    <template>
+        <div class="pop-panel" id="pop_panel">
+            <div class="panel-heading">
+                <a href="info.html" target="_blank" class="panel-title" id="title">司机名字 | 8路 | 车牌号</a>
+            </div>
+        
+            <ul class="list-group">
+                <li class="driver-list-group-item ">
+                    <a href="info.html" target="_blank">
+                    <img src="./media/img/driver1.jpg" alt="张三的照片"height="180" width="100%" >  </a>                                      
+                </li>            
+                <li class="driver-list-group-item">
+                    <audio controls style="width: 98%;" id="0">
+                        <source src="./media/audio/music.mp3" type = "audio/mpeg" >
+                        您的浏览器不支持 audio 元素
+                    </audio>
+                </li>
+                <li class="driver-list-group-item">
+                    <a href="info.html" target="_blank"  class="pop-btn btn-primary" role="button">查看详情</a>
+                </li>
+            </ul>
+                                
+        </div> 
+    </template>
 
     <div id="map"></div>
+    
     <script src="JS/jquery-3.4.1.min.js"></script>
     <script src="JS/map-msg-card.js"></script>
     <script src="./JS/map.js"></script>
     <script src="./JS/alert.js"></script>
     <script src="JS/vue.js"></script>
     <script src="JS/redpoint.js"></script>
+    
 </body>
 
 

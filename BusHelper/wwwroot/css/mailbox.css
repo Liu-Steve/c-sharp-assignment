@@ -105,6 +105,7 @@ nav .redpoint{
 
 /* map界面弹出司机消息 */
 .pop-panel {
+    display: block;
     margin-top: 100px;
     margin-bottom: 20px;
     background-color: #fff;

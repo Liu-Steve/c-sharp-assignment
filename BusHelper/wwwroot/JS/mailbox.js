@@ -1,3 +1,5 @@
+// 用于在mail.html界面绘制司机消息卡片
+
 var seen_msg = {
     "driver1": {
         "name": "李四",
@@ -60,7 +62,7 @@ function showMsg(msg_json) {
     var docFrag = document.createDocumentFragment();
     for (var i = 0; i < keys.length; i++) {
         var tempNode = document.getElementsByTagName("template")[0].content.cloneNode(true);
-        tempNode.getElementById("title").innerHTML = msg_json[keys[i]].name + "&nbsp;|&nbsp;" + msg_json[keys[i]].busNo + "路&nbsp;|&nbsp;" + seen_msg[keys[i]].plateNum;
+        tempNode.getElementById("title").innerHTML = msg_json[keys[i]].name + "&nbsp;|&nbsp;" + msg_json[keys[i]].busNo + "路&nbsp;|&nbsp;" + msg_json[keys[i]].plateNum;
         tempNode.querySelector("img").src = msg_json[keys[i]].imgUrl;
         tempNode.querySelector("audio").src = msg_json[keys[i]].audioUrl;
         tempNode.querySelector("audio").setAttribute('id', msg_json[keys[i]].name);
