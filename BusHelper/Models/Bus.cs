@@ -5,7 +5,7 @@ using MySql.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BusHelper;
+namespace BusHelper.Models;
 
 [Table("Buses")]
 public class Bus

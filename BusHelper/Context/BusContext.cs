@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql;
+using BusHelper.Models;
 
 namespace BusHelper.Context;
 
@@ -14,7 +15,6 @@ public class BusContext : DbContext
     {
         optionsBuilder.UseMySql("server=localhost;database=busafer;uid=root;pwd=root;", 
             new MySqlServerVersion(new Version(5, 7, 36)));
-        //optionsBuilder.UseMySQL("server=localhost;database=busafer;uid=root;pwd=root;");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
