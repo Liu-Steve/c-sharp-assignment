@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using BusHelper.Context;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql;
+using BusHelper.Models;
 
 namespace BusHelper.Controllers;
 
@@ -62,16 +63,16 @@ public class BusInfoController : ControllerBase
         return buses.ToArray();
     }
 
-    [HttpGet]
-    public IActionResult Test()
+    [HttpPost]
+    public IActionResult Test(Bus bus)
     {
         using (var context = new BusContext(new DbContextOptions<BusContext>()))
         {
-            var newBus = new Bus(){
-                X = 15,
-                Y = 20
-            };
-            context.Buses.Add(newBus);
+            // var newBus = new Bus(){
+            //     X = 15,
+            //     Y = 20
+            // };
+            context.Buses.Add(bus);
             context.SaveChanges();
         }
         return Ok();
