@@ -65,6 +65,6 @@ function outsideClick(e) {
     }
 }
 
-setTimeout(() => {
-    openModal();
-}, 1000)
+// setTimeout(() => {
+//     openModal();
+// }, 1000)

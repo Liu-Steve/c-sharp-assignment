@@ -9,7 +9,7 @@
     <link href="css/map.css" rel="stylesheet">
     <link href="css/right-menu.css" rel="stylesheet">
     <link href="css/mailbox.css" rel="stylesheet">
-    <link rel="shortcut icon" href="img/htmllogo.ico">    
+    <link rel="shortcut icon" href="img/htmllogo.ico">
     <script src="JS/vue.js"></script>
 </head>
 
@@ -84,39 +84,50 @@
                     <div class="left-up-exceed-no-other">司机详情 </div>
                     <div class="left-up-bg">
                         <h5 class="text-dark-teal">生理指标</h5>
-                        <div class="text-dark-teal">
-                            <p class="bottom" id="con">心率：{{condition[0]}} 血压：{{condition[1]}}/{{condition[2]}} 体温：{{condition[3]}} 血氧：{{condition[4]}} 酒精是否超标：{{alcohol}}</p>
+                        <div class="text-dark-teal" id="con">
+                            <p class="bottom">
+                                <p class="d-inline">心率：</p>
+                                <p class="text-teal d-inline">{{condition[0]}}</p>
+                                <p class="d-inline">血压：</p>
+                                <p class="text-teal d-inline">{{condition[2]}} </p>
+                                <p class="d-inline">体温：</p>
+                                <p class="d-inline text-teal">{{condition[3]}}</p>
+                                <p class="d-inline">血氧：</p>
+                                <p class="d-inline text-teal">{{condition[4]}}</p>
+                                <p class="d-inline">酒精是否超标：</p>
+                                <p class="d-inline text-teal">{{alcohol}}</p>
+                            </p>
                         </div>
                         <h5 class="text-dark-teal">实时图像</h5>
                         <div id="po" class="text-dark-teal">
                             <div class="wrapper bottom">
                                 <p class="bottom">抽烟</p>
                                 <!-- <canvas class="bottom" id="rectangle0" width="100px" height="10px"></canvas> -->
-                                <p class="bottom">{{possible[0]}}</p>
+                                <p class="bottom text-teal">{{possible[0]}}</p>
                                 <p class="bottom">闭眼</p>
                                 <!-- <canvas class="bottom" id="rectangle1" width="100px" height="10px"></canvas> -->
-                                <p class="bottom">{{possible[1]}}</p>
+                                <p class="bottom text-teal">{{possible[1]}}</p>
                                 <p class="bottom">打哈欠</p>
                                 <!-- <canvas class="bottom" id="rectangle2" width="100px" height="10px"></canvas> -->
-                                <p class="bottom">{{possible[2]}}</p>
+                                <p class="bottom text-teal">{{possible[2]}}</p>
                                 <p class="bottom">使用手机</p>
                                 <!-- <canvas class="bottom" id="rectangle3" width="100px" height="10px"></canvas> -->
-                                <p class="bottom">{{possible[3]}}</p>
+                                <p class="bottom text-teal">{{possible[3]}}</p>
                                 <p class="bottom ">未系安全带</p>
                                 <!-- <canvas class="bottom" id="rectangle4" width="100px" height="10px"></canvas> -->
-                                <p class="bottom">{{possible[4]}}</p>
+                                <p class="bottom text-teal">{{possible[4]}}</p>
                                 <p class="bottom">视角未看前方</p>
                                 <!-- <canvas class="bottom" id="rectangle5" width="100px" height="10px"></canvas> -->
-                                <p class="bottom">{{possible[5]}}</p>
+                                <p class="bottom text-teal">{{possible[5]}}</p>
                                 <!-- <p class="bottom mini-text">未正确佩戴口罩</p>
                                 <canvas class="bottom" id="rectangle6" width="100px" height="10px"></canvas>
                                 <p class="bottom">{{possible[6]}}</p> -->
                                 <p class="bottom">双手离开方向盘</p>
                                 <!-- <canvas class="bottom" id="rectangle7" width="100px" height="10px"></canvas> -->
-                                <p class="bottom">{{possible[7]}}</p>
+                                <p class="bottom text-teal">{{possible[7]}}</p>
                                 <p class="bottom">司机乘客冲突</p>
                                 <!-- <canvas class="bottom" id="rectangle6" width="100px" height="10px"></canvas> -->
-                                <p class="bottom">{{possible[6]}}</p>
+                                <p class="bottom text-teal">{{possible[6]}}</p>
                             </div>
                         </div>
                     </div>
@@ -133,23 +144,23 @@
                             <div class="text-dark-teal">
                                 <div class="wrapper-danger bottom">
                                     <p class="bottom">抽烟：</p>
-                                    <p class="bottom"></p>
+                                    <p class="bottom text-teal"></p>
                                     <p class="bottom">闭眼：</p>
-                                    <p class="bottom">1次</p>
+                                    <p class="bottom text-teal">1次</p>
                                     <p class="bottom">打哈欠:</p>
-                                    <p class="bottom"></p>
+                                    <p class="bottom text-teal"></p>
                                     <p class="bottom ">使用手机:</p>
-                                    <p class="bottom"></p>
+                                    <p class="bottom text-teal"></p>
                                     <p class="bottom ">未系安全带：</p>
-                                    <p class="bottom"></p>
+                                    <p class="bottom text-teal"></p>
                                     <p class="bottom ">视角未看前方：</p>
-                                    <p class="bottom"></p>
+                                    <p class="bottom text-teal"></p>
                                     <!-- <p class="bottom mini-text">未正确佩戴口罩：</p>
                                     <p class="bottom">0次</p> -->
                                     <p class="bottom ">双手离开方向盘：</p>
-                                    <p class="bottom"></p>
+                                    <p class="bottom text-teal"></p>
                                     <p class="bottom ">司机乘客冲突：</p>
-                                    <p class="bottom"></p>
+                                    <p class="bottom text-teal"></p>
                                 </div>
                             </div>
                         </div>
