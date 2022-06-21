@@ -8,6 +8,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 // Parse Json in Controller
 builder.Services.AddControllers().AddNewtonsoftJson();
+// To use "dotnet ef migrations; dotnet ef database update", 
+// this should be added
+builder.Services.AddDbContext<BusHelper.Context.BusContext>();
 
 var app = builder.Build();
 
