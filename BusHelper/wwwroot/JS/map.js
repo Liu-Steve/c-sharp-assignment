@@ -1,7 +1,8 @@
 // base map
+
 let lmap = L.map("map", {
-    minZoom: 10,
-    maxZoom: 15,
+    minZoom: 1,
+    maxZoom: 18,
     center: [30.6, 114.3],
     zoom: 11,
     zoomDelta: 0.5,
@@ -12,15 +13,23 @@ let lmap = L.map("map", {
 
 this.map = lmap;
 
-//http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}//arcgis在线地图
-this.baseLayer = L.tileLayer("http://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}", {
+//http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x} //arcgis在线地图
+//http://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z} //gaode
+//http://wprd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&style=7&x={x}&y={y}&z={z}&scl=1&ltype=3
+this.baseLayer = L.tileLayer("http://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&style=8&x={x}&y={y}&z={z}&ltype=5", {
     attribution: '&copy; 高德地图',
-    maxZoom: 15,
-    minZoom: 10,
+    maxZoom: 18,
+    minZoom: 1,
     subdomains: "1234"
 });
 
+this.roadLayer = L.tileLayer("http://wprd01.is.autonavi.com/appmaptile?lang=zh_cn&x={x}&y={y}&z={z}&size=1&scl=1&style=8&ltype=11", {
+    maxZoom: 18,
+    minZoom: 15,
+})
+
 this.map.addLayer(this.baseLayer);
+this.map.addLayer(this.roadLayer);
 
 // add buses
 const staIcons = [];
