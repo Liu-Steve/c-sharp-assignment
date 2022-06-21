@@ -170,16 +170,56 @@ let focus_bus = function() {
 }
 
 // side bar
+let click_red = false;
 let slide_img_rotate = false;
+let red_slide_img_rotate = false;
+let slide = document.getElementById('slide-img');
+let slide_img_red = document.getElementById('slide-img-red');
+
 $('.btn').on('click', function() {
+    if (click_red) {
+        click_red = false;
+        return;
+    }
+    if (red_slide_img_rotate) {
+        $('.sidebar').toggleClass('side-red');
+        $('.btn').toggleClass('btn-clicked');
+        $('.btn-red').toggleClass('btn-clicked-red');
+        slide_img_red.removeAttribute('style');
+        red_slide_img_rotate = false;
+    } //如果此前红色按钮被点击过，那么就去除红色按钮给予的属性，并且恢复按钮形状，并设置为未点击
+
     $('.sidebar').toggleClass('side');
-    let slide_img = document.getElementById('slide-img')
+    $('.btn-red').toggleClass('btn-red-clicked');
+
     if (!slide_img_rotate)
-        slide_img.setAttribute('style', 'transform:rotate(180deg)');
+        slide.setAttribute('style', 'transform:rotate(180deg)');
     else
-        slide_img.removeAttribute('style');
+        slide.removeAttribute('style');
     slide_img_rotate = !slide_img_rotate;
 })
+
+
+$('.btn-red').on('click', function() {
+    click_red = true;
+    if (slide_img_rotate) {
+        $('.sidebar').toggleClass('side');
+        $('.btn-red').toggleClass('btn-red-clicked');
+        slide.removeAttribute('style');
+        slide_img_rotate = false;
+    }
+
+    $('.sidebar').toggleClass('side-red');
+    $('.btn').toggleClass('btn-clicked');
+    $('.btn-red').toggleClass('btn-clicked-red');
+
+    if (!red_slide_img_rotate)
+        slide_img_red.setAttribute('style', 'transform:rotate(180deg)');
+    else
+        slide_img_red.removeAttribute('style');
+    red_slide_img_rotate = !red_slide_img_rotate;
+})
+
 var isSpread1 = false;
 $('#1-100').on('click', function() {
     if (!isSpread1) {
