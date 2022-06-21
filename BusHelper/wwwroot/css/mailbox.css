@@ -1,3 +1,9 @@
+ /* mailbox.html的相关css
+ Created by cyx on 2022.5.20 */
+:root{
+    --sidebar-bg-color:#060C20;
+}
+
 .sidebar_item {
     font-size: calc(1.275rem + .3vw)!important;    
     color: #fff!important;
@@ -12,11 +18,11 @@
     color: #54B5E7;
 }
 /* 黑色侧边栏 */
-.sidebar{
+.fixed-sidebar{
     position:fixed;
     top:0;
     width: 150px;
-    background-color: #060C20;
+    background-color: var(--sidebar-bg-color);
     height: 100%;    
 }
 
@@ -59,4 +65,42 @@ sidebar-hr{
 .nav-link.active{
     color: #fff;
     background-color: #0d6efd;
+}
+/* 用于sidebar 未读红点 */
+ul .redpoint{
+    position: absolute;
+    box-sizing: border-box;
+    min-width: 1rem;
+    padding: 0 0.1875rem;
+    color: #fff;
+    font-size: min(.75rem, calc(10000px - var(--num) * 100px));
+    line-height: 1.2;
+    text-align: center;
+    background-color: #eb4646;
+    border: 1px solid #fff;
+    border-radius: 1rem;
+    transform: translate(6rem, -1.74rem);
+    /* 数值为0的时候隐藏 */
+    opacity: var(--num);
+}
+/* navbar未读红点 */
+nav .redpoint{
+    position: absolute;
+    box-sizing: border-box;
+    min-width: 1rem;
+    padding: 0 0.1875rem;
+    color: #fff;
+    font-size: min(.75rem, calc(10000px - var(--num) * 100px));
+    line-height: 1.2;
+    text-align: center;
+    background-color: #eb4646;
+    border: 1px solid #fff;
+    border-radius: 1rem;
+    transform: translate(5rem, -4rem);
+    /* 数值为0的时候隐藏 */
+    opacity: var(--num);
+}
+.redpoint::before{
+    content: '99+';
+    font-size: min(.75rem, calc(var(--num) * 100px - 9900px));
 }

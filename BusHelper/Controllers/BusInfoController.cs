@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
+using BusHelper.Context;
 
 namespace BusHelper.Controllers;
 
@@ -57,5 +58,20 @@ public class BusInfoController : ControllerBase
     public IEnumerable<Bus> GetBusPos()
     {
         return buses.ToArray();
+    }
+
+    [HttpGet]
+    public IActionResult Test()
+    {
+        using (var context = new BusContext())
+        {
+            var newBus = new Bus(){
+                X = 15,
+                Y = 20
+            };
+            context.Buses.Add(newBus);
+            context.SaveChanges();
+        }
+        return Ok();
     }
 }
