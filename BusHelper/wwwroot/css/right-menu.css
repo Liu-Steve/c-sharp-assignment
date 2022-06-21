@@ -20,6 +20,13 @@ html {
     margin-right: 0;
 }
 
+.side-red {
+    background: #050c20;
+    overflow: auto;
+    height: 85%;
+    margin-right: 0;
+}
+
 
 /*靠边*/
 
@@ -73,13 +80,44 @@ html {
 .btn {
     float: right;
     height: 45px;
+    width: 120px;
     line-height: 27px !important;
-    padding-left: -100px;
     border: 2px solid #3A7EC6 !important;
     color: #FFFFFF !important;
     font-size: 14px !important;
     border-radius: 25px 0px 0px 25px !important;
     background-color: #3A7EC6!important;
+    transition: 0.2s all;
+}
+
+.btn-red {
+    position: relative;
+    height: 45px;
+    width: 120px;
+    top: 10px;
+    right: 14px;
+    line-height: 37px !important;
+    border: 2px solid #296fb9 !important;
+    color: #FFFFFF !important;
+    font-size: 14px !important;
+    border-radius: 25px 0px 0px 25px !important;
+    background-color: #296fb9!important;
+    transition: 0.2s all;
+}
+
+.btn-red-clicked {
+    width: 110px;
+    right: 4px;
+    transition: 0.2s all;
+}
+
+.btn-clicked {
+    width: 110px;
+    transition: 0.2s all;
+}
+
+.btn-clicked-red {
+    right: 24px;
 }
 
 
