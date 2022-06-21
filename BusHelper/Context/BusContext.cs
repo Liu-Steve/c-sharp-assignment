@@ -1,4 +1,3 @@
-using MySql.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql;
 
@@ -6,14 +5,16 @@ namespace BusHelper.Context;
 
 public class BusContext : DbContext
 {
-    public BusContext()
-    : base()
+    public BusContext(DbContextOptions options)
+    : base(options)
     {
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseMySQL("name=ConnectionStrings:DefaultConnection");
+        optionsBuilder.UseMySql("server=localhost;database=busafer;uid=root;pwd=root;", 
+            new MySqlServerVersion(new Version(5, 7, 36)));
+        //optionsBuilder.UseMySQL("server=localhost;database=busafer;uid=root;pwd=root;");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

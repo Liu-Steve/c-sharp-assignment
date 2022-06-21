@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BusHelper;
 
+[Table("Buses")]
 public class Bus
 {
     [Key]

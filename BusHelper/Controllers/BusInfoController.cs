@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 using BusHelper.Context;
+using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql;
 
 namespace BusHelper.Controllers;
 
@@ -63,7 +65,7 @@ public class BusInfoController : ControllerBase
     [HttpGet]
     public IActionResult Test()
     {
-        using (var context = new BusContext())
+        using (var context = new BusContext(new DbContextOptions<BusContext>()))
         {
             var newBus = new Bus(){
                 X = 15,
