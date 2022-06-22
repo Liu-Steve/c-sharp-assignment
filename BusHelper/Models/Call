@@ -1,0 +1,31 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Pomelo.EntityFrameworkCore.MySql;
+using MySql.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace BusHelper.Models;
+
+//留言信息
+[Table("Calls")]
+public class Calls
+{
+    [Key]
+    public string? callID { get; set; }//通话ID
+
+    public string? content { get; set; }//通话内容
+
+    public string? manager{get;set;}//通话管理员
+
+    public string? time{get;set;}//通话时间
+
+    public string? driver{get;set;}//通话司机
+
+    public string? bus{get;set;}//通话车辆
+
+    public Calls()
+    {
+
+    }
+}

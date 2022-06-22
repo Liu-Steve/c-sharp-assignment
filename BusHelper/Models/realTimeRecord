@@ -7,33 +7,37 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BusHelper.Models;
 
-//司机信息
-[Table("realTimeRecords")]
-public class realTimeRecord
+//实时信息
+[Table("RealTimeRecords")]
+public class RealTimeRecord
 {
     [Key]
-    public string recordID { get; set; }//记录号
+    public string? recordID { get; set; }//记录号
 
-    public string X { get; set; }//位置坐标X
+    public double X { get; set; }//位置坐标X
 
-    public string Y { get; set; }//位置坐标Y
+    public double Y { get; set; }//位置坐标Y
 
-    public string timeID { get; set; }//时间序号
+    public string? timeID { get; set; }//时间序号
 
-    public string dangerAction{get;set;}//可能的危险行为，八个行为分析，为一串json
+    public string? dangerAction{get;set;}//当前可能的危险行为，八个行为分析，为一串json
 
-    public string heartRate{get;set;}//心率
+    public string? dangerRecord{get;set;}//累计危险行为记录
 
-    public string highBloodPressure{get;set;}//血压高
+    public string? heartRate{get;set;}//心率
 
-    public string lowBloodPressure{get;set;}//血压低
+    public string? highBloodPressure{get;set;}//血压高
 
-    public string temperature{get;set;}//体温
+    public string? lowBloodPressure{get;set;}//血压低
 
-    public string bloodOxygen{get;set;}//血氧
+    public string? temperature{get;set;}//体温
 
-    public realTimeRecord()
+    public string? bloodOxygen{get;set;}//血氧
+
+    public string? realPic{get;set;}//实时图像的名称
+
+    public RealTimeRecord()
     {
-        recordID = Guid.NewGuid().ToString();
+        
     }
 }

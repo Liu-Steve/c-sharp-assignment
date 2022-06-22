@@ -13,8 +13,8 @@ public class BusContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseMySql("server=localhost;database=busafer;uid=root;pwd=root;", 
-            new MySqlServerVersion(new Version(5, 7, 36)));
+        optionsBuilder.UseMySql("server=10.132.0.233;database=busafer;uid=root;pwd=root;", 
+            new MySqlServerVersion(new Version(8, 0, 29)));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

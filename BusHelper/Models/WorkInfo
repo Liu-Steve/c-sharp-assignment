@@ -1,0 +1,28 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Pomelo.EntityFrameworkCore.MySql;
+using MySql.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace BusHelper.Models;
+
+//公交车信息
+[Table("WorkInfos")]
+public class WorkInfo
+{
+    [Key]
+    public string? busID{get;set;}//车牌号
+    public string? weekday { get; set; }//星期
+
+    public string? timeSpan { get; set; }//时间段
+
+    public string? manager{get;set;}//此时值班的管理员
+
+    public string? driver{get;set;}//此时值班的司机
+
+    public WorkInfo()
+    {
+
+    }
+}
