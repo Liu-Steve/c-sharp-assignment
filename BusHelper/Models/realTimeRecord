@@ -1,0 +1,39 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Pomelo.EntityFrameworkCore.MySql;
+using MySql.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace BusHelper.Models;
+
+//司机信息
+[Table("realTimeRecords")]
+public class realTimeRecord
+{
+    [Key]
+    public string recordID { get; set; }//记录号
+
+    public string X { get; set; }//位置坐标X
+
+    public string Y { get; set; }//位置坐标Y
+
+    public string timeID { get; set; }//时间序号
+
+    public string dangerAction{get;set;}//可能的危险行为，八个行为分析，为一串json
+
+    public string heartRate{get;set;}//心率
+
+    public string highBloodPressure{get;set;}//血压高
+
+    public string lowBloodPressure{get;set;}//血压低
+
+    public string temperature{get;set;}//体温
+
+    public string bloodOxygen{get;set;}//血氧
+
+    public realTimeRecord()
+    {
+        recordID = Guid.NewGuid().ToString();
+    }
+}
