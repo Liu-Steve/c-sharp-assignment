@@ -7,17 +7,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BusHelper.Models;
 
-//测试车辆
-[Table("Buses")]
-public class Bus
+//道路信息
+[Table("Roads")]
+public class Road
 {
     [Key]
-    public string BusID { get; set; }//车牌号
-
     public string? RoadID { get; set; }//几号线
 
-    public Bus()
+    public string? RoadInfo { get; set; }//路线的具体路径，为一串json坐标
+
+    public Road()
     {
-        BusID = Guid.NewGuid().ToString();
+        
     }
 }
