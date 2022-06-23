@@ -41,13 +41,5 @@ public class WorkInfo
         WorkId = Guid.NewGuid().ToString();
         StartTime = DateTime.Now;
         EndTime = null;
-        // Bus = bus;
-        // BusId = bus.BusId;
-        // Manager = manager;
-        // ManagerId = manager.ManagerId;
-        // Driver = driver;
-        // DriverId = driver.DriverId;
-        // DangerRecordId = record.RecordId;
-        // DangerRecord = record;
     }
 }

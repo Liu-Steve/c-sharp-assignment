@@ -29,18 +29,10 @@ public class RealTimeRecord
     public DangerIndex DangerIndex { get; set; }//当前的生理指标
 
     public string? RealPic { get; set; }//实时图像的名称
-
-    //x: longitude
-    //y: latitude
+    
     public RealTimeRecord()
     {
         RecordId = Guid.NewGuid().ToString();
         Time = DateTime.Now;
-        // BusId = bus.BusId;
-        // Bus = bus;
-        // DangerActionId = action.RecordId;
-        // DangerAction = action;
-        // DangerIndexId = index.recordId;
-        // DangerIndex = index;
     }
 }

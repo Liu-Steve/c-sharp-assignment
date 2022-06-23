@@ -12,7 +12,7 @@ namespace BusHelper.Models;
 public class DangerIndex
 {
     [Key]
-    public string recordId { get; set; }//记录号
+    public string RecordId { get; set; }//记录号
 
     public int HeartRate { get; set; }//心率
 
@@ -30,6 +30,6 @@ public class DangerIndex
 
     public DangerIndex()
     {
-        recordId = Guid.NewGuid().ToString();
+        RecordId = Guid.NewGuid().ToString();
     }
 }

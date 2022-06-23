@@ -22,6 +22,5 @@ public class Road
     {
         RoadId = roadId;
         RoadInfo = roadInfo;
-        Buses = new List<Bus>();
     }
 }
