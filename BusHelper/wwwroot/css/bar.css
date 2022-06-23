@@ -13,13 +13,13 @@ input {
     width: 260px;
     border: 1px solid #e2e2e2;
     height: 40px;
-    border-radius: 50px;
     float: left;
+    border-radius: 50px;
     background-image: url(../img/search.svg);
     background-repeat: no-repeat;
     background-size: 25px;
     background-position: 5px center;
-    padding: 0 0 0 40px;
+    padding: 0 0 0 50px;
 }
 
 #search {
@@ -31,6 +31,12 @@ input {
     text-align: center;
     line-height: 32px;
     cursor: pointer;
+}
+
+#search-info {
+    background-color: rgb(255, 255, 255);
+    width: 210px;
+    height: 200px;
 }
 
 .search {

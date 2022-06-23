@@ -267,3 +267,10 @@ $('#101-200').on('click', function() {
     }
     isSpread2 = !isSpread2;
 })
+
+let optionStr = '<option selected>select0</option>';
+$("#field").append(optionStr);
+$("#field").selectpicker('refresh');
+optionStr = '<option value="1">select1</option>';
+$("#field").append(optionStr);
+$("#field").selectpicker('refresh');
