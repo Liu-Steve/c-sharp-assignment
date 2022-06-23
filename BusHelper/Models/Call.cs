@@ -16,13 +16,13 @@ public class Call
 
     public string? Content { get; set; }//通话内容文件名
 
-    public string WorkInfoId { get; set; }//通话车次Id
-
-    public WorkInfo WorkInfo { get; set; }//通话车次
-
     public DateTime StartTime { get; set; }//通话开始时间
 
     public int Length { get; set; }//通话时长
+
+    public string WorkInfoId { get; set; }//通话车次Id
+
+    public WorkInfo WorkInfo { get; set; }//通话车次
 
     public Call()
     {

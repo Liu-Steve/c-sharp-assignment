@@ -20,9 +20,9 @@ public class LeavingMsg
 
     public DateTime Time{get;set;}//留言时间
 
-    public string WorkInfoId { get; set; }//通话车次Id
+    public string WorkInfoId { get; set; }//留言车次Id
 
-    public WorkInfo WorkInfo { get; set; }//通话车次
+    public WorkInfo WorkInfo { get; set; }//留言车次
 
     public LeavingMsg()
     {

@@ -30,9 +30,11 @@ public class WorkInfo
 
     public Driver Driver { get; set; }//司机
 
-    public string DangerRecordId { get; set; }//危险操作次数统计Id
-
     public DangerRecord DangerRecord { get; set; }//危险操作次数统计
+
+    public List<Call> Calls { get; set; }//通话记录
+
+    public List<LeavingMsg> LeavingMsgs { get; set; }//留言记录
 
     public WorkInfo()
     {

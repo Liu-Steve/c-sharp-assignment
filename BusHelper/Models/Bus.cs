@@ -18,14 +18,12 @@ public class Bus
 
     public Road Road { get; set; }//路线
 
-    public List<WorkInfo> Works { get; set; }//执行车次
+    public List<WorkInfo> WorkInfos { get; set; }//执行车次
 
-    // public Bus(string busId, Road road)
-    // {
-    //     //BusID = Guid.NewGuid().ToString();
-    //     BusId = busId;
-    //     RoadId = road.RoadId;
-    //     Road = road;
-    //     Works = new List<WorkInfo>();
-    // }
+    public List<RealTimeRecord> RealTimeRecords { get; set; }//实时信息
+
+    public Bus()
+    {
+        BusId = Guid.NewGuid().ToString();
+    }
 }

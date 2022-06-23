@@ -18,9 +18,11 @@ public class Manager
 
     public string? Area { get; set; }//所在地区
 
-    public Manager(string managerId, string pwd)
-    {
-        ManagerId = managerId;
-        Pwd = pwd;
-    }
+    public List<WorkInfo> WorkInfos { get; set; }//执行车次
+
+    // public Manager(string managerId, string pwd)
+    // {
+    //     ManagerId = managerId;
+    //     Pwd = pwd;
+    // }
 }

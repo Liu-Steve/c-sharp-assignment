@@ -24,11 +24,7 @@ public class RealTimeRecord
 
     public Bus Bus { get; set; }//公交车
 
-    public string DangerActionId { get; set; }//危险行为
-
     public DangerAction DangerAction { get; set; }//当前可能的危险行为，八个行为分析
-
-    public string DangerIndexId { get; set; }//生理指标
 
     public DangerIndex DangerIndex { get; set; }//当前的生理指标
 
