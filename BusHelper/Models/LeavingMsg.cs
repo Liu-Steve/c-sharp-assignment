@@ -9,23 +9,25 @@ namespace BusHelper.Models;
 
 //留言信息
 [Table("LeavingMsgs")]
-public class LeavingMsgs
+public class LeavingMsg
 {
     [Key]
-    public string? MsgID { get; set; }//留言ID
+    public string MsgId { get; set; }//留言ID
 
-    public string? Content { get; set; }//留言内容
+    public string? Content { get; set; }//留言内容文件名
 
-    public string? IfRead{get;set;}//是否已读
+    public bool IsRead{get;set;}//是否已读
 
-    public string? Time{get;set;}//留言时间
+    public DateTime Time{get;set;}//留言时间
 
-    public string? Driver{get;set;}//来自司机
+    public string WorkInfoId { get; set; }//通话车次Id
 
-    public string? Bus{get;set;}//来自车辆
+    public WorkInfo WorkInfo { get; set; }//通话车次
 
-    public LeavingMsgs()
+    public LeavingMsg()
     {
-
+        MsgId = Guid.NewGuid().ToString();
+        IsRead = false;
+        Time = DateTime.Now;
     }
 }

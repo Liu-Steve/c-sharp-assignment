@@ -12,12 +12,16 @@ namespace BusHelper.Models;
 public class Road
 {
     [Key]
-    public string? RoadID { get; set; }//几号线
+    public string RoadId { get; set; }//几号线
 
-    public string? RoadInfo { get; set; }//路线的具体路径，为一串json坐标
+    public string RoadInfo { get; set; }//路线的具体信息存储的Json文件名
 
-    public Road()
+    public List<Bus> Buses { get; set; }//线路的所有的公交
+
+    public Road(string roadId, string roadInfo)
     {
-        
+        RoadId = roadId;
+        RoadInfo = roadInfo;
+        Buses = new List<Bus>();
     }
 }

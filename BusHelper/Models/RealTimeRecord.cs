@@ -12,34 +12,39 @@ namespace BusHelper.Models;
 public class RealTimeRecord
 {
     [Key]
-    public string? RecordID { get; set; }//记录号
+    public string RecordId { get; set; }//记录号
 
-    public double X { get; set; }//位置坐标X
+    public double X { get; set; }//位置坐标经度
 
-    public double Y { get; set; }//位置坐标Y
+    public double Y { get; set; }//位置坐标纬度
 
     public DateTime Time { get; set; }//时间序号
 
-    public Bus BusID{get;set;}//车牌号
+    public string BusId { get; set; }//公交车牌
+
+    public Bus Bus { get; set; }//公交车
+
+    public string DangerActionId { get; set; }//危险行为
 
     public DangerAction DangerAction { get; set; }//当前可能的危险行为，八个行为分析
 
-    public DangerRecord DangerRecord { get; set; }//累计危险行为记录
+    public string DangerIndexId { get; set; }//生理指标
 
-    public string? HeartRate { get; set; }//心率
-
-    public string? HighBloodPressure { get; set; }//血压高
-
-    public string? LowBloodPressure { get; set; }//血压低
-
-    public string? Temperature { get; set; }//体温
-
-    public string? BloodOxygen { get; set; }//血氧
+    public DangerIndex DangerIndex { get; set; }//当前的生理指标
 
     public string? RealPic { get; set; }//实时图像的名称
 
+    //x: longitude
+    //y: latitude
     public RealTimeRecord()
     {
-
+        RecordId = Guid.NewGuid().ToString();
+        Time = DateTime.Now;
+        // BusId = bus.BusId;
+        // Bus = bus;
+        // DangerActionId = action.RecordId;
+        // DangerAction = action;
+        // DangerIndexId = index.recordId;
+        // DangerIndex = index;
     }
 }

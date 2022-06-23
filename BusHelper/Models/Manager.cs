@@ -12,14 +12,15 @@ namespace BusHelper.Models;
 public class Manager
 {
     [Key]
-    public string? Account { get; set; }//管理员账号
+    public string ManagerId { get; set; }//管理员账号
 
-    public string? Pwd { get; set; }//密码
+    public string Pwd { get; set; }//密码
 
-    public string? Area{get;set;}//所在地区
+    public string? Area { get; set; }//所在地区
 
-    public Manager()
+    public Manager(string managerId, string pwd)
     {
-
+        ManagerId = managerId;
+        Pwd = pwd;
     }
 }

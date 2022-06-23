@@ -7,25 +7,45 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BusHelper.Models;
 
-//公交车信息
+//公交车次信息
 [Table("WorkInfos")]
 public class WorkInfo
 {
     [Key]
-    public string? BusID{get;set;}//车牌号
-
-    public string? Weekday { get; set; }//星期
+    public string WorkId { get; set; }//车次号，自动生成uuid
 
     public DateTime StartTime { get; set; }//开始时间
 
-    public DateTime EndTime{get;set;}//结束时间
+    public DateTime? EndTime { get; set; }//结束时间，结束前为null
 
-    public string? ManagerID{get;set;}//此时值班的管理员
+    public string BusId { get; set; }//车牌号
 
-    public string? DriverID{get;set;}//此时值班的司机
+    public Bus Bus { get; set; }//执行公交
+
+    public string ManagerId { get; set; }//此时值班的管理员Id
+
+    public Manager Manager { get; set; }//管理员
+
+    public string DriverId { get; set; }//此时值班的司机Id
+
+    public Driver Driver { get; set; }//司机
+
+    public string DangerRecordId { get; set; }//危险操作次数统计Id
+
+    public DangerRecord DangerRecord { get; set; }//危险操作次数统计
 
     public WorkInfo()
     {
-
+        WorkId = Guid.NewGuid().ToString();
+        StartTime = DateTime.Now;
+        EndTime = null;
+        // Bus = bus;
+        // BusId = bus.BusId;
+        // Manager = manager;
+        // ManagerId = manager.ManagerId;
+        // Driver = driver;
+        // DriverId = driver.DriverId;
+        // DangerRecordId = record.RecordId;
+        // DangerRecord = record;
     }
 }
