@@ -7,16 +7,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BusHelper.Models;
 
-//公交车信息
-[Table("BusInfos")]
-public class BusInfo
+//管理员信息
+[Table("Managers")]
+public class Manager
 {
     [Key]
-    public string? BusID { get; set; }//车牌号
+    public string? Account { get; set; }//管理员账号
 
-    public string? roadID { get; set; }//几号线
+    public string? Pwd { get; set; }//密码
 
-    public BusInfo()
+    public string? Area{get;set;}//所在地区
+
+    public Manager()
     {
 
     }

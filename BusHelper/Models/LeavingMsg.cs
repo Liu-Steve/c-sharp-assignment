@@ -12,17 +12,17 @@ namespace BusHelper.Models;
 public class LeavingMsgs
 {
     [Key]
-    public string? msgID { get; set; }//留言ID
+    public string? MsgID { get; set; }//留言ID
 
-    public string? content { get; set; }//留言内容
+    public string? Content { get; set; }//留言内容
 
-    public string? ifRead{get;set;}//是否已读
+    public string? IfRead{get;set;}//是否已读
 
-    public string? time{get;set;}//留言时间
+    public string? Time{get;set;}//留言时间
 
-    public string? driver{get;set;}//来自司机
+    public string? Driver{get;set;}//来自司机
 
-    public string? bus{get;set;}//来自车辆
+    public string? Bus{get;set;}//来自车辆
 
     public LeavingMsgs()
     {

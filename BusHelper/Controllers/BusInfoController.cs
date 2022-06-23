@@ -30,8 +30,8 @@ public class BusInfoController : ControllerBase
         if(newY == null)
             return BadRequest("Need y in post");
         Bus newBus = new Bus(){
-            X = (double)newX,
-            Y = (double)newY
+            // X = (double)newX,
+            // Y = (double)newY
         };
         buses.Add(newBus);
         return Ok(newBus.BusID);
@@ -52,8 +52,8 @@ public class BusInfoController : ControllerBase
         Bus? updateBus = buses.Find(bus => bus.BusID == busID);
         if(updateBus == null)
             return BadRequest("No bus matched is found");
-        updateBus.X = (double)newX;
-        updateBus.Y = (double)newY;
+        // updateBus.X = (double)newX;
+        // updateBus.Y = (double)newY;
         return Ok();
     }
 

@@ -12,14 +12,17 @@ namespace BusHelper.Models;
 public class WorkInfo
 {
     [Key]
-    public string? busID{get;set;}//车牌号
-    public string? weekday { get; set; }//星期
+    public string? BusID{get;set;}//车牌号
 
-    public string? timeSpan { get; set; }//时间段
+    public string? Weekday { get; set; }//星期
 
-    public string? manager{get;set;}//此时值班的管理员
+    public DateTime StartTime { get; set; }//开始时间
 
-    public string? driver{get;set;}//此时值班的司机
+    public DateTime EndTime{get;set;}//结束时间
+
+    public string? ManagerID{get;set;}//此时值班的管理员
+
+    public string? DriverID{get;set;}//此时值班的司机
 
     public WorkInfo()
     {

@@ -14,20 +14,16 @@ public class Driver
     [Key]
     public string? DriverID { get; set; }//员工号
 
-    public string? name { get; set; }//员工姓名
+    public string? Name { get; set; }//员工姓名
 
-    public string? phoneNumber { get; set; }//电话号码
+    public string? PhoneNumber { get; set; }//电话号码
 
-    public string? carLicense { get; set; }//车牌号，也即驾驶的车辆
+    public string? CarLicense { get; set; }//车牌号，也即驾驶的车辆
 
-    public string? facePic{get;set;}//员工头像
+    public string? FacePic{get;set;}//员工头像
 
     public Driver(string DriverID,string name,string phoneNumber,string carLicense,string facePic)
     {
-        this.DriverID=DriverID;
-        this.name=name;
-        this.phoneNumber=phoneNumber;
-        this.carLicense=carLicense;
-        this.facePic=facePic;
+
     }
 }

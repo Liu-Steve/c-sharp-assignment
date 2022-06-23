@@ -12,17 +12,17 @@ namespace BusHelper.Models;
 public class Calls
 {
     [Key]
-    public string? callID { get; set; }//通话ID
+    public string? CallID { get; set; }//通话ID
 
-    public string? content { get; set; }//通话内容
+    public string? Content { get; set; }//通话内容
 
-    public string? manager{get;set;}//通话管理员
+    public string? Manager{get;set;}//通话管理员
 
-    public string? time{get;set;}//通话时间
+    public string? Time{get;set;}//通话时间
 
-    public string? driver{get;set;}//通话司机
+    public string? Driver{get;set;}//通话司机
 
-    public string? bus{get;set;}//通话车辆
+    public string? Bus{get;set;}//通话车辆
 
     public Calls()
     {

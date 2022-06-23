@@ -7,15 +7,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BusHelper.Models;
 
+//测试车辆
 [Table("Buses")]
 public class Bus
 {
     [Key]
-    public string BusID { get; set; }
+    public string BusID { get; set; }//车牌号
 
-    public double X { get; set; }
-
-    public double Y { get; set; }
+    public string? RoadID { get; set; }//几号线
 
     public Bus()
     {
