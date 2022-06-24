@@ -47,7 +47,9 @@ function make_marker_icon(color_marker) {
     });
     return staIcon;
 }
+var color = ['#5DAC81', '#00AA90', '#24936E', '#00896C', '#227D51', '#1B813E']
 
+//绘图，传入数据，指定颜色
 let show = function(data, color_line) {
     let xs = data.data.busline_list[0].xs.split(',').map(Number);
     let ys = data.data.busline_list[0].ys.split(',').map(Number);
@@ -71,24 +73,39 @@ let show = function(data, color_line) {
 }
 
 let Ajax = function() {
-    $.getJSON("../json/bus287.json", function(data) {
-        show(data, '#5DAC81');
+    $.ajax({
+        type: "GET",
+        url: "https://localhost:7198/BusInfo/getAllRoads",
+        // data: { username: $("#username").val(), content: $("#content").val() },
+        // dataType: "json",
+        timeout: 5000, //连接超时时间
+        success: function(road) { //成功则解析每一个json，得到每一个json的键
+            var array = eval(road);
+            for (var i = 0; i < array.length; i++) {
+                $.getJSON("../json/" + array[i].RoadInfo, function(data) {
+                    show(data, color[i % 6]);
+                });
+            }
+        }
     });
-    $.getJSON("../json/bus520.json", function(data) {
-        show(data, '#00AA90');
-    });
-    $.getJSON("../json/bus521.json", function(data) {
-        show(data, '#24936E');
-    });
-    $.getJSON("../json/bus725.json", function(data) {
-        show(data, '#00896C');
-    });
-    $.getJSON("../json/bus740.json", function(data) {
-        show(data, '#227D51');
-    });
-    $.getJSON("../json/bus810.json", function(data) {
-        show(data, '#1B813E');
-    });
+    // $.getJSON("../json/bus287.json", function(data) {
+    //     show(data, '#5DAC81');
+    // });
+    // $.getJSON("../json/bus520.json", function(data) {
+    //     show(data, '#00AA90');
+    // });
+    // $.getJSON("../json/bus521.json", function(data) {
+    //     show(data, '#24936E');
+    // });
+    // $.getJSON("../json/bus725.json", function(data) {
+    //     show(data, '#00896C');
+    // });
+    // $.getJSON("../json/bus740.json", function(data) {
+    //     show(data, '#227D51');
+    // });
+    // $.getJSON("../json/bus810.json", function(data) {
+    //     show(data, '#1B813E');
+    // });
 }();
 
 let showStations = function() {
@@ -267,3 +284,10 @@ $('#101-200').on('click', function() {
     }
     isSpread2 = !isSpread2;
 })
+
+let optionStr = '<option selected>select0</option>';
+$("#field").append(optionStr);
+$("#field").selectpicker('refresh');
+optionStr = '<option value="1">select1</option>';
+$("#field").append(optionStr);
+$("#field").selectpicker('refresh');

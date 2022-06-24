@@ -7,23 +7,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BusHelper.Models;
 
-//测试车辆
-[Table("Buses")]
-public class Bus
+//道路信息
+[Table("Roads")]
+public class Road
 {
     [Key]
-    public string BusId { get; set; }//车牌号
-
     public string RoadId { get; set; }//几号线
 
-    public Road Road { get; set; }//路线
+    public string RoadInfo { get; set; }//路线的具体信息存储的Json文件名
 
-    public List<WorkInfo> WorkInfos { get; set; }//执行车次
+    public List<Bus> Buses { get; set; }//线路的所有的公交
 
-    public List<RealTimeRecord> RealTimeRecords { get; set; }//实时信息
-
-    public Bus()
+    public Road(string roadId, string roadInfo)
     {
-        BusId = Guid.NewGuid().ToString();
+        RoadId = roadId;
+        RoadInfo = roadInfo;
     }
 }
+
+//已

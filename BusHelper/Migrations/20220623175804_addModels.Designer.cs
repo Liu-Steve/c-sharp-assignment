@@ -3,6 +3,7 @@ using System;
 using BusHelper.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusHelper.Migrations
 {
     [DbContext(typeof(BusContext))]
-    partial class BusContextModelSnapshot : ModelSnapshot
+    [Migration("20220623175804_addModels")]
+    partial class addModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,33 +67,33 @@ namespace BusHelper.Migrations
                     b.Property<string>("RecordId")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<float>("CloseEye")
-                        .HasColumnType("float");
+                    b.Property<bool>("CloseEye")
+                        .HasColumnType("tinyint(1)");
 
-                    b.Property<float>("Conflict")
-                        .HasColumnType("float");
+                    b.Property<bool>("Conflict")
+                        .HasColumnType("tinyint(1)");
 
-                    b.Property<float>("LeavingSteering")
-                        .HasColumnType("float");
+                    b.Property<bool>("LeavingSteering")
+                        .HasColumnType("tinyint(1)");
 
-                    b.Property<float>("LookAround")
-                        .HasColumnType("float");
+                    b.Property<bool>("LookAround")
+                        .HasColumnType("tinyint(1)");
 
-                    b.Property<float>("NoSafetyBelt")
-                        .HasColumnType("float");
+                    b.Property<bool>("NoSafetyBelt")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("RealTimeRecordId")
                         .IsRequired()
                         .HasColumnType("varchar(255)");
 
-                    b.Property<float>("Smoke")
-                        .HasColumnType("float");
+                    b.Property<bool>("Smoke")
+                        .HasColumnType("tinyint(1)");
 
-                    b.Property<float>("UsingPhone")
-                        .HasColumnType("float");
+                    b.Property<bool>("UsingPhone")
+                        .HasColumnType("tinyint(1)");
 
-                    b.Property<float>("Yawn")
-                        .HasColumnType("float");
+                    b.Property<bool>("Yawn")
+                        .HasColumnType("tinyint(1)");
 
                     b.HasKey("RecordId");
 
@@ -103,7 +105,7 @@ namespace BusHelper.Migrations
 
             modelBuilder.Entity("BusHelper.Models.DangerIndex", b =>
                 {
-                    b.Property<string>("RecordId")
+                    b.Property<string>("recordId")
                         .HasColumnType("varchar(255)");
 
                     b.Property<int>("BloodOxygen")
@@ -122,10 +124,10 @@ namespace BusHelper.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(255)");
 
-                    b.Property<float>("Temperature")
-                        .HasColumnType("float");
+                    b.Property<int>("Temperature")
+                        .HasColumnType("int");
 
-                    b.HasKey("RecordId");
+                    b.HasKey("recordId");
 
                     b.HasIndex("RealTimeRecordId")
                         .IsUnique();
