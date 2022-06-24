@@ -1,7 +1,8 @@
 // base map
+
 let lmap = L.map("map", {
-    minZoom: 10,
-    maxZoom: 15,
+    minZoom: 1,
+    maxZoom: 18,
     center: [30.6, 114.3],
     zoom: 11,
     zoomDelta: 0.5,
@@ -12,15 +13,23 @@ let lmap = L.map("map", {
 
 this.map = lmap;
 
-//http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}//arcgis在线地图
-this.baseLayer = L.tileLayer("http://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}", {
+//http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x} //arcgis在线地图
+//http://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z} //gaode
+//http://wprd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&style=7&x={x}&y={y}&z={z}&scl=1&ltype=3
+this.baseLayer = L.tileLayer("http://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&style=8&x={x}&y={y}&z={z}&ltype=5", {
     attribution: '&copy; 高德地图',
-    maxZoom: 15,
-    minZoom: 10,
+    maxZoom: 18,
+    minZoom: 1,
     subdomains: "1234"
 });
 
+this.roadLayer = L.tileLayer("http://wprd01.is.autonavi.com/appmaptile?lang=zh_cn&x={x}&y={y}&z={z}&size=1&scl=1&style=8&ltype=11", {
+    maxZoom: 18,
+    minZoom: 15,
+})
+
 this.map.addLayer(this.baseLayer);
+this.map.addLayer(this.roadLayer);
 
 // add buses
 const staIcons = [];
@@ -161,16 +170,56 @@ let focus_bus = function() {
 }
 
 // side bar
+let click_red = false;
 let slide_img_rotate = false;
+let red_slide_img_rotate = false;
+let slide = document.getElementById('slide-img');
+let slide_img_red = document.getElementById('slide-img-red');
+
 $('.btn').on('click', function() {
+    if (click_red) {
+        click_red = false;
+        return;
+    }
+    if (red_slide_img_rotate) {
+        $('.sidebar').toggleClass('side-red');
+        $('.btn').toggleClass('btn-clicked');
+        $('.btn-red').toggleClass('btn-clicked-red');
+        slide_img_red.removeAttribute('style');
+        red_slide_img_rotate = false;
+    } //如果此前红色按钮被点击过，那么就去除红色按钮给予的属性，并且恢复按钮形状，并设置为未点击
+
     $('.sidebar').toggleClass('side');
-    let slide_img = document.getElementById('slide-img')
+    $('.btn-red').toggleClass('btn-red-clicked');
+
     if (!slide_img_rotate)
-        slide_img.setAttribute('style', 'transform:rotate(180deg)');
+        slide.setAttribute('style', 'transform:rotate(180deg)');
     else
-        slide_img.removeAttribute('style');
+        slide.removeAttribute('style');
     slide_img_rotate = !slide_img_rotate;
 })
+
+
+$('.btn-red').on('click', function() {
+    click_red = true;
+    if (slide_img_rotate) {
+        $('.sidebar').toggleClass('side');
+        $('.btn-red').toggleClass('btn-red-clicked');
+        slide.removeAttribute('style');
+        slide_img_rotate = false;
+    }
+
+    $('.sidebar').toggleClass('side-red');
+    $('.btn').toggleClass('btn-clicked');
+    $('.btn-red').toggleClass('btn-clicked-red');
+
+    if (!red_slide_img_rotate)
+        slide_img_red.setAttribute('style', 'transform:rotate(180deg)');
+    else
+        slide_img_red.removeAttribute('style');
+    red_slide_img_rotate = !red_slide_img_rotate;
+})
+
 var isSpread1 = false;
 $('#1-100').on('click', function() {
     if (!isSpread1) {

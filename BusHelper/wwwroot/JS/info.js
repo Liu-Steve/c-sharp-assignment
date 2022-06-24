@@ -1,12 +1,12 @@
-let slide_img_rotate = false;
+let img_rotate = false;
 $('.btn').on('click', function() {
     $('.sidebar').toggleClass('side');
     let slide_img = document.getElementById('slide-img')
-    if (!slide_img_rotate)
+    if (!img_rotate)
         slide_img.setAttribute('style', 'transform:rotate(180deg)');
     else
         slide_img.removeAttribute('style');
-    slide_img_rotate = !slide_img_rotate;
+    img_rotate = !img_rotate;
 })
 var isSpread1 = false;
 $('#1-100').on('click', function() {
@@ -111,5 +111,5 @@ $('#contact').on('click', function() {
                 linkingTime.linkingTime = "00:00:0" + timer;
             }, 0)
         }, 1000)
-    }, 3000)
+    }, 2000)
 })

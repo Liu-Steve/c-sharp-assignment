@@ -21,7 +21,7 @@ function createCard(){
     cardRoot.appendChild(tempNode);
     console.log("create a card!");
 }
-setTimeout(createCard,100);
+setTimeout(createCard,3000);
 
 
 var card = document.getElementById("pop-card-root");

@@ -35,104 +35,90 @@
                 <h2 class="text-white">预警</h2>
             </div>
             <div class="alert-modal-body">
-                <p class="alert">2号线路-鄂A·13495-张三多次拨打电话</p>
-                <p class="alert">根据系统监测，张三行驶公交车途中多次发生拨打电话行为，请管理员进行核实，及时介入。</p>
+                <img src="img/bus_abnormal.jpg" width="300px" style="padding-left: 120px;">
+                <p class="alert bottom">根据系统监测，339号线路-鄂A·73788-王蕊行驶公交车途中多次发生拨打电话行为，请管理员进行核实，及时介入。</p>
             </div>
             <div class="alert-modal-footer">
-                <a href="info.html" target="_blank">
-                    <h3 class="text-white">查看详情</h3>
+                <a href="info_error.html" target="_blank">
+                    <h3 id="linkBtn" class="text-white">立即联系</h3>
                 </a>
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <!-- 上边导航栏 -->
-    <div class="fixed-top pointer_none w100-h100">
-        <nav class="navbar shadow-sm navbar-expand-lg bg-dark py-3 py-lg-0 px-lg-5 pointer_all">
-            <div class="navbar-collapse justify-content-between" id="toolbar">
-                <a href="index.html" class="navbar-brand mx-5 d-lg-block">
-                    <img src="img/logo.png" width="250px">
-                </a>
-                <div class="navbar-nav ml-auto py-0">
-                    <a href="#about" class="fontsize"><img src="img/概况.svg" class="gap" width="30px" />实况</a>
-                    <a href="info.html" target="_blank" class="fontsize"><img src="img/司机.svg" class="gap" width="30px" />司机</a>
-                    <a href="mailbox.html" class="fontsize"><img src="img/信箱.svg" class="gap" width="30px" />信箱
-                        <div class="redpoint" id="red4" style="--num:2">{{unread}}</div>
-                    </a>
-                </div>
-                <div id="box">
-                    <input type="search" name="search" placeholder="请输入查找司机关键词">
-                    <div id="search">搜索</div>
+<!-- <div id="link" class="alert-modal">
+        <div class="alert-modal-content">
+            <div class="alert-modal-header">
+                <span class="closeBtn">&times;</span>
+                <h2 class="text-white">实时通话</h2>
+            </div>
+            <div class="alert-modal-body">
+                <img src="img/bus_abnormal.jpg" width="300px" style="padding-left: 120px;"><br>
+                <div id="link" class="d-flex flex-row align-content-center justify-content-center">
+                    <img id="linkImg" class="float-left pt-3" src="img/loading.gif" width="25px" height="35px"></img>
+                    <p id="linkCharacter" class="alert bottom float-right" style="padding-bottom:20px;">链接建立中...</p>
                 </div>
             </div>
-        </nav>
-        <div class="sidebar pointer_all" style="height: 100vh;">
-            <ul id="bus-list">
-                <li id="1-100">
-                    <h5>1-100</h5>
-                </li>
-                <ul id="1-100-list">
-
-                </ul>
-                <li id="101-200">
-                    <h5>101-200</h5>
-                </li>
-                <ul id="101-200-list">
-
-                </ul>
-                <li>
-                    <h5>201-300</h5>
-                </li>
-                <li>
-                    <h5>301-400</h5>
-                </li>
-                <li>
-                    <h5>401-500</h5>
-                </li>
-                <li>
-                    <h5>501-600</h5>
-                </li>
-            </ul>
         </div>
-        <div class="btn pointer_all" id="scoll"><img id="slide-img" src="img/slide.svg" width="20px">&nbsp;单车概况</div>
-    </div>
+    </div> -->
 
-    <!-- 弹出式司机消息 -->
-    <div id="pop-card-root" style="display: block;"></div>
-    <template>
-        <div class="pop-panel" id="pop_panel">
-            <div class="panel-heading">
-                <a href="info.html" target="_blank" class="panel-title" id="title">司机名字 | 8路 | 车牌号</a>
+<div class="fixed-top pointer_none w100-h100">
+    <nav class="navbar shadow-sm navbar-expand-lg bg-dark py-3 py-lg-0 px-lg-5 pointer_all">
+        <div class="navbar-collapse justify-content-between" id="toolbar">
+            <a href="index.html" class="navbar-brand mx-5 d-lg-block">
+                <img src="img/logo.svg" width="250px">
+                <!-- <h5 class="text-white my-n2">云端可视化交互平台</h5> -->
+            </a>
+            <div class="navbar-nav ml-auto py-0">
+                <a href="#about" class="fontsize"><img src="img/概况.svg" class="gap" width="30px" />实况</a>
+                <a href="info.html" target="_blank" class="fontsize"><img src="img/司机.svg" class="gap" width="30px" />司机</a>
+                <a href="mailbox.html" class="fontsize"><img src="img/信箱.svg" class="gap" width="30px" />信箱
+                    <div class="redpoint" id="red4" style="--num:2">{{unread}}</div>
+                </a>
             </div>
-        
-            <ul class="list-group">
-                <li class="driver-list-group-item ">
-                    <a href="info.html" target="_blank">
-                    <img src="./media/img/driver1.jpg" alt="张三的照片"height="180" width="100%" >  </a>                                      
-                </li>            
-                <li class="driver-list-group-item">
-                    <audio controls style="width: 98%;" id="0">
-                        <source src="./media/audio/music.mp3" type = "audio/mpeg" >
-                        您的浏览器不支持 audio 元素
-                    </audio>
-                </li>
-                <li class="driver-list-group-item">
-                    <a href="info.html" target="_blank"  class="pop-btn btn-primary" role="button">查看详情</a>
-                </li>
-            </ul>
-                                
-        </div> 
-    </template>
+            <div id="box">
+                <input type="search" name="search" placeholder="请输入查找司机关键词">
+                <div id="search">搜索</div>
+            </div>
+        </div>
+    </nav>
+    <div class="sidebar pointer_all" style="height: 100vh;">
+        <ul id="bus-list">
+            <li id="1-100">
+                <h5>1-100</h5>
+            </li>
+            <ul id="1-100-list">
 
-    <div id="map"></div>
-    
-    <script src="JS/jquery-3.4.1.min.js"></script>
-    <script src="JS/map-msg-card.js"></script>
-    <script src="./JS/map.js"></script>
-    <script src="./JS/alert.js"></script>
-    <script src="JS/vue.js"></script>
-    <script src="JS/redpoint.js"></script>
-    
+            </ul>
+            <li id="101-200">
+                <h5>101-200</h5>
+            </li>
+            <ul id="101-200-list">
+
+            </ul>
+            <li>
+                <h5>201-300</h5>
+            </li>
+            <li>
+                <h5>301-400</h5>
+            </li>
+            <li>
+                <h5>401-500</h5>
+            </li>
+            <li>
+                <h5>501-600</h5>
+            </li>
+        </ul>
+    </div>
+    <div class="btn pointer_all" id="scoll"><img id="slide-img" src="img/slide.svg" width="20px">&nbsp;单车概况
+        <div class="btn-red pointer_all" id="scoll"><img id="slide-img-red" src="img/slide.svg" width="20px">&nbsp;预警信息</div>
+    </div>
+</div>
+<div id="map"></div>
+<script src="./JS/map.js"></script>
+<script src="./JS/alert.js"></script>
+<script src="JS/vue.js"></script>
+<script src="JS/redpoint.js"></script>
 </body>
 
 
