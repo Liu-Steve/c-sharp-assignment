@@ -15,22 +15,14 @@
             <h1 style="text-align: center;color: aliceblue;">立即登录</h1>
             <p>账号:<input id="account" type="text"></p>
             <p>密码:<input id="password" type="password" placeholder="密码长度至少为6位"></p>
-            <p style="text-align: center;"><a href="#">忘记密码?</a></p>
+            <!-- <p style="text-align: center;"><a href="#">忘记密码?</a></p> -->
             <div style="text-align: center;margin-top: 30px;">
                 <input type="button" class="button" value="登录" onclick="login_click()">
-                <input type="button" class="button" value="注册" onclick="register_click()">
+                <!-- <input type="button" class="button" value="注册" onclick="register_click()"> -->
             </div>
         </form>
 
         <script>
-            //获取注册时存储在localStorage中的值
-            //var sex = localStorage.getItem("sex");
-            //var password = localStorage.getItem("password");
-            //var email = localStorage.getItem("email");
-            //var username = localStorage.getItem("username");
-            //var password = "123456"
-            //var email = "steve_liu@whu.edu.cn"
-
             //注册按钮跳转
             function register_click() {
                 window.location.href = "register.html";
