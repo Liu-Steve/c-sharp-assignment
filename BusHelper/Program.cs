@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -31,6 +33,13 @@ builder.Services
     };
 });
 
+// builder.Services.AddAuthorization(options =>
+// {
+//     options.FallbackPolicy = new AuthorizationPolicyBuilder()
+//         .RequireAuthenticatedUser()
+//         .Build();
+// });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -42,13 +51,21 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+// index page
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.UseAuthentication();
 
 app.UseAuthorization();
 
-// index page
-app.UseDefaultFiles();
-app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, "static")
+    ),
+    RequestPath = "/static"
+});
 
 app.MapControllers();
 

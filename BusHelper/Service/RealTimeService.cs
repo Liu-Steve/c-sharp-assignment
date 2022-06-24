@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using BusHelper.Models;
 
 //获取实时信息
-public class RealTimeService()
-{
-    public 
-}
+// public class RealTimeService()
+// {
+//     public 
+// }
