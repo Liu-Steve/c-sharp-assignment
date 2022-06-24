@@ -7,6 +7,7 @@ using System.Security.Claims;
 
 namespace BusHelper.Service;
 
+//验证token
 public class BusService
 {
     private readonly IConfiguration configuration;

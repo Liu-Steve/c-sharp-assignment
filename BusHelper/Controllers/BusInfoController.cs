@@ -99,4 +99,19 @@ public class BusInfoController : ControllerBase
         else
             return BadRequest();
     }
+
+    [HttpGet]
+    public IActionResult getAllRoads()
+    {
+        RoadService roadService=new RoadService();
+        List<Road> list=roadService.getAllRoads();
+        if(list.Count!=0)
+        {
+            return Ok(JsonConvert.SerializeObject(list));
+        }
+        else
+        {
+            return BadRequest("");
+        }
+    }
 }

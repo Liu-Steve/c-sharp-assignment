@@ -20,3 +20,5 @@ public class Manager
 
     public List<WorkInfo> WorkInfos { get; set; }//执行车次
 }
+
+//已
