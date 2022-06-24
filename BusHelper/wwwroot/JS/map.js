@@ -75,15 +75,14 @@ let show = function(data, color_line) {
 let Ajax = function() {
     $.ajax({
         type: "GET",
-        url: "test.json",
+        url: "https://localhost:7198/BusInfo/getAllRoads",
         // data: { username: $("#username").val(), content: $("#content").val() },
         // dataType: "json",
         timeout: 5000, //连接超时时间
-        success: function(data) { //成功则解析每一个json，得到每一个json的键
-            var json = eval("(" + data + ")");
-            var keys = Object.keys(json);
-            for (var i = 0; i < keys.length; i++) {
-                $.getJSON("../json/" + json[keys[i]], function(data) {
+        success: function(road) { //成功则解析每一个json，得到每一个json的键
+            var array = eval(road);
+            for (var i = 0; i < array.length; i++) {
+                $.getJSON("../json/" + array[i].RoadInfo, function(data) {
                     show(data, color[i % 6]);
                 });
             }

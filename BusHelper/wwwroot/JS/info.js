@@ -192,21 +192,7 @@ $('#contact').on('click', function() {
     }, 2000)
 })
 
-//每隔一秒钟更新Ajax的前端
-$.ajax({
-    type: "GET",
-    url: "test.json",
-    // data: { username: $("#username").val(), content: $("#content").val() },
-    // dataType: "json",
-    success: function(data) {
-        var json = eval("(" + data + ")");
-        Vue.set(con.condition, 0, json.key1);
-        Vue.set(con.condition, 1, json.key2);
-        Vue.set(con.condition, 2, json.key3);
-        Vue.set(con.condition, 3, json.key4);
-        Vue.set(con.condition, 4, json.key5);
-    }
-});
+
 
 window.setInterval(() => {
         setTimeout(() => {
