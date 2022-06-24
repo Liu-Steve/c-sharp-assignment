@@ -20,64 +20,69 @@ public class BusInfoController : ControllerBase
 
     private readonly ILogger<BusInfoController> _logger;
 
-    private readonly BusService _service;
+    private readonly AuthService _service;
 
-    public BusInfoController(ILogger<BusInfoController> logger, 
+    public BusInfoController(ILogger<BusInfoController> logger,
         IConfiguration configuration)
     {
         _logger = logger;
-        _service = new BusService(configuration);
+        _service = new AuthService(configuration);
     }
-/*
-    [HttpPost]
-    public IActionResult AddBus(JObject obj)
-    {
-        double? newX = (double?)obj["x"];
-        double? newY = (double?)obj["y"]; 
-        if(newX == null)
-            return BadRequest("Need x in post");
-        if(newY == null)
-            return BadRequest("Need y in post");
-        Bus newBus = new Bus(){
-            // X = (double)newX,
-            // Y = (double)newY
-        };
-        buses.Add(newBus);
-        return Ok(newBus.BusID);
-    }
+    /*
+        [HttpPost]
+        public IActionResult AddBus(JObject obj)
+        {
+            double? newX = (double?)obj["x"];
+            double? newY = (double?)obj["y"]; 
+            if(newX == null)
+                return BadRequest("Need x in post");
+            if(newY == null)
+                return BadRequest("Need y in post");
+            Bus newBus = new Bus(){
+                // X = (double)newX,
+                // Y = (double)newY
+            };
+            buses.Add(newBus);
+            return Ok(newBus.BusID);
+        }
 
-    [HttpPost]
-    public IActionResult UpdateBus(JObject obj)
-    {
-        string? busID = (string?)obj["bus_id"];
-        double? newX = (double?)obj["x"];
-        double? newY = (double?)obj["y"]; 
-        if(busID == null)
-            return BadRequest("Need bus_id in Post");
-        if(newX == null)
-            return BadRequest("Need x in post");
-        if(newY == null)
-            return BadRequest("Need y in post");
-        Bus? updateBus = buses.Find(bus => bus.BusID == busID);
-        if(updateBus == null)
-            return BadRequest("No bus matched is found");
-        // updateBus.X = (double)newX;
-        // updateBus.Y = (double)newY;
-        return Ok();
-    }
+        [HttpPost]
+        public IActionResult UpdateBus(JObject obj)
+        {
+            string? busID = (string?)obj["bus_id"];
+            double? newX = (double?)obj["x"];
+            double? newY = (double?)obj["y"]; 
+            if(busID == null)
+                return BadRequest("Need bus_id in Post");
+            if(newX == null)
+                return BadRequest("Need x in post");
+            if(newY == null)
+                return BadRequest("Need y in post");
+            Bus? updateBus = buses.Find(bus => bus.BusID == busID);
+            if(updateBus == null)
+                return BadRequest("No bus matched is found");
+            // updateBus.X = (double)newX;
+            // updateBus.Y = (double)newY;
+            return Ok();
+        }
 
-    [HttpGet]
-    public IEnumerable<Bus> GetBusPos()
-    {
-        return buses.ToArray();
-    }
-*/
+        [HttpGet]
+        public IEnumerable<Bus> GetBusPos()
+        {
+            return buses.ToArray();
+        }
+    */
 
     [HttpPost]
     public IActionResult Login(Manager manager)
     {
-        var token = _service.CreateToken(manager.ManagerId);
-        return Ok(token);
+        if (_service.Vaild(manager))
+        {
+            var token = _service.CreateToken(manager.ManagerId);
+            return Ok(token);
+        }
+        else
+            return BadRequest("Authorization failed! Manager is not exist.");
     }
 
     [HttpPost]
@@ -95,7 +100,7 @@ public class BusInfoController : ControllerBase
             // context.SaveChanges();
             driver = context.Drivers.FirstOrDefault();
         }
-        if(driver != null)
+        if (driver != null)
             return Ok(JsonConvert.SerializeObject(driver));
         else
             return BadRequest();
@@ -107,9 +112,9 @@ public class BusInfoController : ControllerBase
     public void PostRealTimeData(RealTimeRecord realTimeRecord)
     {
         //调用API获取结果，解析json写入
-        JObject json=(JObject)JsonConvert.DeserializeObject
-            (DriverBehaviorAnalysis.driver_behavior("../img/"+realTimeRecord.RealPic));
-        DriverBehaviorAnalysis.parseJson(realTimeRecord,json);
+        JObject json = (JObject)JsonConvert.DeserializeObject
+            (DriverBehaviorAnalysis.driver_behavior("../img/" + realTimeRecord.RealPic));
+        DriverBehaviorAnalysis.parseJson(realTimeRecord, json);
         RealTimeService.addRealTime(realTimeRecord);
     }
 
@@ -118,9 +123,9 @@ public class BusInfoController : ControllerBase
     [HttpGet]
     public IActionResult getAllRoads()
     {
-        RoadService roadService=new RoadService();
-        List<Road> list=roadService.getAllRoads();
-        if(list.Count!=0)
+        RoadService roadService = new RoadService();
+        List<Road> list = roadService.getAllRoads();
+        if (list.Count != 0)
         {
             return Ok(JsonConvert.SerializeObject(list));
         }
@@ -134,7 +139,7 @@ public class BusInfoController : ControllerBase
     [HttpPost]
     public IActionResult getRealTime(string busId)
     {
-        ArrayList list=RealTimeService.getRealTime(busId);
+        ArrayList list = RealTimeService.getRealTime(busId);
         return Ok(JsonConvert.SerializeObject(list));
     }
 }
