@@ -47,7 +47,9 @@ function make_marker_icon(color_marker) {
     });
     return staIcon;
 }
+var color = ['#5DAC81', '#00AA90', '#24936E', '#00896C', '#227D51', '#1B813E']
 
+//绘图，传入数据，指定颜色
 let show = function(data, color_line) {
     let xs = data.data.busline_list[0].xs.split(',').map(Number);
     let ys = data.data.busline_list[0].ys.split(',').map(Number);
@@ -71,24 +73,40 @@ let show = function(data, color_line) {
 }
 
 let Ajax = function() {
-    $.getJSON("../json/bus287.json", function(data) {
-        show(data, '#5DAC81');
+    $.ajax({
+        type: "GET",
+        url: "test.json",
+        // data: { username: $("#username").val(), content: $("#content").val() },
+        // dataType: "json",
+        timeout: 5000, //连接超时时间
+        success: function(data) { //成功则解析每一个json，得到每一个json的键
+            var json = eval("(" + data + ")");
+            var keys = Object.keys(json);
+            for (var i = 0; i < keys.length; i++) {
+                $.getJSON("../json/" + json[keys[i]], function(data) {
+                    show(data, color[i % 6]);
+                });
+            }
+        }
     });
-    $.getJSON("../json/bus520.json", function(data) {
-        show(data, '#00AA90');
-    });
-    $.getJSON("../json/bus521.json", function(data) {
-        show(data, '#24936E');
-    });
-    $.getJSON("../json/bus725.json", function(data) {
-        show(data, '#00896C');
-    });
-    $.getJSON("../json/bus740.json", function(data) {
-        show(data, '#227D51');
-    });
-    $.getJSON("../json/bus810.json", function(data) {
-        show(data, '#1B813E');
-    });
+    // $.getJSON("../json/bus287.json", function(data) {
+    //     show(data, '#5DAC81');
+    // });
+    // $.getJSON("../json/bus520.json", function(data) {
+    //     show(data, '#00AA90');
+    // });
+    // $.getJSON("../json/bus521.json", function(data) {
+    //     show(data, '#24936E');
+    // });
+    // $.getJSON("../json/bus725.json", function(data) {
+    //     show(data, '#00896C');
+    // });
+    // $.getJSON("../json/bus740.json", function(data) {
+    //     show(data, '#227D51');
+    // });
+    // $.getJSON("../json/bus810.json", function(data) {
+    //     show(data, '#1B813E');
+    // });
 }();
 
 let showStations = function() {

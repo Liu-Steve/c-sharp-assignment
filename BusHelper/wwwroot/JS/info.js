@@ -1,3 +1,81 @@
+var vm = new Vue({
+    el: "#time",
+    data: {
+        time: Date()
+    }
+})
+
+var imgSrc = new Vue({
+    el: "#img-real",
+    data: {
+        src: "fake_data/1.jpg"
+    }
+})
+
+var po = new Vue({
+    el: "#po",
+    data: {
+        possible: [0.2, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
+    }
+})
+
+var con = new Vue({
+    el: "#con",
+    data: {
+        condition: [75, 95, 70, 36.9, 96],
+        alcohol: "否"
+    }
+})
+
+
+
+function drawOneRect(name, i) {
+    var canvas = document.getElementById(name);
+    canvas.width = canvas.width; //清空
+    var context = canvas.getContext('2d');
+    context.fillStyle = "#20c997"
+    var l = Math.round(random * 100);
+    context.fillRect(0, 0, l, 2);
+}
+
+function drawRect() {
+    for (i = 0; i < 8; i++) {
+        drawOneRect("rectangle" + i, i);
+    }
+}
+
+//normal-condition
+function setCon() {
+    Vue.set(con.condition, 0, 75 + Math.round(Math.random() * 5));
+    Vue.set(con.condition, 1, 95 + Math.round(Math.random() * 5));
+    Vue.set(con.condition, 2, 70 + Math.round(Math.random() * 5));
+    Vue.set(con.condition, 3, (36.3 + (Math.random() * 0.5)).toFixed(2));
+    Vue.set(con.condition, 4, 96 + Math.round(Math.random() * 2));
+}
+
+var imgCont = 1;
+
+function setImg() {
+    if (imgCont == 42) {
+        imgCont = 1;
+    }
+    imgSrc.src = "fake_data/" + imgCont + ".jpg"
+    imgCont = imgCont + 1;
+}
+
+window.setInterval(() => {
+    setTimeout(() => {
+        vm.time = Date();
+        for (i = 0; i < 8; i++) {
+            var random = Math.random() * 0.2;
+            Vue.set(po.possible, i, random.toFixed(2));
+        }
+        // drawRect();
+        setCon();
+        setImg();
+    }, 0)
+}, 1000)
+
 let img_rotate = false;
 $('.btn').on('click', function() {
     $('.sidebar').toggleClass('side');
@@ -113,3 +191,39 @@ $('#contact').on('click', function() {
         }, 1000)
     }, 2000)
 })
+
+//每隔一秒钟更新Ajax的前端
+$.ajax({
+    type: "GET",
+    url: "test.json",
+    // data: { username: $("#username").val(), content: $("#content").val() },
+    // dataType: "json",
+    success: function(data) {
+        var json = eval("(" + data + ")");
+        Vue.set(con.condition, 0, json.key1);
+        Vue.set(con.condition, 1, json.key2);
+        Vue.set(con.condition, 2, json.key3);
+        Vue.set(con.condition, 3, json.key4);
+        Vue.set(con.condition, 4, json.key5);
+    }
+});
+
+window.setInterval(() => {
+        setTimeout(() => {
+            $.ajax({
+                type: "GET",
+                url: "test.json",
+                // data: { username: $("#username").val(), content: $("#content").val() },
+                // dataType: "json",
+                timeout: 5000, //连接超时时间
+                success: function(data) { //成功则更新数据
+                    var json = eval("(" + data + ")");
+                    Vue.set(con.condition, 0, json.key1);
+                    Vue.set(con.condition, 1, json.key2);
+                    Vue.set(con.condition, 2, json.key3);
+                    Vue.set(con.condition, 3, json.key4);
+                    Vue.set(con.condition, 4, json.key5);
+                }
+            });
+        }, 0)
+    }, 1000) //1s钟发送一次数据更新请求
