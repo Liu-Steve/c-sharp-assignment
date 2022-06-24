@@ -4,7 +4,10 @@ using Newtonsoft.Json.Linq;
 using BusHelper.Context;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql;
+using System.IdentityModel.Tokens.Jwt;
 using BusHelper.Models;
+using BusHelper.Service;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BusHelper.Controllers;
 
@@ -16,13 +19,13 @@ public class BusInfoController : ControllerBase
 
     private readonly ILogger<BusInfoController> _logger;
 
-    private readonly IConfiguration _configuration;
+    private readonly BusService _service;
 
     public BusInfoController(ILogger<BusInfoController> logger, 
         IConfiguration configuration)
     {
         _logger = logger;
-        _configuration = configuration;
+        _service = new BusService(configuration);
     }
 /*
     [HttpPost]
@@ -68,7 +71,16 @@ public class BusInfoController : ControllerBase
         return buses.ToArray();
     }
 */
+
     [HttpPost]
+    public IActionResult Login(Manager manager)
+    {
+        var token = _service.CreateToken(manager.ManagerId);
+        return Ok(token);
+    }
+
+    [HttpPost]
+    [Authorize]
     public IActionResult Test()
     {
         Driver? driver;
