@@ -22,7 +22,7 @@ public class RealTimeRecord
 
     public string BusId { get; set; }//公交车牌
 
-    public Bus Bus { get; set; }//公交车
+    public Bus? Bus { get; set; }//公交车
 
     public DangerAction DangerAction { get; set; }//当前可能的危险行为，八个行为分析
 
