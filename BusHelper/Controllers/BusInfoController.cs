@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using BusHelper.Context;
 using Microsoft.EntityFrameworkCore;
@@ -15,9 +16,13 @@ public class BusInfoController : ControllerBase
 
     private readonly ILogger<BusInfoController> _logger;
 
-    public BusInfoController(ILogger<BusInfoController> logger)
+    private readonly IConfiguration _configuration;
+
+    public BusInfoController(ILogger<BusInfoController> logger, 
+        IConfiguration configuration)
     {
         _logger = logger;
+        _configuration = configuration;
     }
 /*
     [HttpPost]
@@ -64,17 +69,22 @@ public class BusInfoController : ControllerBase
     }
 */
     [HttpPost]
-    public IActionResult Test(Bus bus)
+    public IActionResult Test()
     {
+        Driver? driver;
         using (var context = new BusContext(new DbContextOptions<BusContext>()))
         {
             // var newBus = new Bus(){
             //     X = 15,
             //     Y = 20
             // };
-            context.Buses.Add(bus);
-            context.SaveChanges();
+            // context.Buses.Add(bus);
+            // context.SaveChanges();
+            driver = context.Drivers.FirstOrDefault();
         }
-        return Ok();
+        if(driver != null)
+            return Ok(JsonConvert.SerializeObject(driver));
+        else
+            return BadRequest();
     }
 }
