@@ -5,6 +5,7 @@ using BusHelper.Context;
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql;
 using BusHelper.Models;
+using BusHelper.Service;
 
 namespace BusHelper.Controllers;
 
@@ -86,5 +87,20 @@ public class BusInfoController : ControllerBase
             return Ok(JsonConvert.SerializeObject(driver));
         else
             return BadRequest();
+    }
+
+    [HttpGet]
+    public IActionResult getAllRoads()
+    {
+        RoadService roadService=new RoadService();
+        List<Road> list=roadService.getAllRoads();
+        if(list.Count!=0)
+        {
+            return Ok(JsonConvert.SerializeObject(list));
+        }
+        else
+        {
+            return BadRequest("");
+        }
     }
 }

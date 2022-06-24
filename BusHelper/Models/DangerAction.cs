@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BusHelper.Models;
 
-//留言信息
+//实时行为危险分析
 [Table("DangerActions")]
 public class DangerAction
 {

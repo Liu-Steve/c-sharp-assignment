@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BusHelper.Models;
 
-//留言信息
+//风险指标
 [Table("DangerIndex")]
 public class DangerIndex
 {
