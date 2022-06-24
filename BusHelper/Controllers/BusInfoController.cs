@@ -8,6 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using BusHelper.Models;
 using BusHelper.Service;
 using Microsoft.AspNetCore.Authorization;
+using System.Collections;
 
 namespace BusHelper.Controllers;
 
@@ -100,24 +101,20 @@ public class BusInfoController : ControllerBase
             return BadRequest();
     }
 
-    // [HttpPost]
+    //更新实时数据
+    [HttpPost]
     // [Authorize]
-    // public IActionResult PostRealTimeData(RealTimeRecord realTimeRecord)
-    // {
-        
-    //     using (var context = new BusContext(new DbContextOptions<BusContext>()))
-    //     {
-    //         // var newBus = new Bus(){
-    //         //     X = 15,
-    //         //     Y = 20
-    //         // };
-    //         // context.Buses.Add(bus);
-    //         // context.SaveChanges();
-    //         driver = context.Drivers.FirstOrDefault();
-    //     }
-    //     //post(realTimeRecord.realPic)
-    // }
+    public void PostRealTimeData(RealTimeRecord realTimeRecord)
+    {
+        //调用API获取结果，解析json写入
+        JObject json=(JObject)JsonConvert.DeserializeObject
+            (DriverBehaviorAnalysis.driver_behavior(realTimeRecord.RealPic));
+        DriverBehaviorAnalysis.parseJson(realTimeRecord,json);
+        RealTimeService.addRealTime(realTimeRecord);
+    }
 
+
+    //查询道路信息
     [HttpGet]
     public IActionResult getAllRoads()
     {
@@ -131,5 +128,13 @@ public class BusInfoController : ControllerBase
         {
             return BadRequest("");
         }
+    }
+
+    //获取某辆车的实时信息
+    [HttpPost]
+    public IActionResult getRealTime(string busId)
+    {
+        ArrayList list=RealTimeService.getRealTime(busId);
+        return Ok(JsonConvert.SerializeObject(list));
     }
 }
