@@ -12,26 +12,38 @@ namespace BusHelper.Models;
 public class DangerAction
 {
     [Key]
-    public string? recordID { get; set; }//记录号
+    public string RecordId { get; set; }//记录号
 
-    public string? Smoke { get; set; }//抽烟
+    public bool Smoke { get; set; }//抽烟
 
-    public string? Yawn{get;set;}//打哈欠
+    public bool Yawn { get; set; }//打哈欠
 
-    public string? SafetyBelt{get;set;}//安全带
+    public bool NoSafetyBelt { get; set; }//未系安全带
 
-    public string? LeavingSteering{get;set;}//双手离开方向盘
+    public bool LeavingSteering { get; set; }//双手离开方向盘
 
-    public string? CloseEye{get;set;}//闭眼
+    public bool CloseEye { get; set; }//闭眼
 
-    public string? UsingPhone{get;set;}//使用手机
+    public bool UsingPhone { get; set; }//使用手机
 
-    public string? LookAround{get;set;}//视角未看前方
+    public bool LookAround { get; set; }//视角未看前方
 
-    public string? Conflict{get;set;}//司机乘客冲突
+    public bool Conflict { get; set; }//司机乘客冲突
+
+    public string RealTimeRecordId { get; set; }//导航属性
+
+    public RealTimeRecord RealTimeRecord { get; set; }//导航属性
 
     public DangerAction()
     {
-
+        RecordId = Guid.NewGuid().ToString();
+        Smoke = false;
+        Yawn = false;
+        NoSafetyBelt = false;
+        LeavingSteering = false;
+        CloseEye = false;
+        UsingPhone = false;
+        LookAround = false;
+        Conflict = false;
     }
 }

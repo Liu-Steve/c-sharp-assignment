@@ -9,23 +9,23 @@ namespace BusHelper.Models;
 
 //留言信息
 [Table("Calls")]
-public class Calls
+public class Call
 {
     [Key]
-    public string? CallID { get; set; }//通话ID
+    public string CallId { get; set; }//通话ID
 
-    public string? Content { get; set; }//通话内容
+    public string? Content { get; set; }//通话内容文件名
 
-    public string? Manager{get;set;}//通话管理员
+    public DateTime StartTime { get; set; }//通话开始时间
 
-    public string? Time{get;set;}//通话时间
+    public int Length { get; set; }//通话时长
 
-    public string? Driver{get;set;}//通话司机
+    public string WorkInfoId { get; set; }//通话车次Id
 
-    public string? Bus{get;set;}//通话车辆
+    public WorkInfo WorkInfo { get; set; }//通话车次
 
-    public Calls()
+    public Call()
     {
-
+        CallId = Guid.NewGuid().ToString();
     }
 }
