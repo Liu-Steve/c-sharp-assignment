@@ -100,6 +100,24 @@ public class BusInfoController : ControllerBase
             return BadRequest();
     }
 
+    // [HttpPost]
+    // [Authorize]
+    // public IActionResult PostRealTimeData(RealTimeRecord realTimeRecord)
+    // {
+        
+    //     using (var context = new BusContext(new DbContextOptions<BusContext>()))
+    //     {
+    //         // var newBus = new Bus(){
+    //         //     X = 15,
+    //         //     Y = 20
+    //         // };
+    //         // context.Buses.Add(bus);
+    //         // context.SaveChanges();
+    //         driver = context.Drivers.FirstOrDefault();
+    //     }
+    //     //post(realTimeRecord.realPic)
+    // }
+
     [HttpGet]
     public IActionResult getAllRoads()
     {
