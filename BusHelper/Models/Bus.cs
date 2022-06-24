@@ -12,12 +12,18 @@ namespace BusHelper.Models;
 public class Bus
 {
     [Key]
-    public string BusID { get; set; }//车牌号
+    public string BusId { get; set; }//车牌号
 
-    public string? RoadID { get; set; }//几号线
+    public string RoadId { get; set; }//几号线
+
+    public Road Road { get; set; }//路线
+
+    public List<WorkInfo> WorkInfos { get; set; }//执行车次
+
+    public List<RealTimeRecord> RealTimeRecords { get; set; }//实时信息
 
     public Bus()
     {
-        BusID = Guid.NewGuid().ToString();
+        BusId = Guid.NewGuid().ToString();
     }
 }

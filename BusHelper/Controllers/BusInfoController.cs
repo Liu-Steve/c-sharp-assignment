@@ -19,7 +19,7 @@ public class BusInfoController : ControllerBase
     {
         _logger = logger;
     }
-
+/*
     [HttpPost]
     public IActionResult AddBus(JObject obj)
     {
@@ -62,7 +62,7 @@ public class BusInfoController : ControllerBase
     {
         return buses.ToArray();
     }
-
+*/
     [HttpPost]
     public IActionResult Test(Bus bus)
     {
