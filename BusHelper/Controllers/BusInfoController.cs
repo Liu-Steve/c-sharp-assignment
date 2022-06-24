@@ -108,7 +108,7 @@ public class BusInfoController : ControllerBase
     {
         //调用API获取结果，解析json写入
         JObject json=(JObject)JsonConvert.DeserializeObject
-            (DriverBehaviorAnalysis.driver_behavior(realTimeRecord.RealPic));
+            (DriverBehaviorAnalysis.driver_behavior("../img/"+realTimeRecord.RealPic));
         DriverBehaviorAnalysis.parseJson(realTimeRecord,json);
         RealTimeService.addRealTime(realTimeRecord);
     }

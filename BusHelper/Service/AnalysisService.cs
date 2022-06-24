@@ -1,6 +1,4 @@
 using Newtonsoft.Json;
-using System;
-using System.IO;
 using System.Net;
 using System.Text;
 using System.Web;
@@ -10,15 +8,12 @@ using Newtonsoft.Json.Linq;
 namespace BusHelper.Service;
 public class DriverBehaviorAnalysis
 {
-    // 调用getAccessToken()获取的 access_token建议根据expires_in 时间 设置缓存
-    // 返回token示例
-    public static String TOKEN = "24.adda70c11b9786206253ddb70affdc46.2592000.1493524354.282335-1234567";
-
-    // 百度云中开通对应服务应用的 API Key 建议开通应用的时候多选服务
+    // AK
     private static String clientId = "vGQlxGEKG8hjzZ95qbSIk3F1";
-    // 百度云中开通对应服务应用的 Secret Key
+    // SK
     private static String clientSecret = "NTR31Ct6FH6Hh65q84bQGUk8vGxVoSLH";
 
+    //获得token
     public static String getAccessToken() {
         String authHost = "https://aip.baidubce.com/oauth/2.0/token";
         HttpClient client = new HttpClient();
@@ -31,6 +26,7 @@ public class DriverBehaviorAnalysis
         String result = response.Content.ReadAsStringAsync().Result;
         return result;
     }
+
     // 驾驶行为分析
     public static string driver_behavior(String fileName)
     {
@@ -55,6 +51,7 @@ public class DriverBehaviorAnalysis
         return result;
     }
 
+    //图片类型转换
     public static String getFileBase64(String fileName) {
         FileStream filestream = new FileStream(fileName, FileMode.Open);
         byte[] arr = new byte[filestream.Length];
@@ -64,6 +61,7 @@ public class DriverBehaviorAnalysis
         return baser64;
     }
 
+    //解析json的结果
     public static void parseJson(RealTimeRecord realTimeRecord,JObject json){
         realTimeRecord.DangerAction.Smoke=(float)json["person_info"][0]["attributes"]["smoke"]["score"];
         realTimeRecord.DangerAction.Yawn=(float)json["person_info"][0]["attributes"]["smoke"]["yawning"];
@@ -76,6 +74,7 @@ public class DriverBehaviorAnalysis
     }
 }
 
+//解析token的类
 public class RootObject {
 	public string refresh_token  { get; set; }
 	public string expires_in  { get; set; }
