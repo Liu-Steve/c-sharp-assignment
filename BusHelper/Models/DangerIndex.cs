@@ -20,7 +20,7 @@ public class DangerIndex
 
     public int LowBloodPressure { get; set; }//血压低
 
-    public int Temperature { get; set; }//体温
+    public float Temperature { get; set; }//体温
 
     public int BloodOxygen { get; set; }//血氧
 

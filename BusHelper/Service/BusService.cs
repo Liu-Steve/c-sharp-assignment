@@ -10,7 +10,14 @@ namespace BusHelper.Service;
 //验证token
 public class BusService
 {
-    public string CreateToken(IConfiguration configuration, string name)
+    private readonly IConfiguration configuration;
+
+    public BusService(IConfiguration configuration)
+    {
+        this.configuration = configuration;
+    }
+
+    public string CreateToken(string name)
     {
         // 1. 定义需要使用到的Claims
         var claims = new[]
