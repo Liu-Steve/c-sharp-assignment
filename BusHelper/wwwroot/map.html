@@ -27,6 +27,7 @@
     <link rel="shortcut icon" href="img/htmllogo.ico">
 </head>
 
+ 
 <body>
     <!-- 预警 -->
     <div id="simpleModal" class="alert-modal">
@@ -63,6 +64,50 @@
         </div>
     </div> -->
 
+   <!-- 左下角语音消息弹窗模板 -->
+   <template>
+        <div class=" pop-panel pop-fix-position" onclick="clearMsgCard()" name ="pop-window" style="bottom :0px">
+            <div class="panel-heading">
+                <a href="info.html" target="_blank" class="panel-title" id="title">司机名字 | 8路 | 车牌号</a>
+            </div>
+
+            <ul class="list-group">
+                <li class="driver-list-group-item">
+                    <audio controls style="width: 98%;" id="0">
+                        <source src="./media/audio/music.mp3" type = "audio/mpeg" >
+                        您的浏览器不支持 audio 元素
+                    </audio>
+                </li>
+                <li class="driver-list-group-item">
+                    <p>语音转文字音转音转文字</p>
+                </li>
+                <li class="driver-list-group-item">
+                    <button class="pop-btn">立即联系</button>
+                </li>
+            </ul>                       
+        </div> 
+    </template>
+    
+<div id="pop-msg-group"></div>
+<!-- 弱警报模板 -->
+<template>
+    <div class=" pop-panel pop-fix-position" onclick="clearMsgCard()" name ="pop-weak-alert" style="bottom :0px">
+        <div class="panel-heading">
+            <a href="info.html" target="_blank" class="panel-title" id="title">司机名字 | 8路 | 车牌号</a>
+        </div>
+        <ul class="list-group">        
+            <li class="driver-list-group-item" >
+                <p id="alertInfo">张三血压稍高，建议持续关注。</p>
+            </li>
+            <li class="driver-list-group-item">
+                <button class="pop-btn">立即联系</button>
+            </li>
+        </ul>                       
+    </div>                      
+</template> 
+        
+  
+        
 <div class="fixed-top pointer_none w100-h100">
     <nav class="navbar shadow-sm navbar-expand-lg bg-dark py-3 py-lg-0 px-lg-5 pointer_all">
         <div class="navbar-collapse justify-content-between" id="toolbar">
@@ -120,6 +165,7 @@
 <script src="./JS/alert.js"></script>
 <script src="JS/vue.js"></script>
 <script src="JS/redpoint.js"></script>
+<script src="JS/map_message.js"></script>
 </body>
 
 </html>

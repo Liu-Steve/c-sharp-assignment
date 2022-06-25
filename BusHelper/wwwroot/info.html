@@ -30,9 +30,10 @@
                     </a>
                 </div>
                 <div id="box">
-                    <input type="search" name="search" placeholder="请输入查找司机关键词">
+                    <input type="search" name="search" placeholder="请输入查找司机关键词" id="to_search">
                     <div id="search">搜索</div>
                 </div>
+
             </div>
         </nav>
         <div class="sidebar pointer_all" style="height: 100vh;">
@@ -192,7 +193,7 @@
     <div class="bg-dark text-white py-2" id="contact" style="margin-top: 0px;">
         <div class="container text-center py-5">
             <div class="section-title position-relative text-center">
-                <h1 class="font-secondary display-3 text-white">公交管家</h1>
+                <h1 class="font-secondary display-3 text-white">公交安行</h1>
                 <!-- <i class="far fa-heart text-white"></i> -->
             </div>
             <!-- <div class="d-flex justify-content-center mb-4">
@@ -202,96 +203,17 @@
                 <a class="btn btn-lg btn-outline-light btn-lg-square" href="#"><i class="fab fa-instagram"></i></a>
             </div> -->
             <div class="position-relative text-center">
-                Bus management system<br/> an integrated monitering system involving cloud interaction and wearable devices
+                Bus-Safengine<br/> an integrated monitering system involving cloud interaction and wearable devices
             </div>
             <div class="d-flex justify-content-center py-2">
                 <p class="text-white" href="#"><a href="email-protection.html" class="__cf_email__" data-cfemail="9ef7f0f8f1defbe6fff3eef2fbb0fdf1f3">[联系方式]</a></p>
                 <span class="px-3">|</span>
                 <p class="text-white" href="#"><a href="email-protection.html" class="__cf_email__" data-cfemail="9ef7f0f8f1defbe6fff3eef2fbb0fdf1f3">[关于我们]</a></p>
             </div>
-            <p class="m-0">Copyright &copy; 2022.Bus Manager System.
+            <p class="m-0">Copyright &copy; 2022.Bus-Safengine.
             </p>
         </div>
     </div>
-    <script>
-        var vm = new Vue({
-            el: "#time",
-            data: {
-                time: Date()
-            }
-        })
-
-        var imgSrc = new Vue({
-            el: "#img-real",
-            data: {
-                src: "fake_data/1.jpg"
-            }
-        })
-
-        var po = new Vue({
-            el: "#po",
-            data: {
-                possible: [0.2, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
-            }
-        })
-
-        var con = new Vue({
-            el: "#con",
-            data: {
-                condition: [75, 95, 70, 36.9, 96],
-                alcohol: "否"
-            }
-        })
-
-
-
-        function drawOneRect(name, i) {
-            var canvas = document.getElementById(name);
-            canvas.width = canvas.width; //清空
-            var context = canvas.getContext('2d');
-            context.fillStyle = "#20c997"
-            var l = Math.round(random * 100);
-            context.fillRect(0, 0, l, 2);
-        }
-
-        function drawRect() {
-            for (i = 0; i < 8; i++) {
-                drawOneRect("rectangle" + i, i);
-            }
-        }
-
-        //normal-condition
-        function setCon() {
-            Vue.set(con.condition, 0, 75 + Math.round(Math.random() * 5));
-            Vue.set(con.condition, 1, 95 + Math.round(Math.random() * 5));
-            Vue.set(con.condition, 2, 70 + Math.round(Math.random() * 5));
-            Vue.set(con.condition, 3, (36.3 + (Math.random() * 0.5)).toFixed(2));
-            Vue.set(con.condition, 4, 96 + Math.round(Math.random() * 2));
-        }
-
-        var imgCont = 1;
-
-        function setImg() {
-            if (imgCont == 42) {
-                imgCont = 1;
-            }
-            imgSrc.src = "fake_data/" + imgCont + ".jpg"
-            imgCont = imgCont + 1;
-        }
-
-        window.setInterval(() => {
-            setTimeout(() => {
-                vm.time = Date();
-                for (i = 0; i < 8; i++) {
-                    var random = Math.random() * 0.2;
-                    Vue.set(po.possible, i, random.toFixed(2));
-                }
-                // drawRect();
-                setCon();
-                setImg();
-            }, 0)
-        }, 1000)
-    </script>
     <script src="JS/jquery-3.4.1.min.js"></script>
     <script src="JS/info.js"></script>
 <<<<<<< HEAD

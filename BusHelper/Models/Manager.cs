@@ -7,23 +7,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BusHelper.Models;
 
-//测试车辆
-[Table("Buses")]
-public class Bus
+//管理员信息
+[Table("Managers")]
+public class Manager
 {
     [Key]
-    public string BusId { get; set; }//车牌号
+    public string ManagerId { get; set; }//管理员账号
 
-    public string RoadId { get; set; }//几号线
+    public string Pwd { get; set; }//密码
 
-    public Road? Road { get; set; }//路线
+    public string? Area { get; set; }//所在地区
 
     public List<WorkInfo>? WorkInfos { get; set; }//执行车次
-
-    public List<RealTimeRecord>? RealTimeRecords { get; set; }//实时信息
-
-    public Bus()
-    {
-        BusId = Guid.NewGuid().ToString();
-    }
 }
