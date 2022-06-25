@@ -4,7 +4,7 @@ using BusHelper.Models;
 
 namespace BusHelper.Service;
 
-//获取道路信息
+//道路信息
 public class RoadService
 {
     //查询所有的线路

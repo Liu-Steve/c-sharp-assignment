@@ -4,7 +4,8 @@ using BusHelper.Models;
 using System.Collections;
 
 namespace BusHelper.Service;
-//获取实时信息
+
+//实时信息
 public class RealTimeService
 {
     //添加实时信息
@@ -13,7 +14,9 @@ public class RealTimeService
         using (var context = new BusContext(new DbContextOptions<BusContext>()))
         {
             context.RealTimeRecords.Add(realTimeRecord);
+            realTimeRecord.DangerAction.RealTimeRecordId=realTimeRecord.RecordId;
             context.DangerActions.Add(realTimeRecord.DangerAction);
+            realTimeRecord.DangerIndex.RealTimeRecordId=realTimeRecord.RecordId;
             context.DangerIndices.Add(realTimeRecord.DangerIndex);
             context.SaveChanges();
         }

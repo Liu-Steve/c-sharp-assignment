@@ -64,13 +64,13 @@ public class DriverBehaviorAnalysis
     //解析json的结果
     public static void parseJson(RealTimeRecord realTimeRecord,JObject json){
         realTimeRecord.DangerAction.Smoke=(float)json["person_info"][0]["attributes"]["smoke"]["score"];
-        realTimeRecord.DangerAction.Yawn=(float)json["person_info"][0]["attributes"]["smoke"]["yawning"];
-        realTimeRecord.DangerAction.NoSafetyBelt=(float)json["person_info"][0]["attributes"]["smoke"]["not_buckling_up"];
-        realTimeRecord.DangerAction.LeavingSteering=(float)json["person_info"][0]["attributes"]["smoke"]["both_hands_leaving_wheel"];
-        realTimeRecord.DangerAction.CloseEye=(float)json["person_info"][0]["attributes"]["smoke"]["eyes_closed"];
-        realTimeRecord.DangerAction.UsingPhone=(float)json["person_info"][0]["attributes"]["smoke"]["cellphone"];
-        realTimeRecord.DangerAction.LookAround=(float)json["person_info"][0]["attributes"]["smoke"]["not_facing_front"];
-        realTimeRecord.DangerAction.Conflict=(float)json["person_info"][0]["attributes"]["smoke"]["head_lowered"];
+        realTimeRecord.DangerAction.Yawn=(float)json["person_info"][0]["attributes"]["yawning"]["score"];
+        realTimeRecord.DangerAction.NoSafetyBelt=(float)json["person_info"][0]["attributes"]["not_buckling_up"]["score"];
+        realTimeRecord.DangerAction.LeavingSteering=(float)json["person_info"][0]["attributes"]["both_hands_leaving_wheel"]["score"];
+        realTimeRecord.DangerAction.CloseEye=(float)json["person_info"][0]["attributes"]["eyes_closed"]["score"];
+        realTimeRecord.DangerAction.UsingPhone=(float)json["person_info"][0]["attributes"]["cellphone"]["score"];
+        realTimeRecord.DangerAction.LookAround=(float)json["person_info"][0]["attributes"]["not_facing_front"]["score"];
+        realTimeRecord.DangerAction.Conflict=(float)json["person_info"][0]["attributes"]["head_lowered"]["score"];
     }
 }
 
