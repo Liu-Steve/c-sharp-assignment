@@ -1,3 +1,6 @@
+//login token
+let token = window.name;
+
 // base map
 
 let lmap = L.map("map", {

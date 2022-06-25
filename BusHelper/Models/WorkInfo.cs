@@ -20,21 +20,21 @@ public class WorkInfo
 
     public string BusId { get; set; }//车牌号
 
-    public Bus Bus { get; set; }//执行公交
+    public Bus? Bus { get; set; }//执行公交
 
     public string ManagerId { get; set; }//此时值班的管理员Id
 
-    public Manager Manager { get; set; }//管理员
+    public Manager? Manager { get; set; }//管理员
 
     public string DriverId { get; set; }//此时值班的司机Id
 
-    public Driver Driver { get; set; }//司机
+    public Driver? Driver { get; set; }//司机
 
     public DangerRecord DangerRecord { get; set; }//危险操作次数统计
 
-    public List<Call> Calls { get; set; }//通话记录
+    public List<Call>? Calls { get; set; }//通话记录
 
-    public List<LeavingMsg> LeavingMsgs { get; set; }//留言记录
+    public List<LeavingMsg>? LeavingMsgs { get; set; }//留言记录
 
     public WorkInfo()
     {
