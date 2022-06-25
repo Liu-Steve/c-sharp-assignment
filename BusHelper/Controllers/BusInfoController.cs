@@ -202,4 +202,11 @@ public class BusInfoController : ControllerBase
         ArrayList location = RealTimeService.getRealLocation();
         return Ok(JsonConvert.SerializeObject(location));
     }
+
+    //返回图片
+    [HttpPost]
+    public String getRealPic([FromBody] string picId)
+    {
+        return DriverBehaviorAnalysis.getFileBase64("img/"+picId);
+    }
 }

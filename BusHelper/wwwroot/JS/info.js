@@ -59,22 +59,22 @@ function setImg() {
     if (imgCont == 42) {
         imgCont = 1;
     }
-    imgSrc.src = "fake_data/" + imgCont + ".jpg"
+    imgSrc.src = "fake_data/" + imgCont + ".jpg";
     imgCont = imgCont + 1;
 }
 
-// window.setInterval(() => {
-//     setTimeout(() => {
-//         vm.time = Date();
-//         for (i = 0; i < 8; i++) {
-//             var random = Math.random() * 0.2;
-//             Vue.set(po.possible, i, random.toFixed(2));
-//         }
-//         // drawRect();
-//         setCon();
-//         setImg();
-//     }, 0)
-// }, 1000)
+window.setInterval(() => {
+    setTimeout(() => {
+        vm.time = Date();
+        // for (i = 0; i < 8; i++) {
+        //     var random = Math.random() * 0.2;
+        //     Vue.set(po.possible, i, random.toFixed(2));
+        // }
+        // // drawRect();
+        // setCon();
+        // setImg();
+    }, 0)
+}, 1000)
 
 let img_rotate = false;
 $('.btn').on('click', function() {
@@ -204,20 +204,36 @@ window.setInterval(() => {
                 contentType: "application/json",
                 timeout: 5000, //连接超时时间
                 success: function(data) { //成功则更新数据
-                    var json = eval("(" + data + ")");
-                    Vue.set(con.condition, 0, json.HeartRate);
-                    Vue.set(con.condition, 1, json.LowBloodPressure + "/" + json.HighBloodPressure);
-                    Vue.set(con.condition, 2, json.Temperature);
-                    Vue.set(con.condition, 3, json.BloodOxygen);
+                    var json = eval("(" + "'" + data + "'" + ")");
+                    Vue.set(con.condition, 0, data.HeartRate);
+                    Vue.set(con.condition, 1, data.LowBloodPressure + "/" + data.HighBloodPressure);
+                    Vue.set(con.condition, 2, data.Temperature);
+                    Vue.set(con.condition, 3, data.BloodOxygen);
                     Vue.set(con.condition, 4, "否");
-                    Vue.set(po.possible, 0, json.Smoke);
-                    Vue.set(po.possible, 1, json.CloseEye);
-                    Vue.set(po.possible, 1, json.Yawn);
-                    Vue.set(po.possible, 1, json.UsingPhone);
-                    Vue.set(po.possible, 1, json.NoSafetyBelt);
-                    Vue.set(po.possible, 1, json.LookAround);
-                    Vue.set(po.possible, 1, json.LeavingSteering);
-                    Vue.set(po.possible, 1, json.Conflict);
+                    Vue.set(po.possible, 0, data.Smoke);
+                    Vue.set(po.possible, 1, data.CloseEye);
+                    Vue.set(po.possible, 2, data.Yawn);
+                    Vue.set(po.possible, 3, data.UsingPhone);
+                    Vue.set(po.possible, 4, data.NoSafetyBelt);
+                    Vue.set(po.possible, 5, data.LookAround);
+                    Vue.set(po.possible, 6, data.LeavingSteering);
+                    Vue.set(po.possible, 7, data.Conflict);
+                }
+            });
+        }, 0)
+    }, 1000) //1s钟发送一次数据更新请求
+
+window.setInterval(() => {
+        setTimeout(() => {
+            $.ajax({
+                type: "POST",
+                url: "https://localhost:7198/BusInfo/getRealPic",
+                data: '"1.jpg"',
+                //dataType: "json",
+                contentType: "application/json",
+                timeout: 5000, //连接超时时间
+                success: function(data) { //成功则更新数据
+                    $("#img-real").attr("src", "data:image/jpg;base64," + data);
                 }
             });
         }, 0)
