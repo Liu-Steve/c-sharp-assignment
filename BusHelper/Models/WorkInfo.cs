@@ -16,7 +16,7 @@ public class WorkInfo
 
     public DateTime StartTime { get; set; }//开始时间
 
-    public DateTime? EndTime { get; set; }//结束时间，结束前为null
+    public DateTime EndTime { get; set; }//结束时间
 
     public string BusId { get; set; }//车牌号
 
@@ -39,7 +39,5 @@ public class WorkInfo
     public WorkInfo()
     {
         WorkId = Guid.NewGuid().ToString();
-        StartTime = DateTime.Now;
-        EndTime = null;
     }
 }

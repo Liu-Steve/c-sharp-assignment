@@ -6,6 +6,8 @@ using BusHelper.Models;
 using Newtonsoft.Json.Linq;
 
 namespace BusHelper.Service;
+
+//上传相应的API进行行为分析并获取返回的json结果
 public class DriverBehaviorAnalysis
 {
     // AK
