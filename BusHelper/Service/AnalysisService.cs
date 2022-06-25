@@ -33,9 +33,8 @@ public class DriverBehaviorAnalysis
     public static string driver_behavior(String fileName)
     {
 
-        string json = getAccessToken();
-        RootObject rb=JsonConvert.DeserializeObject<RootObject>(json);
-        string token=rb.access_token;
+        JObject json = (JObject)JsonConvert.DeserializeObject(getAccessToken());
+        string token=(string)json["access_token"];
         string host = "https://aip.baidubce.com/rest/2.0/image-classify/v1/driver_behavior?access_token=" + token;
         Encoding encoding = Encoding.Default;
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(host);
@@ -76,12 +75,3 @@ public class DriverBehaviorAnalysis
     }
 }
 
-//解析token的类
-public class RootObject {
-	public string refresh_token  { get; set; }
-	public string expires_in  { get; set; }
-	public string scope  { get; set; }
-	public string session_key  { get; set; }
-	public string access_token  { get; set; }
-	public string session_secret  { get; set; }
-}
