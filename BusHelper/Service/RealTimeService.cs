@@ -39,4 +39,22 @@ public class RealTimeService
             return list;
         }
     }
+
+    //查询实时司机
+    public static dynamic getBusInfo(string busId)
+    {
+        ArrayList list=new ArrayList();
+        using (var context = new BusContext(new DbContextOptions<BusContext>()))
+        {
+            //根据车牌号找到车辆的道路信息
+            string roadId=context.Buses.FirstOrDefault(record=>record.BusId==busId).RoadId;
+            //根据车牌号加时间查询排班表，找到此时的值班司机ID
+            string driverId=context.WorkInfos.FirstOrDefault
+            (workInfo=>(DateTime.Compare(workInfo.StartTime,DateTime.Now)<0
+            &&DateTime.Compare(workInfo.EndTime,DateTime.Now)>0)).DriverId;
+            Driver driver=context.Drivers.FirstOrDefault(driver=>driver.DriverId==driverId);
+            //只需要司机的姓名，路线和电话号码，因此构造匿名对象返回
+            return new {roadId=roadId,name=driver.Name,phone=driver.PhoneNumber};
+        }
+    }
 }
