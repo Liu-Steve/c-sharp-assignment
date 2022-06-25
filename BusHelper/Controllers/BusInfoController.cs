@@ -193,4 +193,13 @@ public class BusInfoController : ControllerBase
     {
         WorkInfoService.addWorkInfo(workInfo);
     }
+
+    //获取所有车辆当前的位置信息
+    [HttpGet]
+    public IActionResult getBusLocation()
+    {
+        //接收匿名对象
+        ArrayList location=RealTimeService.getRealLocation();
+        return Ok(JsonConvert.SerializeObject(location));
+    }
 }

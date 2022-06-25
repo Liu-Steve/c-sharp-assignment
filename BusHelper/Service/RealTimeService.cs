@@ -43,6 +43,28 @@ public class RealTimeService
         }
     }
 
+    //查询所有车辆的实时位置
+    public static ArrayList getRealLocation()
+    {
+        using (var context = new BusContext(new DbContextOptions<BusContext>()))
+        {
+            List<Bus> buses=context.Buses.ToList();
+            ArrayList list=new ArrayList();
+            foreach(Bus bus in buses)
+            {
+                //遍历bus中的每一个值，找到每一辆车最近的时间
+                DateTime dateTime=context.RealTimeRecords.
+                Where(record=>record.BusId==bus.BusId).
+                Max(record=>record.Time);
+                //找到这个最近时间对应的记录
+                RealTimeRecord realTimeRecord=context.RealTimeRecords.
+                FirstOrDefault(record=>record.Time==dateTime);
+                list.Add(new {busId=bus.BusId,x=realTimeRecord.X,y=realTimeRecord.Y});
+            }
+            return list;
+        }
+    }
+
     //查询实时司机
     public static dynamic getBusInfo(string busId)
     {
