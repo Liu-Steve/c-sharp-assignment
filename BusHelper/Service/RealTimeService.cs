@@ -40,14 +40,14 @@ public class RealTimeService
             FirstOrDefault(danger=>danger.RealTimeRecordId==recordId);
             DangerAction dangerAction=context.DangerActions.
             FirstOrDefault(danger=>danger.RealTimeRecordId==recordId);
-            
+
             return new{HeartRate=dangerIndex.HeartRate,HighBloodPressure=dangerIndex.HighBloodPressure,
             LowBloodPressure=dangerIndex.LowBloodPressure,Temperature=dangerIndex.Temperature,
             BloodOxygen=dangerIndex.BloodOxygen,Smoke=dangerAction.Smoke,
             Yawn=dangerAction.Yawn,NoSafetyBelt=dangerAction.NoSafetyBelt,
             LeavingSteering=dangerAction.LeavingSteering,CloseEye=dangerAction.CloseEye,
             UsingPhone=dangerAction.UsingPhone,LookAround=dangerAction.LookAround,
-            Conflict=dangerAction.Conflict,};
+            Conflict=dangerAction.Conflict,realPic=record.RealPic};
         }
     }
 

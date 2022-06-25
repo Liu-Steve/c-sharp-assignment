@@ -193,7 +193,7 @@ $('#contact').on('click', function() {
 })
 
 
-
+var realPic = null
 window.setInterval(() => {
         setTimeout(() => {
             $.ajax({
@@ -218,23 +218,26 @@ window.setInterval(() => {
                     Vue.set(po.possible, 5, data.LookAround);
                     Vue.set(po.possible, 6, data.LeavingSteering);
                     Vue.set(po.possible, 7, data.Conflict);
+                    realPic = data.realPic;
                 }
             });
         }, 0)
-    }, 1000) //1s钟发送一次数据更新请求
+    }, 1000) //1s钟发送一次数据更新，请求该车最近的五个指标八个状态
 
 window.setInterval(() => {
         setTimeout(() => {
-            $.ajax({
-                type: "POST",
-                url: "https://localhost:7198/BusInfo/getRealPic",
-                data: '"1.jpg"',
-                //dataType: "json",
-                contentType: "application/json",
-                timeout: 5000, //连接超时时间
-                success: function(data) { //成功则更新数据
-                    $("#img-real").attr("src", "data:image/jpg;base64," + data);
-                }
-            });
+            if (realPic != null) {
+                $.ajax({
+                    type: "POST",
+                    url: "https://localhost:7198/BusInfo/getRealPic",
+                    data: "'" + realPic + "'",
+                    //dataType: "json",
+                    contentType: "application/json",
+                    timeout: 5000, //连接超时时间
+                    success: function(data) { //成功则更新数据
+                        $("#img-real").attr("src", "data:image/jpg;base64," + data);
+                    }
+                });
+            }
         }, 0)
-    }, 1000) //1s钟发送一次数据更新请求
+    }, 1000) //1s钟发送一次数据更新，请求该车最近的图片
