@@ -51,7 +51,7 @@ public class RealTimeService
             //根据车牌号加时间查询排班表，找到此时的值班司机ID
             string driverId=context.WorkInfos.FirstOrDefault
             (workInfo=>(DateTime.Compare(workInfo.StartTime,DateTime.Now)<0
-            &&DateTime.Compare(workInfo.EndTime,DateTime.Now)>0
+            &&workInfo.EndTime==null
             &&workInfo.BusId==busId)).DriverId;
             Driver driver=context.Drivers.FirstOrDefault(driver=>driver.DriverId==driverId);
             //只需要司机的姓名，路线和电话号码，因此构造匿名对象返回
@@ -86,7 +86,7 @@ public class RealTimeService
                 //根据车牌号加时间查询排班表，找到此时的值班ID
                 string workId=context.WorkInfos.FirstOrDefault
                 (workInfo=>(DateTime.Compare(workInfo.StartTime,DateTime.Now)<0
-                &&DateTime.Compare(workInfo.EndTime,DateTime.Now)>0
+                &&workInfo.EndTime==null
                 &&workInfo.BusId==realTimeRecord.BusId)).WorkId;
                 //查找本次值班的异常记录表，进行修改
                 DangerRecord dangerRecord=context.DangerRecords.
