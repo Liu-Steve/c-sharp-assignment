@@ -138,12 +138,12 @@ public class BusInfoController : ControllerBase
         }
     }
 
-    //获取某辆车的实时信息
+    //获取某辆车的五个指标和八个行为分析，以及八个累计行为记录
     [HttpPost]
-    public IActionResult getRealTime([FromBody]string busId)
+    public IActionResult getRealTime([FromBody] string busId)
     {
-        ArrayList list = RealTimeService.getRealTime(busId);
-        return Ok(JsonConvert.SerializeObject(list));
+        var realTimeInfo = RealTimeService.getRealTime(busId);
+        return Ok(JsonConvert.SerializeObject(realTimeInfo));
     }
 
     //获取某辆车的司机信息
@@ -202,7 +202,14 @@ public class BusInfoController : ControllerBase
     public IActionResult getBusLocation()
     {
         //接收匿名对象
-        ArrayList location=RealTimeService.getRealLocation();
+        ArrayList location = RealTimeService.getRealLocation();
         return Ok(JsonConvert.SerializeObject(location));
+    }
+
+    //返回图片
+    [HttpPost]
+    public String getRealPic([FromBody] string picId)
+    {
+        return DriverBehaviorAnalysis.getFileBase64("img/"+picId);
     }
 }

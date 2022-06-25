@@ -29,29 +29,29 @@ var con = new Vue({
 
 
 
-function drawOneRect(name, i) {
-    var canvas = document.getElementById(name);
-    canvas.width = canvas.width; //清空
-    var context = canvas.getContext('2d');
-    context.fillStyle = "#20c997"
-    var l = Math.round(random * 100);
-    context.fillRect(0, 0, l, 2);
-}
+// function drawOneRect(name, i) {
+//     var canvas = document.getElementById(name);
+//     canvas.width = canvas.width; //清空
+//     var context = canvas.getContext('2d');
+//     context.fillStyle = "#20c997"
+//     var l = Math.round(random * 100);
+//     context.fillRect(0, 0, l, 2);
+// }
 
-function drawRect() {
-    for (i = 0; i < 8; i++) {
-        drawOneRect("rectangle" + i, i);
-    }
-}
+// function drawRect() {
+//     for (i = 0; i < 8; i++) {
+//         drawOneRect("rectangle" + i, i);
+//     }
+// }
 
 //normal-condition
-function setCon() {
-    Vue.set(con.condition, 0, 75 + Math.round(Math.random() * 5));
-    Vue.set(con.condition, 1, 95 + Math.round(Math.random() * 5));
-    Vue.set(con.condition, 2, 70 + Math.round(Math.random() * 5));
-    Vue.set(con.condition, 3, (36.3 + (Math.random() * 0.5)).toFixed(2));
-    Vue.set(con.condition, 4, 96 + Math.round(Math.random() * 2));
-}
+// function setCon() {
+//     Vue.set(con.condition, 0, 75 + Math.round(Math.random() * 5));
+//     Vue.set(con.condition, 1, 95 + Math.round(Math.random() * 5));
+//     Vue.set(con.condition, 2, 70 + Math.round(Math.random() * 5));
+//     Vue.set(con.condition, 3, (36.3 + (Math.random() * 0.5)).toFixed(2));
+//     Vue.set(con.condition, 4, 96 + Math.round(Math.random() * 2));
+// }
 
 var imgCont = 1;
 
@@ -59,20 +59,20 @@ function setImg() {
     if (imgCont == 42) {
         imgCont = 1;
     }
-    imgSrc.src = "fake_data/" + imgCont + ".jpg"
+    imgSrc.src = "fake_data/" + imgCont + ".jpg";
     imgCont = imgCont + 1;
 }
 
 window.setInterval(() => {
     setTimeout(() => {
         vm.time = Date();
-        for (i = 0; i < 8; i++) {
-            var random = Math.random() * 0.2;
-            Vue.set(po.possible, i, random.toFixed(2));
-        }
-        // drawRect();
-        setCon();
-        setImg();
+        // for (i = 0; i < 8; i++) {
+        //     var random = Math.random() * 0.2;
+        //     Vue.set(po.possible, i, random.toFixed(2));
+        // }
+        // // drawRect();
+        // setCon();
+        // setImg();
     }, 0)
 }, 1000)
 
@@ -197,18 +197,43 @@ $('#contact').on('click', function() {
 window.setInterval(() => {
         setTimeout(() => {
             $.ajax({
-                type: "GET",
-                url: "test.json",
-                // data: { username: $("#username").val(), content: $("#content").val() },
-                // dataType: "json",
+                type: "POST",
+                url: "https://localhost:7198/BusInfo/getRealTime",
+                data: '"鄂A·73788"',
+                dataType: "json",
+                contentType: "application/json",
                 timeout: 5000, //连接超时时间
                 success: function(data) { //成功则更新数据
-                    var json = eval("(" + data + ")");
-                    Vue.set(con.condition, 0, json.key1);
-                    Vue.set(con.condition, 1, json.key2);
-                    Vue.set(con.condition, 2, json.key3);
-                    Vue.set(con.condition, 3, json.key4);
-                    Vue.set(con.condition, 4, json.key5);
+                    var json = eval("(" + "'" + data + "'" + ")");
+                    Vue.set(con.condition, 0, data.HeartRate);
+                    Vue.set(con.condition, 1, data.LowBloodPressure + "/" + data.HighBloodPressure);
+                    Vue.set(con.condition, 2, data.Temperature);
+                    Vue.set(con.condition, 3, data.BloodOxygen);
+                    Vue.set(con.condition, 4, "否");
+                    Vue.set(po.possible, 0, data.Smoke);
+                    Vue.set(po.possible, 1, data.CloseEye);
+                    Vue.set(po.possible, 2, data.Yawn);
+                    Vue.set(po.possible, 3, data.UsingPhone);
+                    Vue.set(po.possible, 4, data.NoSafetyBelt);
+                    Vue.set(po.possible, 5, data.LookAround);
+                    Vue.set(po.possible, 6, data.LeavingSteering);
+                    Vue.set(po.possible, 7, data.Conflict);
+                }
+            });
+        }, 0)
+    }, 1000) //1s钟发送一次数据更新请求
+
+window.setInterval(() => {
+        setTimeout(() => {
+            $.ajax({
+                type: "POST",
+                url: "https://localhost:7198/BusInfo/getRealPic",
+                data: '"1.jpg"',
+                //dataType: "json",
+                contentType: "application/json",
+                timeout: 5000, //连接超时时间
+                success: function(data) { //成功则更新数据
+                    $("#img-real").attr("src", "data:image/jpg;base64," + data);
                 }
             });
         }, 0)

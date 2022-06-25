@@ -24,22 +24,30 @@ public class RealTimeService
     }
 
     //查询实时信息
-    public static ArrayList getRealTime(string busId)
+    public static dynamic getRealTime(string busId)
     {
         using (var context = new BusContext(new DbContextOptions<BusContext>()))
         {
-            //找到现在的第一条此车记录的记录号
-            RealTimeRecord record=context.RealTimeRecords.FirstOrDefault(record=>record.BusId==busId);
+            //找到现在的时间最近的第一条此车记录的记录号
+            DateTime dateTime=context.RealTimeRecords.
+                Where(record=>record.BusId==busId).
+                Max(record=>record.Time);
+            RealTimeRecord record=context.RealTimeRecords.
+            FirstOrDefault(record=>record.Time==dateTime);
             string recordId=record.RecordId;
             //根据记录号去找到相应的五个指标八个状态
             DangerIndex dangerIndex=context.DangerIndices.
             FirstOrDefault(danger=>danger.RealTimeRecordId==recordId);
             DangerAction dangerAction=context.DangerActions.
             FirstOrDefault(danger=>danger.RealTimeRecordId==recordId);
-            ArrayList list=new ArrayList();
-            list.Add(dangerIndex);
-            list.Add(dangerAction);
-            return list;
+            
+            return new{HeartRate=dangerIndex.HeartRate,HighBloodPressure=dangerIndex.HighBloodPressure,
+            LowBloodPressure=dangerIndex.LowBloodPressure,Temperature=dangerIndex.Temperature,
+            BloodOxygen=dangerIndex.BloodOxygen,Smoke=dangerAction.Smoke,
+            Yawn=dangerAction.Yawn,NoSafetyBelt=dangerAction.NoSafetyBelt,
+            LeavingSteering=dangerAction.LeavingSteering,CloseEye=dangerAction.CloseEye,
+            UsingPhone=dangerAction.UsingPhone,LookAround=dangerAction.LookAround,
+            Conflict=dangerAction.Conflict,};
         }
     }
 
