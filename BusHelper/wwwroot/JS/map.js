@@ -154,7 +154,7 @@ let removeBusIcons = function() {
 }
 
 let updateBuses = function() {
-    $.get("/BusInfo/GetBusPos", function(data, status) {
+    $.get("/BusInfo/GetBusLocation", function(data, status) {
         if (status == "success") {
             //removeBusIcons();
             data.forEach(element => {
