@@ -30,9 +30,9 @@ public class DangerRecord
 
     public int Conflict { get; set; }//司机乘客冲突
 
-    public string WorkInfoId { get; set; }//车次Id
+    public string? WorkInfoId { get; set; }//车次Id
 
-    public WorkInfo WorkInfo { get; set; }//车次
+    public WorkInfo? WorkInfo { get; set; }//车次
 
     public DangerRecord()
     {

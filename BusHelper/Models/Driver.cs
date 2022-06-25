@@ -20,5 +20,5 @@ public class Driver
 
     public string? FacePic { get; set; }//员工头像文件名
 
-    public List<WorkInfo> WorkInfos { get; set; }//执行车次
+    public List<WorkInfo>? WorkInfos { get; set; }//执行车次
 }

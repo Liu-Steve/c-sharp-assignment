@@ -4,15 +4,18 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Security.Claims;
+using BusHelper.Models;
+using BusHelper.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace BusHelper.Service;
 
 //验证token
-public class BusService
+public class AuthService
 {
     private readonly IConfiguration configuration;
 
-    public BusService(IConfiguration configuration)
+    public AuthService(IConfiguration configuration)
     {
         this.configuration = configuration;
     }
@@ -51,5 +54,17 @@ public class BusService
         var jwtToken = new JwtSecurityTokenHandler().WriteToken(token);
 
         return jwtToken;
+    }
+
+    public bool Vaild(Manager manager)
+    {
+        using (var context = new BusContext(new DbContextOptions<BusContext>()))
+        {
+            var dbManager = context.Managers
+                .Where(m => manager.ManagerId == m.ManagerId)
+                .FirstOrDefault();
+            bool res = !(dbManager == null || dbManager.Pwd != manager.Pwd);
+            return res;
+        }
     }
 }
