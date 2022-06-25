@@ -30,9 +30,9 @@ public class DangerAction
 
     public float Conflict { get; set; }//司机乘客冲突
 
-    public string RealTimeRecordId { get; set; }//导航属性
+    public string? RealTimeRecordId { get; set; }//导航属性
 
-    public RealTimeRecord RealTimeRecord { get; set; }//导航属性
+    public RealTimeRecord? RealTimeRecord { get; set; }//导航属性
 
     public DangerAction()
     {

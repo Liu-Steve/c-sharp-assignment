@@ -22,7 +22,7 @@ public class LeavingMsg
 
     public string WorkInfoId { get; set; }//留言车次Id
 
-    public WorkInfo WorkInfo { get; set; }//留言车次
+    public WorkInfo? WorkInfo { get; set; }//留言车次
 
     public LeavingMsg()
     {

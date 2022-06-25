@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>公交管家-登陆界面</title>
+    <script src="./JS/jquery-3.4.1.min.js"></script>
     <link href="./css/index.css" type="text/css" rel="stylesheet" />
     <link rel="shortcut icon" href="img/htmllogo.ico">
 </head>
@@ -12,24 +13,16 @@
     <div id="loginDiv">
         <form action="" id="form">
             <h1 style="text-align: center;color: aliceblue;">立即登录</h1>
-            <p>邮箱:<input id="email" type="text"></p>
+            <p>账号:<input id="account" type="text"></p>
             <p>密码:<input id="password" type="password" placeholder="密码长度至少为6位"></p>
-            <p style="text-align: center;"><a href="#">忘记密码?</a></p>
+            <!-- <p style="text-align: center;"><a href="#">忘记密码?</a></p> -->
             <div style="text-align: center;margin-top: 30px;">
                 <input type="button" class="button" value="登录" onclick="login_click()">
-                <input type="button" class="button" value="注册" onclick="register_click()">
+                <!-- <input type="button" class="button" value="注册" onclick="register_click()"> -->
             </div>
         </form>
 
         <script>
-            //获取注册时存储在localStorage中的值
-            //var sex = localStorage.getItem("sex");
-            //var password = localStorage.getItem("password");
-            //var email = localStorage.getItem("email");
-            //var username = localStorage.getItem("username");
-            var password = "123456"
-            var email = "steve_liu@whu.edu.cn"
-
             //注册按钮跳转
             function register_click() {
                 window.location.href = "register.html";
@@ -38,18 +31,39 @@
             //判断登录是否成功
             function login_click() {
                 //获取用户输入的信息
-                var email1 = document.getElementById("email").value;
-                var password1 = document.getElementById("password").value;
+                var account = document.getElementById("account").value;
+                var password = document.getElementById("password").value;
+                var manager = {
+                    "ManagerId": account,
+                    "Pwd": password
+                };
 
                 //判断输入的信息和注册的信息是否一致
-                if (email1 != '' && password1 != '') {
-                    if (email1 == email && password == password1) {
-                        window.location.href = "map.html";
-                    } else {
-                        alert("邮箱或密码错误，请重新输入！");
-                    }
+                if (account != '' && password != '') {
+                    //if (account == email && password == password1) {
+                    //    window.location.href = "map.html";
+                    //} else {
+                    //    alert("账号或密码错误，请重新输入！");
+                    //}
+                    $.ajax({
+                        type: "post",
+                        url: "/BusInfo/Login",
+                        contentType: "application/json",
+                        data: JSON.stringify(manager),
+                        success: function(response, status, xhr) {
+                            //console.log(response);
+                            //console.log(status);
+                            //console.log(xhr.status);
+                            //console.log(xhr.getAllResponseHeaders());
+                            window.open("map.html", response); //跳转携带token
+                        },
+                        error: function() {
+                            //console.log("failed");
+                            alert("账号或密码不正确！");
+                        }
+                    })
                 } else {
-                    alert("邮箱或密码不能为空！");
+                    alert("账号或密码不能为空！");
                 }
 
             }

@@ -18,7 +18,5 @@ public class Manager
 
     public string? Area { get; set; }//所在地区
 
-    public List<WorkInfo> WorkInfos { get; set; }//执行车次
+    public List<WorkInfo>? WorkInfos { get; set; }//执行车次
 }
-
-//已

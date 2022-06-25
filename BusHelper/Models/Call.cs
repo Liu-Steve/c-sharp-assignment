@@ -22,7 +22,7 @@ public class Call
 
     public string WorkInfoId { get; set; }//通话车次Id
 
-    public WorkInfo WorkInfo { get; set; }//通话车次
+    public WorkInfo? WorkInfo { get; set; }//通话车次
 
     public Call()
     {

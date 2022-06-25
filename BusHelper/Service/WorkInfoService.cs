@@ -5,9 +5,9 @@ using BusHelper.Models;
 namespace BusHelper.Service;
 
 //道路信息
-public class RoadService
+public class WorkInfoService
 {
-    //查询所有的线路
+    //司机打卡
     public List<Road> getAllRoads(){
         using (var context = new BusContext(new DbContextOptions<BusContext>()))
         {

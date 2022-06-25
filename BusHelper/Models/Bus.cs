@@ -16,11 +16,11 @@ public class Bus
 
     public string RoadId { get; set; }//几号线
 
-    public Road Road { get; set; }//路线
+    public Road? Road { get; set; }//路线
 
-    public List<WorkInfo> WorkInfos { get; set; }//执行车次
+    public List<WorkInfo>? WorkInfos { get; set; }//执行车次
 
-    public List<RealTimeRecord> RealTimeRecords { get; set; }//实时信息
+    public List<RealTimeRecord>? RealTimeRecords { get; set; }//实时信息
 
     public Bus()
     {
