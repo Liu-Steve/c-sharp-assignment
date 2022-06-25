@@ -123,6 +123,7 @@ public class BusInfoController : ControllerBase
 
     //查询道路信息
     [HttpGet]
+    [Authorize]
     public IActionResult getAllRoads()
     {
         RoadService roadService = new RoadService();
@@ -189,6 +190,7 @@ public class BusInfoController : ControllerBase
 
     //司机打卡，添加工作信息
     [HttpPost]
+    [Authorize]
     public void postWorkInfo(WorkInfo workInfo)
     {
         WorkInfoService.addWorkInfo(workInfo);
@@ -196,6 +198,7 @@ public class BusInfoController : ControllerBase
 
     //获取所有车辆当前的位置信息
     [HttpGet]
+    [Authorize]
     public IActionResult getBusLocation()
     {
         //接收匿名对象
