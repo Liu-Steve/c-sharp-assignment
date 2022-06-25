@@ -118,4 +118,34 @@ public class RealTimeService
             return false;
         }
     }
+    // 判断5个指标(heartRate, highBloodRate, lowBloodRate, temperature, bloodOxygen)是否异常
+    // 异常为1
+    public int[] indexIsAbnormal(RealTimeRecord record){
+        int heartRate = record.DangerIndex.HeartRate;
+        int highBloodPressure = record.DangerIndex.HighBloodPressure;
+        int lowBloodPressure = record.DangerIndex.LowBloodPressure;
+        float temp = record.DangerIndex.Temperature;
+        int bloodOxygen = record.DangerIndex.BloodOxygen;
+        int [] result={0, 0, 0, 0, 0};
+
+        // 条件判断
+        if(heartRate < 60 || heartRate > 100){
+            result[0] = 1;
+        }
+        if(highBloodPressure < 90 || highBloodPressure > 140){
+            result[1] = 1;
+        }
+        if(lowBloodPressure < 60 || lowBloodPressure > 90){
+            result[2] = 1;
+        }
+        if(temp < 36 || temp > 37){
+            result[3] = 1;
+        }
+        // 正常动脉氧约为75 至100 毫米汞柱(mm Hg)
+        if(bloodOxygen < 75 || bloodOxygen > 100){
+            result[4] = 1;
+        }
+
+        return result;
+    }
 }
