@@ -1,4 +1,4 @@
-
+// 用于实现上部navbar 和 mailbox.html未读红点数字变化
 var un = 2;
 
 var red1 = new Vue({
