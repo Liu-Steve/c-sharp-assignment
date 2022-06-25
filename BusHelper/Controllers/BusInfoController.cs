@@ -109,26 +109,10 @@ public class BusInfoController : ControllerBase
     }
 
     //更新实时数据
-    [HttpPost, Route("UpLoadImageFiles")]
+    [HttpPost]
     // [Authorize]
     public void PostRealTimeData(RealTimeRecord realTimeRecord)
     {
-
-        // var files = HttpContext.Current.Request.Files;//确定请求里夹带的文件数量
-        // if (files.AllKeys.Any())//如果存在文件
-        // {
-        //     using (HttpClient client = new HttpClient())
-        //     {
-        //         HttpContext HttpContext = (HttpContext)HttpRequest.Properties["MS_HttpContext"];
-
-        //         var text = HttpRequest.Files.InputStream;//获取到文件流
-
-        //         string path = HttpRequest.MapPath("D:\\workspace\\c#\\assignment\\c-sharp-assignment\\BusHelper\\img\\");
-        //         string datetime = DateTime.Now.ToString("yyyyMMddhhmmss") + ".jpg";
-        //         string strPath = path +  datetime;
-        //         PicService.StreamToFile(text,strPath);//使用服务类，将其保存为文件
-        //     }
-        // }
         //调用API获取结果，解析json写入
         JObject json = (JObject)JsonConvert.DeserializeObject
             (DriverBehaviorAnalysis.driver_behavior("img/" + realTimeRecord.RealPic));
@@ -170,6 +154,7 @@ public class BusInfoController : ControllerBase
         return Ok(JsonConvert.SerializeObject(busInfo));
     }
 
+    //上传文件
     [HttpPost, DisableRequestSizeLimit]
     [Authorize]
     public async Task<IActionResult> Upload()
@@ -200,5 +185,12 @@ public class BusInfoController : ControllerBase
         {
             return StatusCode(500, $"Internal server error: {ex}");
         }
+    }
+
+    //司机打卡，添加工作信息
+    [HttpPost]
+    public void postWorkInfo(WorkInfo workInfo)
+    {
+        WorkInfoService.addWorkInfo(workInfo);
     }
 }

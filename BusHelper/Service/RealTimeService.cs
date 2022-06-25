@@ -11,6 +11,7 @@ public class RealTimeService
     //添加实时信息
     public static void addRealTime(RealTimeRecord realTimeRecord)
     {
+        ifWarning(realTimeRecord);
         using (var context = new BusContext(new DbContextOptions<BusContext>()))
         {
             context.RealTimeRecords.Add(realTimeRecord);
@@ -31,8 +32,10 @@ public class RealTimeService
             RealTimeRecord record=context.RealTimeRecords.FirstOrDefault(record=>record.BusId==busId);
             string recordId=record.RecordId;
             //根据记录号去找到相应的五个指标八个状态
-            DangerIndex dangerIndex=context.DangerIndices.FirstOrDefault(danger=>danger.RealTimeRecordId==recordId);
-            DangerAction dangerAction=context.DangerActions.FirstOrDefault(danger=>danger.RealTimeRecordId==recordId);
+            DangerIndex dangerIndex=context.DangerIndices.
+            FirstOrDefault(danger=>danger.RealTimeRecordId==recordId);
+            DangerAction dangerAction=context.DangerActions.
+            FirstOrDefault(danger=>danger.RealTimeRecordId==recordId);
             ArrayList list=new ArrayList();
             list.Add(dangerIndex);
             list.Add(dangerAction);
@@ -59,16 +62,21 @@ public class RealTimeService
         }
     }
 
-    //简单的异常阈值判断
-    public void ifWarning(RealTimeRecord realTimeRecord)
+    //八个行为指标的简单异常阈值判断
+    public static void ifWarning(RealTimeRecord realTimeRecord)
     {
-        int[] warning=new int[8];//累计8个异常指标
-        int[] threshold=new int[8];//累计8个异常情况阈值
+        
+        int[] warning=new int[8];//累计8个异常指标是否异常的标识
+        List<double> threshold=new List<double>{0.25,0.66,0.58,0.3,0.1,0.76,0.53,0.58};//累计8个异常情况阈值
+        List<double> index=new List<double>{realTimeRecord.DangerAction.Smoke,realTimeRecord.DangerAction.Yawn
+        ,realTimeRecord.DangerAction.NoSafetyBelt,realTimeRecord.DangerAction.LeavingSteering,
+        realTimeRecord.DangerAction.CloseEye,realTimeRecord.DangerAction.UsingPhone,
+        realTimeRecord.DangerAction.LookAround,realTimeRecord.DangerAction.Conflict};
         bool ifOneWarning=false;//只要出现某一个异常，此项为true，否则为false
         bool ifWarning=false;//临时变量，指示某个指标是否异常
         for(int i=0;i<warning.Length;i++)
         {
-            ifWarning=comparer(warning[i],threshold[i]);
+            ifWarning=comparer(index[i],threshold[i]);
             if(ifWarning)
             {
                 ifOneWarning=true;
@@ -91,23 +99,14 @@ public class RealTimeService
                 //查找本次值班的异常记录表，进行修改
                 DangerRecord dangerRecord=context.DangerRecords.
                 FirstOrDefault(dangerRecord=>dangerRecord.WorkInfoId==workId);
-                ArrayList list=new ArrayList(){dangerRecord.Smoke,dangerRecord.Yawn,dangerRecord.SafetyBelt,
-                dangerRecord.LeavingSteering,dangerRecord.CloseEye,dangerRecord.UsingPhone,
-                dangerRecord.LookAround,dangerRecord.Conflict};//通过数组操作指标，避免写多个if语句
-                for(int i=0;i<warning.Length;i++)
-                {
-                    if(warning[i]==1)
-                    {
-                        list[i]=(int)list[i]+1;
-                    }
-                }
+                addWarning(warning,dangerRecord);
                 context.SaveChanges();
             }
         }
     } 
 
     //比较某个指标是否异常,第一个参数为当前指标，第二个为阈值，当前指标大于阈值则认为出现问题
-    public bool comparer(int v1,int v2)
+    public static bool comparer(double v1,double v2)
     {
         if(v1>v2)
         {
@@ -118,6 +117,44 @@ public class RealTimeService
             return false;
         }
     }
+
+    //依次比较八个异常指标值，异常则累计次数加一
+    public static void addWarning(int[] warning,DangerRecord dangerRecord)
+    {
+        if(warning[0]==1)
+        {
+            dangerRecord.Smoke=dangerRecord.Smoke+1;
+        }
+        if(warning[1]==1)
+        {
+            dangerRecord.Yawn=dangerRecord.Yawn+1;
+        }
+        if(warning[2]==1)
+        {
+            dangerRecord.SafetyBelt=dangerRecord.SafetyBelt+1;
+        }
+        if(warning[3]==1)
+        {
+            dangerRecord.LeavingSteering=dangerRecord.LeavingSteering+1;
+        }
+        if(warning[4]==1)
+        {
+            dangerRecord.CloseEye=dangerRecord.CloseEye+1;
+        }
+        if(warning[5]==1)
+        {
+            dangerRecord.UsingPhone=dangerRecord.UsingPhone+1;
+        }
+        if(warning[6]==1)
+        {
+            dangerRecord.LookAround=dangerRecord.LookAround+1;
+        }
+        if(warning[7]==1)
+        {
+            dangerRecord.Conflict=dangerRecord.Conflict+1;
+        }
+    }
+
     // 判断5个指标(heartRate, highBloodRate, lowBloodRate, temperature, bloodOxygen)是否异常
     // 异常为1
     public int[] indexIsAbnormal(RealTimeRecord record){
@@ -145,7 +182,6 @@ public class RealTimeService
         if(bloodOxygen < 75 || bloodOxygen > 100){
             result[4] = 1;
         }
-
         return result;
     }
 }
