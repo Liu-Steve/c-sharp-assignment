@@ -19,6 +19,13 @@ var po = new Vue({
     }
 })
 
+var re = new Vue({
+    el: "#record",
+    data: {
+        record: [0, 0, 0, 0, 0, 0, 0, 0]
+    }
+})
+
 var con = new Vue({
     el: "#con",
     data: {
@@ -194,50 +201,53 @@ $('#contact').on('click', function() {
 
 
 var realPic = null
+    //1s钟发送一次数据更新，请求该车最近的五个指标八个状态
 window.setInterval(() => {
-        setTimeout(() => {
+    setTimeout(() => {
+        $.ajax({
+            type: "POST",
+            url: "https://localhost:7198/BusInfo/getRealTime",
+            data: '"鄂A·73788"',
+            dataType: "json",
+            contentType: "application/json",
+            timeout: 5000, //连接超时时间
+            success: function(data) { //成功则更新数据
+                var json = eval("(" + "'" + data + "'" + ")");
+                Vue.set(con.condition, 0, data.HeartRate);
+                Vue.set(con.condition, 1, data.LowBloodPressure + "/" + data.HighBloodPressure);
+                Vue.set(con.condition, 2, data.Temperature);
+                Vue.set(con.condition, 3, data.BloodOxygen);
+                Vue.set(con.condition, 4, "否");
+                Vue.set(po.possible, 0, data.Smoke);
+                Vue.set(po.possible, 1, data.CloseEye);
+                Vue.set(po.possible, 2, data.Yawn);
+                Vue.set(po.possible, 3, data.UsingPhone);
+                Vue.set(po.possible, 4, data.NoSafetyBelt);
+                Vue.set(po.possible, 5, data.LookAround);
+                Vue.set(po.possible, 6, data.LeavingSteering);
+                Vue.set(po.possible, 7, data.Conflict);
+                realPic = data.realPic;
+            }
+        });
+    }, 0)
+}, 1000)
+
+
+//1s钟发送一次数据更新，请求该车最近的图片
+window.setInterval(() => {
+    setTimeout(() => {
+        if (realPic != null) {
             $.ajax({
                 type: "POST",
-                url: "https://localhost:7198/BusInfo/getRealTime",
-                data: '"鄂A·73788"',
-                dataType: "json",
+                url: "https://localhost:7198/BusInfo/getRealPic",
+                data: "'" + realPic + "'",
+                //dataType: "json",
                 contentType: "application/json",
                 timeout: 5000, //连接超时时间
                 success: function(data) { //成功则更新数据
-                    var json = eval("(" + "'" + data + "'" + ")");
-                    Vue.set(con.condition, 0, data.HeartRate);
-                    Vue.set(con.condition, 1, data.LowBloodPressure + "/" + data.HighBloodPressure);
-                    Vue.set(con.condition, 2, data.Temperature);
-                    Vue.set(con.condition, 3, data.BloodOxygen);
-                    Vue.set(con.condition, 4, "否");
-                    Vue.set(po.possible, 0, data.Smoke);
-                    Vue.set(po.possible, 1, data.CloseEye);
-                    Vue.set(po.possible, 2, data.Yawn);
-                    Vue.set(po.possible, 3, data.UsingPhone);
-                    Vue.set(po.possible, 4, data.NoSafetyBelt);
-                    Vue.set(po.possible, 5, data.LookAround);
-                    Vue.set(po.possible, 6, data.LeavingSteering);
-                    Vue.set(po.possible, 7, data.Conflict);
-                    realPic = data.realPic;
+                    $("#img-real").attr("src", "data:image/jpg;base64," + data);
                 }
             });
-        }, 0)
-    }, 1000) //1s钟发送一次数据更新，请求该车最近的五个指标八个状态
-
-window.setInterval(() => {
-        setTimeout(() => {
-            if (realPic != null) {
-                $.ajax({
-                    type: "POST",
-                    url: "https://localhost:7198/BusInfo/getRealPic",
-                    data: "'" + realPic + "'",
-                    //dataType: "json",
-                    contentType: "application/json",
-                    timeout: 5000, //连接超时时间
-                    success: function(data) { //成功则更新数据
-                        $("#img-real").attr("src", "data:image/jpg;base64," + data);
-                    }
-                });
-            }
-        }, 0)
-    }, 1000) //1s钟发送一次数据更新，请求该车最近的图片
+        }
+    }, 0)
+}, 1000)
