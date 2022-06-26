@@ -8,7 +8,7 @@ var vm = new Vue({
 var imgSrc = new Vue({
     el: "#img-real",
     data: {
-        src: "fake_data/1.jpg"
+        src: "fake_data/default.jpg"
     }
 })
 
@@ -198,7 +198,7 @@ window.setInterval(() => {
         setTimeout(() => {
             $.ajax({
                 type: "POST",
-                url: "https://localhost:7198/BusInfo/getRealTime",
+                url: "/BusInfo/getRealTime",
                 data: '"鄂A·73788"',
                 dataType: "json",
                 contentType: "application/json",
@@ -206,10 +206,10 @@ window.setInterval(() => {
                 success: function(data) { //成功则更新数据
                     var json = eval("(" + "'" + data + "'" + ")");
                     Vue.set(con.condition, 0, data.HeartRate);
-                    Vue.set(con.condition, 1, data.LowBloodPressure + "/" + data.HighBloodPressure);
-                    Vue.set(con.condition, 2, data.Temperature);
-                    Vue.set(con.condition, 3, data.BloodOxygen);
-                    Vue.set(con.condition, 4, "否");
+                    Vue.set(con.condition, 2, data.LowBloodPressure + "/" + data.HighBloodPressure);
+                    Vue.set(con.condition, 3, data.Temperature);
+                    Vue.set(con.condition, 4, data.BloodOxygen);
+                    Vue.set(con.condition, 5, "否");
                     Vue.set(po.possible, 0, data.Smoke);
                     Vue.set(po.possible, 1, data.CloseEye);
                     Vue.set(po.possible, 2, data.Yawn);
@@ -229,7 +229,7 @@ window.setInterval(() => {
             if (realPic != null) {
                 $.ajax({
                     type: "POST",
-                    url: "https://localhost:7198/BusInfo/getRealPic",
+                    url: "/BusInfo/getRealPic",
                     data: "'" + realPic + "'",
                     //dataType: "json",
                     contentType: "application/json",

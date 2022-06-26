@@ -54,7 +54,8 @@ public class DriverBehaviorAnalysis
 
     //图片类型转换
     public static String getFileBase64(String fileName) {
-        FileStream filestream = new FileStream(fileName, FileMode.Open);
+        FileStream filestream = new FileStream(
+            fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
         byte[] arr = new byte[filestream.Length];
         filestream.Read(arr, 0, (int)filestream.Length);
         string baser64 = Convert.ToBase64String(arr);
