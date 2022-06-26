@@ -198,7 +198,7 @@ window.setInterval(() => {
         setTimeout(() => {
             $.ajax({
                 type: "POST",
-                url: "https://localhost:7198/BusInfo/getRealTime",
+                url: "/BusInfo/getRealTime",
                 data: '"鄂A·73788"',
                 dataType: "json",
                 contentType: "application/json",
@@ -229,7 +229,7 @@ window.setInterval(() => {
             if (realPic != null) {
                 $.ajax({
                     type: "POST",
-                    url: "https://localhost:7198/BusInfo/getRealPic",
+                    url: "/BusInfo/getRealPic",
                     data: "'" + realPic + "'",
                     //dataType: "json",
                     contentType: "application/json",
