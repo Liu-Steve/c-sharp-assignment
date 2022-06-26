@@ -78,9 +78,10 @@ let show = function(data, color_line) {
 let Ajax = function() {
     $.ajax({
         type: "GET",
-        url: "https://localhost:7198/BusInfo/getAllRoads",
-        // data: { username: $("#username").val(), content: $("#content").val() },
-        // dataType: "json",
+        url: "/BusInfo/getAllRoads",
+        beforeSend: function(request) {
+            request.setRequestHeader("Authorization", "bearer " + token);
+        },
         timeout: 5000, //连接超时时间
         success: function(road) { //成功则解析每一个json，得到每一个json的键
             var array = eval(road);
@@ -91,24 +92,6 @@ let Ajax = function() {
             }
         }
     });
-    // $.getJSON("../json/bus287.json", function(data) {
-    //     show(data, '#5DAC81');
-    // });
-    // $.getJSON("../json/bus520.json", function(data) {
-    //     show(data, '#00AA90');
-    // });
-    // $.getJSON("../json/bus521.json", function(data) {
-    //     show(data, '#24936E');
-    // });
-    // $.getJSON("../json/bus725.json", function(data) {
-    //     show(data, '#00896C');
-    // });
-    // $.getJSON("../json/bus740.json", function(data) {
-    //     show(data, '#227D51');
-    // });
-    // $.getJSON("../json/bus810.json", function(data) {
-    //     show(data, '#1B813E');
-    // });
 }();
 
 let showStations = function() {
@@ -154,13 +137,19 @@ let removeBusIcons = function() {
 }
 
 let updateBuses = function() {
-    $.get("/BusInfo/GetBusPos", function(data, status) {
-        if (status == "success") {
-            //removeBusIcons();
+    $.ajax({
+        type: "GET",
+        url: "/BusInfo/GetBusLocation",
+        beforeSend: function(request) {
+            request.setRequestHeader("Authorization", "bearer " + token);
+        },
+        dataType: "json",
+        timeout: 5000, //连接超时时间
+        success: function(data) { //成功则更新数据
             data.forEach(element => {
                 let x = element["x"];
                 let y = element["y"];
-                let bus_id = element["busID"];
+                let bus_id = element["busId"];
                 if (busIcon.has(bus_id)) {
                     let icon = busIcon.get(bus_id);
                     icon.setLatLng([y, x]);
@@ -176,7 +165,7 @@ let updateBuses = function() {
 }
 
 updateBuses();
-setInterval(updateBuses, 1000);
+setInterval(updateBuses, 5000);
 
 let focus_bus = function() {
     let bus = undefined;
