@@ -94,7 +94,7 @@ public class BusInfoController : ControllerBase
         }
     }
 
-    //获取某辆车的五个指标和八个行为分析，以及八个累计行为记录
+    //获取某辆车的五个指标和八个行为分析
     [HttpPost]
     public IActionResult getRealTime([FromBody] string busId)
     {
@@ -102,6 +102,13 @@ public class BusInfoController : ControllerBase
         return Ok(JsonConvert.SerializeObject(realTimeInfo));
     }
 
+    //获取某辆车的累计异常行为记录
+    [HttpPost]
+    public IActionResult getRecord([FromBody]string busId)
+    {
+        var dangerRecord=RealTimeService.getRecord(busId);
+        return Ok(JsonConvert.SerializeObject(dangerRecord));
+    }
     //获取某辆车的司机信息
     [HttpPost]
     public IActionResult getBusInfo([FromBody] string busId)

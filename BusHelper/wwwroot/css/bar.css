@@ -117,7 +117,7 @@ input {
 
 .wrapper-danger {
     display: grid;
-    grid-template-columns: 2.5fr 0.2fr 3fr 1fr 3.5fr 0.1fr 3fr 0.2fr;
+    grid-template-columns: 2.5fr 1fr 3fr 1fr 3.5fr 1fr 3fr 1fr;
     grid-row-gap: 0px;
     align-items: center;
     justify-content: center;
