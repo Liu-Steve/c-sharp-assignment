@@ -24,6 +24,8 @@ public class DangerIndex
 
     public int BloodOxygen { get; set; }//血氧
 
+    public int Alcohol { get; set; }//酒精
+
     public string? RealTimeRecordId { get; set; }//导航属性
 
     public RealTimeRecord? RealTimeRecord { get; set; }//导航属性
