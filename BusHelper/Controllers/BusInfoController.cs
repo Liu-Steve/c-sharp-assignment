@@ -120,7 +120,7 @@ public class BusInfoController : ControllerBase
 
     //上传文件
     [HttpPost, DisableRequestSizeLimit]
-    [Authorize]
+    // [Authorize]
     public async Task<IActionResult> Upload()
     {
         try
