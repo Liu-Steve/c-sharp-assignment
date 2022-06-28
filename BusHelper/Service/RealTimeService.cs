@@ -73,22 +73,48 @@ public class RealTimeService
         }
     }
 
-    //查询实时司机
+    //查询实时司机的信息
     public static dynamic getBusInfo(string busId)
     {
-        ArrayList list=new ArrayList();
         using (var context = new BusContext(new DbContextOptions<BusContext>()))
         {
             //根据车牌号找到车辆的道路信息
             string roadId=context.Buses.FirstOrDefault(record=>record.BusId==busId).RoadId;
-            //根据车牌号加时间查询排班表，找到此时的值班司机ID
-            string driverId=context.WorkInfos.FirstOrDefault
+            //根据车牌号加时间查询排班表，找到此时的值班信息司机ID
+            WorkInfo workInfo=context.WorkInfos.FirstOrDefault
             (workInfo=>(DateTime.Compare(workInfo.StartTime,DateTime.Now)<0
             &&workInfo.EndTime==null
-            &&workInfo.BusId==busId)).DriverId;
+            &&workInfo.BusId==busId));
+            //根据值班信息获得司机ID
+            string driverId=workInfo.DriverId;
+            //根据司机ID获得司机的信息
             Driver driver=context.Drivers.FirstOrDefault(driver=>driver.DriverId==driverId);
             //只需要司机的姓名，路线和电话号码，因此构造匿名对象返回
             return new {roadId=roadId,name=driver.Name,phone=driver.PhoneNumber};
+        }
+    }
+
+    //查询累计信息
+    public static dynamic getRecord(string busId)
+    {
+        using(var context=new BusContext(new DbContextOptions<BusContext>()))
+        {
+        //根据车牌号找到车辆的道路信息
+            string roadId=context.Buses.FirstOrDefault(record=>record.BusId==busId).RoadId;
+            //根据车牌号加时间查询排班表，找到此时的值班信息司机ID
+            WorkInfo workInfo=context.WorkInfos.FirstOrDefault
+            (workInfo=>(DateTime.Compare(workInfo.StartTime,DateTime.Now)<0
+            &&workInfo.EndTime==null
+            &&workInfo.BusId==busId));
+            //根据值班信息获得司机的工作信息ID
+            string workId=workInfo.WorkId;
+            //根据工作信息ID查询累计行为记录
+            DangerRecord dangerRecord=context.DangerRecords.
+            FirstOrDefault(record=>record.WorkInfoId==workId);
+            return new{Smoke=dangerRecord.Smoke,Yawn=dangerRecord.Yawn,NoSafetyBelt=dangerRecord.SafetyBelt,
+            LeavingSteering=dangerRecord.LeavingSteering,CloseEye=dangerRecord.CloseEye,
+            UsingPhone=dangerRecord.UsingPhone,LookAround=dangerRecord.LookAround,
+            Conflict=dangerRecord.Conflict};
         }
     }
 
