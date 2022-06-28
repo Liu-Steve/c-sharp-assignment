@@ -34,6 +34,22 @@ var con = new Vue({
     }
 })
 
+var driver = new Vue({
+    el: "#driver",
+    data: {
+        roadId: "道路",
+        busId: "车牌号",
+        name: "姓名"
+    }
+})
+
+var phone = new Vue({
+    el: "#phone",
+    data: {
+        phone: "电话号码"
+    }
+})
+
 
 
 // function drawOneRect(name, i) {
@@ -60,15 +76,15 @@ var con = new Vue({
 //     Vue.set(con.condition, 4, 96 + Math.round(Math.random() * 2));
 // }
 
-var imgCont = 1;
+// var imgCont = 1;
 
-function setImg() {
-    if (imgCont == 42) {
-        imgCont = 1;
-    }
-    imgSrc.src = "fake_data/" + imgCont + ".jpg";
-    imgCont = imgCont + 1;
-}
+// function setImg() {
+//     if (imgCont == 42) {
+//         imgCont = 1;
+//     }
+//     imgSrc.src = "fake_data/" + imgCont + ".jpg";
+//     imgCont = imgCont + 1;
+// }
 
 window.setInterval(() => {
     setTimeout(() => {
@@ -93,56 +109,56 @@ $('.btn').on('click', function() {
         slide_img.removeAttribute('style');
     img_rotate = !img_rotate;
 })
-var isSpread1 = false;
-$('#1-100').on('click', function() {
-    if (!isSpread1) {
-        $.getJSON("json/bus_data.json", function(data) {
-            for (i = 0; i < 15; i++) {
 
-                let li = document.createElement('li');
-                let cont = document.createElement('div');
-                cont.setAttribute('style', 'background: #060C20;');
-                let a = document.createElement('a');
-                a.setAttribute('href', 'info.html');
-                a.setAttribute('target', '_blank');
-                a.innerHTML = (i + 1) + "-" + data[0][i];
-                cont.appendChild(a);
-                li.appendChild(cont);
-                document.getElementById('1-100-list').appendChild(li);
-            }
-        });
-        // let arry = new Array('-鄂A·JD343', '-鄂A·13495', '-鄂A·C6103', '-鄂A·C1180', '-鄂A·888U8', '-鄂A·H6213',
-        //     '-鄂A·E3923', '-鄂A·6265B', '-鄂A·A9965', '-鄂A·M5852', '-鄂A·54374', '-鄂A·15466', '-鄂A·B0888',
-        //     '-鄂A·V6600', '-鄂A·9P80M')
+// var isSpread1 = false;
+// $('#1-100').on('click', function() {
+//     if (!isSpread1) {
+//         $.getJSON("json/bus_data.json", function(data) {
+//             for (i = 0; i < 15; i++) {
+//                 let li = document.createElement('li');
+//                 let cont = document.createElement('div');
+//                 cont.setAttribute('style', 'background: #060C20;');
+//                 let a = document.createElement('a');
+//                 a.setAttribute('href', 'info.html');
+//                 a.setAttribute('target', '_blank');
+//                 a.innerHTML = (i + 1) + "-" + data[0][i];
+//                 cont.appendChild(a);
+//                 li.appendChild(cont);
+//                 document.getElementById('1-100-list').appendChild(li);
+//             }
+//         });
+//         // let arry = new Array('-鄂A·JD343', '-鄂A·13495', '-鄂A·C6103', '-鄂A·C1180', '-鄂A·888U8', '-鄂A·H6213',
+//         //     '-鄂A·E3923', '-鄂A·6265B', '-鄂A·A9965', '-鄂A·M5852', '-鄂A·54374', '-鄂A·15466', '-鄂A·B0888',
+//         //     '-鄂A·V6600', '-鄂A·9P80M')
 
-    } else {
-        document.getElementById('1-100-list').innerHTML = "";
-    }
-    isSpread1 = !isSpread1;
-})
+//     } else {
+//         document.getElementById('1-100-list').innerHTML = "";
+//     }
+//     isSpread1 = !isSpread1;
+// })
 
-var isSpread2 = false;
-$('#101-200').on('click', function() {
-    if (!isSpread2) {
-        $.getJSON("json/bus_data.json", function(data) {
-            for (i = 0; i < 15; i++) {
-                let li = document.createElement('li');
-                let cont = document.createElement('div');
-                cont.setAttribute('style', 'background: #060C20;');
-                let a = document.createElement('a');
-                a.setAttribute('href', 'info.html');
-                a.setAttribute('target', '_blank');
-                a.innerHTML = (i + 1) + "-" + data[1][i];
-                cont.appendChild(a);
-                li.appendChild(cont);
-                document.getElementById('101-200-list').appendChild(li);
-            }
-        });
-    } else {
-        document.getElementById('101-200-list').innerHTML = "";
-    }
-    isSpread2 = !isSpread2;
-})
+// var isSpread2 = false;
+// $('#101-200').on('click', function() {
+//     if (!isSpread2) {
+//         $.getJSON("json/bus_data.json", function(data) {
+//             for (i = 0; i < 15; i++) {
+//                 let li = document.createElement('li');
+//                 let cont = document.createElement('div');
+//                 cont.setAttribute('style', 'background: #060C20;');
+//                 let a = document.createElement('a');
+//                 a.setAttribute('href', 'info.html');
+//                 a.setAttribute('target', '_blank');
+//                 a.innerHTML = (i + 1) + "-" + data[1][i];
+//                 cont.appendChild(a);
+//                 li.appendChild(cont);
+//                 document.getElementById('101-200-list').appendChild(li);
+//             }
+//         });
+//     } else {
+//         document.getElementById('101-200-list').innerHTML = "";
+//     }
+//     isSpread2 = !isSpread2;
+// })
 
 var isLinking = false;
 $('#contact').on('click', function() {
@@ -199,25 +215,39 @@ $('#contact').on('click', function() {
     }, 2000)
 })
 
+//司机的信息在一次页面打开的过程中不会变动，只需请求一次
+$.ajax({
+    type: "POST",
+    url: "/BusInfo/getBusInfo",
+    data: '"鄂A·73788"',
+    dataType: "json",
+    contentType: "application/json",
+    timeout: 5000, //连接超时时间
+    success: function(data) { //成功则更新数据
+        driver.roadId = data.roadId;
+        driver.name = data.name;
+        driver.busId = '"鄂A·73788"';
+        phone.phone = data.phone;
+    }
+});
 
 var realPic = null
-    //1s钟发送一次数据更新，请求该车最近的五个指标八个状态
+    //1s钟发送一次数据更新，请求该车最近的五个指标八个状态，以及图片名称
 window.setInterval(() => {
     setTimeout(() => {
         $.ajax({
             type: "POST",
-            url: "https://localhost:7198/BusInfo/getRealTime",
+            url: "/BusInfo/getRealTime",
             data: '"鄂A·73788"',
             dataType: "json",
             contentType: "application/json",
             timeout: 5000, //连接超时时间
             success: function(data) { //成功则更新数据
-                var json = eval("(" + "'" + data + "'" + ")");
                 Vue.set(con.condition, 0, data.HeartRate);
-                Vue.set(con.condition, 1, data.LowBloodPressure + "/" + data.HighBloodPressure);
-                Vue.set(con.condition, 2, data.Temperature);
-                Vue.set(con.condition, 3, data.BloodOxygen);
-                Vue.set(con.condition, 4, "否");
+                Vue.set(con.condition, 2, data.LowBloodPressure + "/" + data.HighBloodPressure);
+                Vue.set(con.condition, 3, data.Temperature);
+                Vue.set(con.condition, 4, data.BloodOxygen);
+                con.alcohol = "否"
                 Vue.set(po.possible, 0, data.Smoke);
                 Vue.set(po.possible, 1, data.CloseEye);
                 Vue.set(po.possible, 2, data.Yawn);
@@ -229,56 +259,49 @@ window.setInterval(() => {
                 realPic = data.realPic;
             }
         });
+
     }, 0)
 }, 1000)
 
-
-//1s钟发送一次数据更新，请求该车最近的图片
+//1s钟发送一次数据更新，请求该车最近的图片流
 window.setInterval(() => {
-            setTimeout(() => {
-                    if (realPic != null) {
-                        $.ajax({
-                            type: "POST",
-                            url: "/BusInfo/getRealTime",
-                            data: '"鄂A·73788"',
-                            dataType: "json",
-                            contentType: "application/json",
-                            timeout: 5000, //连接超时时间
-                            success: function(data) { //成功则更新数据
-                                var json = eval("(" + "'" + data + "'" + ")");
-                                Vue.set(con.condition, 0, data.HeartRate);
-                                Vue.set(con.condition, 2, data.LowBloodPressure + "/" + data.HighBloodPressure);
-                                Vue.set(con.condition, 3, data.Temperature);
-                                Vue.set(con.condition, 4, data.BloodOxygen);
-                                Vue.set(con.condition, 5, "否");
-                                Vue.set(po.possible, 0, data.Smoke);
-                                Vue.set(po.possible, 1, data.CloseEye);
-                                Vue.set(po.possible, 2, data.Yawn);
-                                Vue.set(po.possible, 3, data.UsingPhone);
-                                Vue.set(po.possible, 4, data.NoSafetyBelt);
-                                Vue.set(po.possible, 5, data.LookAround);
-                                Vue.set(po.possible, 6, data.LeavingSteering);
-                                Vue.set(po.possible, 7, data.Conflict);
-                                realPic = data.realPic;
-                            }
-                        });
-                    }, 0)
-            }, 1000) //1s钟发送一次数据更新，请求该车最近的五个指标八个状态
-
-        window.setInterval(() => {
-            setTimeout(() => {
-                if (realPic != null) {
-                    $.ajax({
-                        type: "POST",
-                        url: "/BusInfo/getRealPic",
-                        data: "'" + realPic + "'",
-                        //dataType: "json",
-                        contentType: "application/json",
-                        timeout: 5000, //连接超时时间
-                        success: function(data) { //成功则更新数据
-                            $("#img-real").attr("src", "data:image/jpg;base64," + data);
-                        }
-                    });
+    setTimeout(() => {
+        if (realPic != null) {
+            $.ajax({
+                type: "POST",
+                url: "/BusInfo/getRealPic",
+                data: "'" + realPic + "'",
+                //dataType: "json",
+                contentType: "application/json",
+                timeout: 5000, //连接超时时间
+                success: function(data) { //成功则更新数据
+                    $("#img-real").attr("src", "data:image/jpg;base64," + data);
                 }
-            }, 0)
-        }, 1000) //1s钟发送一次数据更新，请求该车最近的图片
+            });
+        }
+    }, 0)
+}, 1000)
+
+//1s发送一次请求，请求该车最近的异常行为记录
+window.setInterval(() => {
+    setTimeout(() => {
+        $.ajax({
+            type: "POST",
+            url: "/BusInfo/getRecord",
+            data: '"鄂A·73788"',
+            dataType: "json",
+            contentType: "application/json",
+            timeout: 5000, //连接超时时间
+            success: function(data) { //成功则更新数据
+                Vue.set(re.record, 0, data.Smoke);
+                Vue.set(re.record, 1, data.CloseEye);
+                Vue.set(re.record, 2, data.Yawn);
+                Vue.set(re.record, 3, data.UsingPhone);
+                Vue.set(re.record, 4, data.NoSafetyBelt);
+                Vue.set(re.record, 5, data.LookAround);
+                Vue.set(re.record, 6, data.LeavingSteering);
+                Vue.set(re.record, 7, data.Conflict);
+            }
+        });
+    }, 0)
+}, 1000)

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>公交管家-司机详情</title>
+    <title>公交安行-司机详情</title>
     <link href="css/style.css" rel="stylesheet">
     <link href="css/bar.css" rel="stylesheet">
     <link href="css/map.css" rel="stylesheet">
@@ -39,13 +39,13 @@
         <div class="sidebar pointer_all" style="height: 100vh;">
             <ul id="bus-list">
                 <li id="1-100">
-                    <h5>1-100</h5>
+                    <h6>1-100</h6>
                 </li>
                 <ul id="1-100-list">
 
                 </ul>
                 <li id="101-200">
-                    <h5>101-200</h5>
+                    <h6>101-200</h6>
                 </li>
                 <ul id="101-200-list">
 
@@ -73,9 +73,9 @@
         <div class="d-flex container-test justify-content-between py-5 mt-5">
             <div class="float-left">
                 <!-- v-bind:src="src" -->
-                <img class="position-absolute" id="img-real" width="660px" height="445px" :src="src" tyle="object-fit: cover;">
+                <img class="position-absolute" id="img-real" width="660px" height="485px" :src="src" style="object-fit: cover;">
                 <!-- <video class="position-absolute" id="img-real" width="660px" height="445px" src="fake_data/fake.mp4"> -->
-                <div class="left-up-exceed">339-鄂A·73788-王蕊</div>
+                <div id="driver" class="left-up-exceed">{{roadId}}-{{busId}}-{{name}}</div>
                 <p id="time" class="left-up text-white bottom">{{time}}</p>
                 <p class="left-up text-white bottom">当前站：八一路小洪山</p>
                 <p class="left-up text-white bottom">下一站：珞狮路北段</p>
@@ -146,23 +146,23 @@
                             <div id="record" class="text-dark-teal">
                                 <div class="wrapper-danger bottom">
                                     <p class="bottom">抽烟：</p>
-                                    <p class="bottom text-teal"></p>
+                                    <p class="bottom text-teal">{{record[0]}}次</p>
                                     <p class="bottom">闭眼：</p>
-                                    <p class="bottom text-teal">1次</p>
+                                    <p class="bottom text-teal">{{record[1]}}次</p>
                                     <p class="bottom">打哈欠:</p>
-                                    <p class="bottom text-teal"></p>
+                                    <p class="bottom text-teal">{{record[2]}}次</p>
                                     <p class="bottom ">使用手机:</p>
-                                    <p class="bottom text-teal"></p>
+                                    <p class="bottom text-teal">{{record[3]}}次</p>
                                     <p class="bottom ">未系安全带：</p>
-                                    <p class="bottom text-teal"></p>
+                                    <p class="bottom text-teal">{{record[4]}}次</p>
                                     <p class="bottom ">视角未看前方：</p>
-                                    <p class="bottom text-teal"></p>
+                                    <p class="bottom text-teal">{{record[5]}}次</p>
                                     <!-- <p class="bottom mini-text">未正确佩戴口罩：</p>
                                     <p class="bottom">0次</p> -->
                                     <p class="bottom ">双手离开方向盘：</p>
-                                    <p class="bottom text-teal"></p>
+                                    <p class="bottom text-teal">{{record[6]}}次</p>
                                     <p class="bottom ">司机乘客冲突：</p>
-                                    <p class="bottom text-teal"></p>
+                                    <p class="bottom text-teal">{{record[7]}}次</p>
                                 </div>
                             </div>
                         </div>
@@ -175,7 +175,7 @@
             <div class="left-up-bg">
                 <h5 class="text-dark-teal">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp当前车内司机状态正常，生理指标处于健康水平，偶有浮动，突发身体疾病概率低。 图像状态正常，无外界因素干扰司机，司机驾驶行为良好，违规次数极低。
                 </h5>
-                <p class="float-left text-dark-blue">司机电话：18572326828</p>
+                <p id="phone" class="float-left text-dark-blue">司机电话：{{phone}}</p>
                 <div id="contact" class="float-right search pointer-all">立即联系</div>
             </div>
         </div>

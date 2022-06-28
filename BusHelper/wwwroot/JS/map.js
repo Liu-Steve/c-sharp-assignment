@@ -185,6 +185,59 @@ let red_slide_img_rotate = false;
 let slide = document.getElementById('slide-img');
 let slide_img_red = document.getElementById('slide-img-red');
 
+//获取所有的车辆信息
+function RoadInfo() {
+    $.ajax({
+        type: "GET",
+        url: "/BusInfo/getAllRoads",
+        beforeSend: function(request) {
+            request.setRequestHeader("Authorization", "bearer " + token);
+        },
+        timeout: 5000, //连接超时时间
+        success: function(road) { //成功则解析每一个json，得到每一个json的键
+            var array = eval(road);
+            document.getElementById('bus-list').innerHTML = "";
+            for (var i = 0; i < array.length; i++) {
+                let li = document.createElement('li');
+                let h6 = document.createElement('h6');
+                h6.innerHTML = array[i].RoadId;
+                li.appendChild(h6);
+                document.getElementById('bus-list').appendChild(li); //添加路线
+            }
+        }
+    });
+};
+
+//获取所有的预警信息
+function AlertInfo() {
+    document.getElementById('bus-list').innerHTML = "";
+    let li = document.createElement('li');
+    let h6 = document.createElement('h6');
+    h6.innerHTML = "警告-287-steve-打哈欠次数过多"; //展开之后显示具体提示信息和日期，查看回放
+    li.appendChild(h6);
+    document.getElementById('bus-list').appendChild(li); //添加路线
+    // $.ajax({
+    //     type: "GET",
+    //     url: "/BusInfo/getAllRoads",
+    //     beforeSend: function(request) {
+    //         request.setRequestHeader("Authorization", "bearer " + token);
+    //     },
+    //     timeout: 5000, //连接超时时间
+    //     success: function(road) { //成功则解析每一个json，得到每一个json的键
+    //         var array = eval(road);
+    //         document.getElementById('bus-list').innerHTML = "";
+    //         for (var i = 0; i < array.length; i++) {
+    //             let li = document.createElement('li');
+    //             let h6 = document.createElement('h6');
+    //             h6.innerHTML = array[i].RoadId;
+    //             li.appendChild(h6);
+    //             document.getElementById('bus-list').appendChild(li); //添加路线
+    //         }
+    //     }
+    // });
+};
+
+//如果信息栏被点击
 $('.btn').on('click', function() {
     if (click_red) {
         click_red = false;
@@ -197,7 +250,7 @@ $('.btn').on('click', function() {
         slide_img_red.removeAttribute('style');
         red_slide_img_rotate = false;
     } //如果此前红色按钮被点击过，那么就去除红色按钮给予的属性，并且恢复按钮形状，并设置为未点击
-
+    RoadInfo();
     $('.sidebar').toggleClass('side');
     $('.btn-red').toggleClass('btn-red-clicked');
 
@@ -208,7 +261,7 @@ $('.btn').on('click', function() {
     slide_img_rotate = !slide_img_rotate;
 })
 
-
+//如果预警栏被点击
 $('.btn-red').on('click', function() {
     click_red = true;
     if (slide_img_rotate) {
@@ -217,7 +270,7 @@ $('.btn-red').on('click', function() {
         slide.removeAttribute('style');
         slide_img_rotate = false;
     }
-
+    AlertInfo();
     $('.sidebar').toggleClass('side-red');
     $('.btn').toggleClass('btn-clicked');
     $('.btn-red').toggleClass('btn-clicked-red');
@@ -229,53 +282,54 @@ $('.btn-red').on('click', function() {
     red_slide_img_rotate = !red_slide_img_rotate;
 })
 
-var isSpread1 = false;
-$('#1-100').on('click', function() {
-    if (!isSpread1) {
-        $.getJSON("json/bus_data.json", function(data) {
-            for (i = 0; i < 15; i++) {
+// var isSpread1 = false;
+// $('#1-100').on('click', function() {
+//     if (!isSpread1) {
+//         $.getJSON("json/bus_data.json", function(data) {
+//             for (i = 0; i < 15; i++) {
 
-                let li = document.createElement('li');
-                let cont = document.createElement('div');
-                cont.setAttribute('style', 'background: #060C20;');
-                let a = document.createElement('a');
-                a.setAttribute('href', '#a');
-                a.setAttribute('onClick', 'focus_bus()');
-                a.innerHTML = (i + 1) + "-" + data[0][i];
-                cont.appendChild(a);
-                li.appendChild(cont);
-                document.getElementById('1-100-list').appendChild(li);
-            }
-        });
-    } else {
-        document.getElementById('1-100-list').innerHTML = "";
-    }
-    isSpread1 = !isSpread1;
-})
+//                 let li = document.createElement('li');
+//                 let cont = document.createElement('div');
+//                 cont.setAttribute('style', 'background: #060C20;');
+//                 let a = document.createElement('a');
+//                 a.setAttribute('href', '#a');
+//                 a.setAttribute('onClick', 'focus_bus()');
+//                 a.innerHTML = (i + 1) + "-" + data[0][i];
+//                 cont.appendChild(a);
+//                 li.appendChild(cont);
+//                 document.getElementById('1-100-list').appendChild(li);
+//             }
+//         });
+//     } else {
+//         document.getElementById('1-100-list').innerHTML = "";
+//     }
+//     isSpread1 = !isSpread1;
+// })
 
-var isSpread2 = false;
-$('#101-200').on('click', function() {
-    if (!isSpread2) {
-        $.getJSON("json/bus_data.json", function(data) {
-            for (i = 0; i < 15; i++) {
+// var isSpread2 = false;
+// $('#101-200').on('click', function() {
+//     if (!isSpread2) {
+//         $.getJSON("json/bus_data.json", function(data) {
+//             for (i = 0; i < 15; i++) {
 
-                let li = document.createElement('li');
-                let cont = document.createElement('div');
-                cont.setAttribute('style', 'background: #060C20;');
-                let a = document.createElement('a');
-                a.setAttribute('href', '#a');
-                a.setAttribute('onClick', 'focus_bus()');
-                a.innerHTML = (i + 101) + "-" + data[0][i];
-                cont.appendChild(a);
-                li.appendChild(cont);
-                document.getElementById('101-200-list').appendChild(li);
-            }
-        });
-    } else {
-        document.getElementById('101-200-list').innerHTML = "";
-    }
-    isSpread2 = !isSpread2;
-})
+//                 let li = document.createElement('li');
+//                 let cont = document.createElement('div');
+//                 cont.setAttribute('style', 'background: #060C20;');
+//                 let a = document.createElement('a');
+//                 a.setAttribute('href', '#a');
+//                 a.setAttribute('onClick', 'focus_bus()');
+//                 a.innerHTML = (i + 101) + "-" + data[0][i];
+//                 cont.appendChild(a);
+//                 li.appendChild(cont);
+//                 document.getElementById('101-200-list').appendChild(li);
+//             }
+//         });
+//     } else {
+//         document.getElementById('101-200-list').innerHTML = "";
+//     }
+//     isSpread2 = !isSpread2;
+// })
+
 
 let optionStr = '<option selected>select0</option>';
 $("#field").append(optionStr);
