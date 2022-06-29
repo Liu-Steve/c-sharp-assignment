@@ -1,3 +1,6 @@
+let normalColor = '#20C997';
+let abnormalColor = '#EEAA22';
+
 var vm = new Vue({
     el: "#time",
     data: {
@@ -15,14 +18,34 @@ var imgSrc = new Vue({
 var po = new Vue({
     el: "#po",
     data: {
-        possible: [0.2, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5]
+        possible: [0.2, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5],
+        color: [
+            normalColor,
+            normalColor,
+            normalColor,
+            normalColor,
+            normalColor,
+            normalColor,
+            normalColor,
+            normalColor
+        ]
     }
 })
 
 var re = new Vue({
     el: "#record",
     data: {
-        record: [0, 0, 0, 0, 0, 0, 0, 0]
+        record: [0, 0, 0, 0, 0, 0, 0, 0],
+        color: [
+            normalColor,
+            normalColor,
+            normalColor,
+            normalColor,
+            normalColor,
+            normalColor,
+            normalColor,
+            normalColor
+        ]
     }
 })
 
@@ -30,7 +53,15 @@ var con = new Vue({
     el: "#con",
     data: {
         condition: [75, 95, 70, 36.9, 96],
-        alcohol: "否"
+        alcohol: "否",
+        color: [
+            normalColor,
+            normalColor,
+            normalColor,
+            normalColor,
+            normalColor,
+            normalColor
+        ]
     }
 })
 
@@ -231,6 +262,22 @@ $.ajax({
     }
 });
 
+function pressureIsNormal(sPressure, dPressure) {
+    return sPressure >= 90 && sPressure <= 140 && dPressure >= 60 && dPressure <= 90;
+}
+
+function spo2IsNormal(spo2) {
+    return spo2 >= 94;
+}
+
+function heartRateIsNormal(heartRate) {
+    return heartRate >= 60 && heartRate <= 100;
+}
+
+function temperatureIsNormal(temperature) {
+    return temperature >= 36.1 && temperature <= 37.3;
+}
+
 var realPic = null
     //1s钟发送一次数据更新，请求该车最近的五个指标八个状态，以及图片名称
 window.setInterval(() => {
@@ -247,7 +294,11 @@ window.setInterval(() => {
                 Vue.set(con.condition, 2, data.LowBloodPressure + "/" + data.HighBloodPressure);
                 Vue.set(con.condition, 3, data.Temperature);
                 Vue.set(con.condition, 4, data.BloodOxygen);
-                con.alcohol = "否"
+                con.alcohol = data.Alcohol;
+                Vue.set(con.color, 0, heartRateIsNormal(data.HeartRate) ? normalColor : abnormalColor);
+                Vue.set(con.color, 2, pressureIsNormal(data.HighBloodPressure, data.LowBloodPressure) ? normalColor : abnormalColor);
+                Vue.set(con.color, 3, temperatureIsNormal(data.temperature) ? normalColor : abnormalColor);
+                Vue.set(con.color, 4, spo2IsNormal(data.BloodOxygen) ? normalColor : abnormalColor);
                 Vue.set(po.possible, 0, data.Smoke);
                 Vue.set(po.possible, 1, data.CloseEye);
                 Vue.set(po.possible, 2, data.Yawn);
