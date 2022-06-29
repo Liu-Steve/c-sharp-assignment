@@ -247,7 +247,7 @@ window.setInterval(() => {
                 Vue.set(con.condition, 2, data.LowBloodPressure + "/" + data.HighBloodPressure);
                 Vue.set(con.condition, 3, data.Temperature);
                 Vue.set(con.condition, 4, data.BloodOxygen);
-                con.alcohol = "否"
+                con.alcohol = data.Alcohol;
                 Vue.set(po.possible, 0, data.Smoke);
                 Vue.set(po.possible, 1, data.CloseEye);
                 Vue.set(po.possible, 2, data.Yawn);
