@@ -42,7 +42,7 @@ public class RealTimeService
             FirstOrDefault(danger=>danger.RealTimeRecordId==recordId);
 
             return new{HeartRate=dangerIndex.HeartRate,HighBloodPressure=dangerIndex.HighBloodPressure,
-            LowBloodPressure=dangerIndex.LowBloodPressure,Temperature=dangerIndex.Temperature,
+            LowBloodPressure=dangerIndex.LowBloodPressure,Temperature=dangerIndex.Temperature,Alcohol=dangerIndex.Alcohol,
             BloodOxygen=dangerIndex.BloodOxygen,Smoke=dangerAction.Smoke,
             Yawn=dangerAction.Yawn,NoSafetyBelt=dangerAction.NoSafetyBelt,
             LeavingSteering=dangerAction.LeavingSteering,CloseEye=dangerAction.CloseEye,
