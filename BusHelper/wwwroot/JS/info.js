@@ -53,7 +53,7 @@ var con = new Vue({
     el: "#con",
     data: {
         condition: [75, 95, 70, 36.9, 96],
-        alcohol: "否",
+        alcohol: "0",
         color: [
             normalColor,
             normalColor,
@@ -278,6 +278,10 @@ function temperatureIsNormal(temperature) {
     return temperature >= 36.1 && temperature <= 37.3;
 }
 
+function alcoholIsNormal(alcohol) {
+    return alcohol >= 0 && alcohol <= 200;
+}
+
 var realPic = null
     //1s钟发送一次数据更新，请求该车最近的五个指标八个状态，以及图片名称
 window.setInterval(() => {
@@ -294,11 +298,13 @@ window.setInterval(() => {
                 Vue.set(con.condition, 2, data.LowBloodPressure + "/" + data.HighBloodPressure);
                 Vue.set(con.condition, 3, data.Temperature);
                 Vue.set(con.condition, 4, data.BloodOxygen);
+                //Vue.set(con.alcohol, 1, data.Alcohol);
                 con.alcohol = data.Alcohol;
                 Vue.set(con.color, 0, heartRateIsNormal(data.HeartRate) ? normalColor : abnormalColor);
                 Vue.set(con.color, 2, pressureIsNormal(data.HighBloodPressure, data.LowBloodPressure) ? normalColor : abnormalColor);
                 Vue.set(con.color, 3, temperatureIsNormal(data.temperature) ? normalColor : abnormalColor);
                 Vue.set(con.color, 4, spo2IsNormal(data.BloodOxygen) ? normalColor : abnormalColor);
+                Vue.set(con.color, 5, alcoholIsNormal(data.Alcohol) ? normalColor : abnormalColor);
                 Vue.set(po.possible, 0, data.Smoke);
                 Vue.set(po.possible, 1, data.CloseEye);
                 Vue.set(po.possible, 2, data.Yawn);
@@ -307,6 +313,8 @@ window.setInterval(() => {
                 Vue.set(po.possible, 5, data.LookAround);
                 Vue.set(po.possible, 6, data.LeavingSteering);
                 Vue.set(po.possible, 7, data.Conflict);
+                for (i = 0; i < 8; ++i)
+                    Vue.set(po.color, i, (po.possible[i] < 0.5) ? normalColor : abnormalColor);
                 realPic = data.realPic;
             }
         });
@@ -352,6 +360,8 @@ window.setInterval(() => {
                 Vue.set(re.record, 5, data.LookAround);
                 Vue.set(re.record, 6, data.LeavingSteering);
                 Vue.set(re.record, 7, data.Conflict);
+                for (i = 0; i < 8; ++i)
+                    Vue.set(re.color, i, (re.record[i] <= 10) ? normalColor : abnormalColor);
             }
         });
     }, 0)
