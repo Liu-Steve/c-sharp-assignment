@@ -1,171 +1,186 @@
  /* mailbox.html的相关css
     包含map.html的左下角pop-panel样式
     Created by cyx on 2022.5.20 */
-:root{
-    --sidebar-bg-color:#060C20;
-}
-
-.sidebar_item {
-    font-size: calc(1.275rem + .3vw)!important;    
-    color: #fff!important;
-}
-.sidebar_header {
-    font-size: calc(1.275rem + .3vw)!important;    
-    color: #fff!important;
-    padding: 5px;
-}
-
-.text-blue {
-    color: #54B5E7;
-}
-/* 黑色侧边栏 */
-.fixed-sidebar{
-    position:fixed;
-    top:0;
-    width: 150px;
-    background-color: var(--sidebar-bg-color);
-    height: 100%;    
-}
-
-
-.driver-col-md-4{
-    position: relative;
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 10px;
-    flex: 0 0 33.33333%;
-    max-width: 33.33333%;
-}
-.driver-list-group-item {
-    position: relative;
-    display: block;
-    padding: 0.75rem 1.25rem;   
-    background-color: #fff;
-    border: 2px solid rgba(0, 0, 0, 0.125);   
-    text-align:center 
-}
-.driver-list-img{
-    width: 200;
-    height: 200px;
-    align-self: center;
-}
-.driver-list-group-item+.driver-list-group-item {
-    border-top-width: 0;
-}
-
-sidebar-hr{
-    height: 1px;
-    margin:0 20px 20px 20px;
-    color: #fff;
-    background-color: #fff;
-    border: 0;
-    opacity: .25;  /*不透明度*/  
-}
-.nav-link.active{
-    color: #fff;
-    background-color: #0d6efd;
-}
-/* 用于sidebar 未读红点 */
-ul .redpoint{
-    position: absolute;
-    box-sizing: border-box;
-    min-width: 1rem;
-    padding: 0 0.1875rem;
-    color: #fff;
-    font-size: min(.75rem, calc(10000px - var(--num) * 100px));
-    line-height: 1.2;
-    text-align: center;
-    background-color: #eb4646;
-    border: 1px solid #fff;
-    border-radius: 1rem;
-    transform: translate(6rem, -1.74rem);
-    /* 数值为0的时候隐藏 */
-    opacity: var(--num);
-}
-/* navbar未读红点 */
-nav .redpoint{
-    position: absolute;
-    box-sizing: border-box;
-    min-width: 1rem;
-    padding: 0 0.1875rem;
-    color: #fff;
-    font-size: min(.75rem, calc(10000px - var(--num) * 100px));
-    line-height: 1.2;
-    text-align: center;
-    background-color: #eb4646;
-    border: 1px solid #fff;
-    border-radius: 1rem;
-    transform: translate(5rem, -4rem);
-    /* 数值为0的时候隐藏 */
-    opacity: var(--num);
-}
-.redpoint::before{
-    content: '99+';
-    font-size: min(.75rem, calc(var(--num) * 100px - 9900px));
-}
-
-/* map界面弹出司机消息 */
-.pop-panel {
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    /* font-size: 10px; */
-    background-color: #fff;
-    border: 1px solid ;
-    border-radius: 4px;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);    
-    width: 300px;
-    /* height: 200px;  */
-    left: 10px;
-    z-index: 1000;
-    border-color: #121F38;
-}
-
-
-.pop-panel>.panel-heading {
-    font-size: 10px;
-    color: #fff;
-    background-color: #121F38;
-    border-color: #121F38;
-    
-}
-.pop-panel > .list-group .driver-list-group-item{
-    border-width: 1px;
-    border-radius: 0;
-}
-
-.pop-btn {
-    display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    vertical-align: middle;
-    user-select: none;
-    background-color: #121F38;
-    color: snow;
-    width: 40%;
-    border: 2px solid transparent;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: 6px;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-.pop-btn:hover {
-    color: #818491;
-    text-decoration: none;
-}
-
-.pop-btn.focus {
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(228, 122, 46, 0.25);
-}
-.pop-panel > .p{
-    font-size: 16px;
-    color: #060C20;
-}
-.pop-fix-position{
-    position: absolute;
-    bottom : 20px;
-    left : 20px;
-}
+ 
+ :root {
+     --sidebar-bg-color: #060C20;
+ }
+ 
+ .sidebar_item {
+     font-size: calc(1.275rem + .3vw)!important;
+     color: #fff!important;
+ }
+ 
+ .sidebar_header {
+     font-size: calc(1.275rem + .3vw)!important;
+     color: #fff!important;
+     padding: 5px;
+ }
+ 
+ .text-blue {
+     color: #54B5E7;
+ }
+ /* 黑色侧边栏 */
+ 
+ .fixed-sidebar {
+     position: fixed;
+     top: 0;
+     width: 150px;
+     background-color: var(--sidebar-bg-color);
+     height: 100%;
+ }
+ 
+ .driver-col-md-4 {
+     position: relative;
+     width: 100%;
+     padding-right: 15px;
+     padding-left: 10px;
+     flex: 0 0 33.33333%;
+     max-width: 33.33333%;
+ }
+ 
+ .driver-list-group-item {
+     position: relative;
+     display: block;
+     padding: 0.75rem 1.25rem;
+     /* border: 2px solid rgba(0, 0, 0, 0.125); */
+     text-align: center
+ }
+ 
+ .driver-list-img {
+     width: 200;
+     height: 200px;
+     align-self: center;
+ }
+ 
+ .driver-list-group-item+.driver-list-group-item {
+     border-top-width: 0;
+ }
+ 
+ sidebar-hr {
+     height: 1px;
+     margin: 0 20px 20px 20px;
+     color: #fff;
+     background-color: #fff;
+     border: 0;
+     opacity: .25;
+     /*不透明度*/
+ }
+ 
+ .nav-link.active {
+     color: #fff;
+     background-color: #0d6efd;
+ }
+ /* 用于sidebar 未读红点 */
+ 
+ ul .redpoint {
+     position: absolute;
+     box-sizing: border-box;
+     min-width: 1rem;
+     padding: 0 0.1875rem;
+     color: #fff;
+     font-size: min(.75rem, calc(10000px - var(--num) * 100px));
+     line-height: 1.2;
+     text-align: center;
+     background-color: #eb4646;
+     border: 1px solid #fff;
+     border-radius: 10px;
+     transform: translate(6rem, -1.74rem);
+     /* 数值为0的时候隐藏 */
+     opacity: var(--num);
+ }
+ /* navbar未读红点 */
+ 
+ nav .redpoint {
+     position: absolute;
+     box-sizing: border-box;
+     min-width: 1rem;
+     padding: 0 0.1875rem;
+     color: #fff;
+     font-size: min(.75rem, calc(10000px - var(--num) * 100px));
+     line-height: 1.2;
+     text-align: center;
+     background-color: #eb4646;
+     border: 1px solid #fff;
+     border-radius: 10px;
+     transform: translate(5rem, -4rem);
+     /* 数值为0的时候隐藏 */
+     opacity: var(--num);
+ }
+ 
+ .redpoint::before {
+     content: '99+';
+     font-size: min(.75rem, calc(var(--num) * 100px - 9900px));
+ }
+ /* map界面弹出司机消息 */
+ 
+ .pop-panel {
+     display: block;
+     margin-top: 0px;
+     margin-bottom: 0px;
+     /* font-size: 10px; */
+     background-color: rgba(21, 31, 56, 0.8);
+     border: none;
+     border-radius: 22px;
+     /* -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); */
+     /* box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); */
+     width: 300px;
+     /* height: 200px;  */
+     left: 10px;
+     z-index: 1000;
+     /* border-color: #121F38; */
+ }
+ 
+ .pop-panel>.panel-heading-weak {
+     font-size: 5px;
+     padding-top: 5px;
+     padding-left: 10px;
+     color: #fff;
+     /* color: #fff;
+     background-color: #121F38;
+     border-color: #121F38;
+     border-radius: 20px 20px 0px 0px; */
+ }
+ 
+ .pop-panel>.list-group .driver-list-group-item {
+     border-width: 1px;
+     border-radius: 0px 0px 20px 20px;
+ }
+ 
+ .pop-btn {
+     display: inline;
+     float: right;
+     text-align: center;
+     vertical-align: middle;
+     user-select: none;
+     background-color: #121F38;
+     color: snow;
+     width: 30%;
+     border: 2px solid transparent;
+     padding: 0.375rem;
+     font-size: 10px;
+     line-height: 1.5;
+     border-radius: 10px;
+     transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+ }
+ 
+ .pop-btn:hover {
+     color: #818491;
+     text-decoration: none;
+ }
+ 
+ .pop-btn.focus {
+     outline: 0;
+     box-shadow: 0 0 0 0.2rem rgba(228, 122, 46, 0.25);
+ }
+ 
+ .pop-panel p {
+     font-size: 16px;
+     color: #fff;
+ }
+ 
+ .pop-fix-position {
+     position: absolute;
+     bottom: 0px;
+     left: 10px;
+ }
