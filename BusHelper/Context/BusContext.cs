@@ -9,11 +9,23 @@ public class BusContext : DbContext
     public BusContext(DbContextOptions options)
     : base(options)
     {
+        Buses = null!;
+        Calls = null!;
+        DangerActions = null!;
+        DangerIndices = null!;
+        DangerRecords = null!;
+        Drivers = null!;
+        LeavingMsgs = null!;
+        Managers = null!;
+        RealTimeRecords = null!;
+        Roads = null!;
+        WorkInfos = null!;
+        Alerts = null!;
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseMySql("server=10.132.0.233;database=busafer;uid=root;pwd=root;", 
+        optionsBuilder.UseMySql("server=10.132.0.233;database=busafer;uid=root;pwd=root;",
             new MySqlServerVersion(new Version(8, 0, 29)));
     }
 
@@ -21,7 +33,7 @@ public class BusContext : DbContext
     {
         modelBuilder.Entity<Bus>();
     }
-    
+
     public DbSet<Bus> Buses { get; set; }
 
     public DbSet<Call> Calls { get; set; }
@@ -43,4 +55,6 @@ public class BusContext : DbContext
     public DbSet<Road> Roads { get; set; }
 
     public DbSet<WorkInfo> WorkInfos { get; set; }
+
+    public DbSet<Alert> Alerts { get; set; }
 }

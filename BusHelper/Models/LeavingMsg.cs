@@ -16,9 +16,9 @@ public class LeavingMsg
 
     public string? Content { get; set; }//留言内容文件名
 
-    public bool IsRead{get;set;}//是否已读
+    public bool IsRead { get; set; }//是否已读
 
-    public DateTime Time{get;set;}//留言时间
+    public DateTime Time { get; set; }//留言时间
 
     public string WorkInfoId { get; set; }//留言车次Id
 

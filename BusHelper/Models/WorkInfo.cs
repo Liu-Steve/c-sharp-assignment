@@ -36,10 +36,12 @@ public class WorkInfo
 
     public List<LeavingMsg>? LeavingMsgs { get; set; }//留言记录
 
+    public List<Alert>? Alerts { get; set; }//警告记录
+
     public WorkInfo()
     {
         WorkId = Guid.NewGuid().ToString();
-        StartTime=DateTime.Now;
-        EndTime=null;
+        StartTime = DateTime.Now;
+        EndTime = null;
     }
 }
