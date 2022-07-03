@@ -9,18 +9,6 @@ public class BusContext : DbContext
     public BusContext(DbContextOptions options)
     : base(options)
     {
-        Buses = null!;
-        Calls = null!;
-        DangerActions = null!;
-        DangerIndices = null!;
-        DangerRecords = null!;
-        Drivers = null!;
-        LeavingMsgs = null!;
-        Managers = null!;
-        RealTimeRecords = null!;
-        Roads = null!;
-        WorkInfos = null!;
-        Alerts = null!;
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
