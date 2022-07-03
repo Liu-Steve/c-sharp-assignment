@@ -18,9 +18,9 @@ public class Alert
 
     public bool IsRead { get; set; }//是否已读
 
-    public string WorkInfoId { get; set; }//留言车次Id
+    public string WorkInfoId { get; set; }//警告车次Id
 
-    public WorkInfo? WorkInfo { get; set; }//留言车次
+    public WorkInfo? WorkInfo { get; set; }//警告车次
 
     public Alert()
     {
