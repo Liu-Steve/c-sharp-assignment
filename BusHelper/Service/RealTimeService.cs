@@ -174,7 +174,8 @@ public class RealTimeService
         }
     }
 
-    //依次比较八个异常指标值，异常则累计次数加一
+    //依次比较八个异常指标值
+    //异常则累计次数加一
     public static void addWarning(int[] warning,DangerRecord dangerRecord)
     {
         if(warning[0]==1)
