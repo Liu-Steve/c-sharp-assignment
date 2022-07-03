@@ -66,9 +66,9 @@
 
     <!-- 左下角语音消息弹窗模板 -->
     <template>
-        <div class=" pop-panel pop-fix-position" onclick="clearMsgCard()" name ="pop-window" style="bottom :10px">
+        <div class=" pop-panel pop-fix-position" onclick="clearMsgCard(this)" name ="pop-window" style="bottom :10px">
             <div class="panel-heading-weak">
-                <a href="info.html" target="_blank" class="panel-title" id="title">司机名字 | 8路 | 车牌号</a>
+                <p class="panel-title" id="title">司机名字 | 8路 | 车牌号</p>
             </div>
 
             <ul class="list-group">
@@ -77,7 +77,8 @@
                         <source src="./media/audio/music.mp3" type = "audio/mpeg" >
                         您的浏览器不支持 audio 元素
                     </audio>
-                    <button class="pop-btn">立即联系</button>
+                    <button class="pop-btn" style="margin: 0px 10px;" onclick="detail()">查看详情</button>
+                    <button class="pop-btn" >立即联系</button>
                 </li>
             </ul>                       
         </div> 
@@ -86,13 +87,14 @@
     <div id="pop-msg-group"></div>
     <!-- 弱警报模板 -->
     <template>
-    <div class=" pop-panel pop-fix-position" onclick="clearMsgCard()" name ="pop-weak-alert" style="bottom :10px">
+    <div class=" pop-panel pop-fix-position" onclick="clearMsgCard(this)" name ="pop-weak-alert" style="bottom :10px">
         <div class="panel-heading-weak">
-            <a href="info.html" target="_blank" class="panel-title" id="title">司机名字 | 8路 | 车牌号</a>
+            <p class="panel-title" id="title">司机名字 | 8路 | 车牌号</p>
         </div>
         <ul class="list-group">        
             <li class="driver-list-group-item" >
                 <p id="alertInfo">张三血压稍高，建议持续关注。</p>
+                <button class="pop-btn" style="margin: 0px 10px;" onclick="detail()">查看详情</button>
                 <button class="pop-btn">立即联系</button>
             </li>
         </ul>                       

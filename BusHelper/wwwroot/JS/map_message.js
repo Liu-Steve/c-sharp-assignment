@@ -1,6 +1,6 @@
 // map_message.js for map.html
 // 控制map页面左下角堆叠的消息框
-
+var rowRoot = document.getElementById("pop-msg-group");
 var audioMsg = {
     // "msg1":{
     "name": "张三",
@@ -9,6 +9,7 @@ var audioMsg = {
     "audioUrl": "./media/audio/music.mp3"
         // }
 };
+
 var exception = {
     "name": "刘涛",
     "busNo": "33",
@@ -44,32 +45,34 @@ function showWeakAlert() {
     delete docFrag;
 }
 
-function clearMsgCard() {
-    var rowRoot = document.getElementById("pop-msg-group");
-    var a = 1;
-    while (rowRoot.hasChildNodes() && a > 0) {
-        var firstChild = rowRoot.firstElementChild;
-        rowRoot.removeChild(firstChild);
-        a--;
+function clearMsgCard(e) {
+    rowRoot.removeChild(e);
+    updateLocation();
+}
+
+function updateLocation() {
+    var all = rowRoot.children;
+    var nextBottom = 10;
+    for (i = all.length - 1; i >= 0; i--) {
+        var window = all[i];
+        var bottom = parseInt(window.style.bottom);
+        bottom = nextBottom;
+        window.style.bottom = bottom + "px";
+        var hight = window.clientHeight + 10;
+        nextBottom += hight;
     }
 }
 
-function move() {
-    console.log("call the move()");
-    var window = document.getElementsByName("pop-window")[0];
-    var win2 = document.getElementsByName("pop-weak-alert")[0];
-    console.log(window);
-    var bottom = parseInt(window.style.bottom);
-    console.log(bottom);
-    bottom += win2.clientHeight + 10;
-    window.style.bottom = bottom + "px";
+function detail() {
+    window.open("info.html", "_blank");
 }
 
 function start() {
     showAudioMsg();
+    showWeakAlert();
 }
 
 // 弹出语音信息时间间隔, ms
 audioTimer = setTimeout(start, audioInterval);
 setTimeout(showWeakAlert, 100);
-setTimeout(move, 100);
+setTimeout(updateLocation, 100);
