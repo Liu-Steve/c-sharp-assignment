@@ -67,12 +67,12 @@ function detail() {
     window.open("info.html", "_blank");
 }
 
-function start() {
-    showAudioMsg();
-    showWeakAlert();
-}
+// function start() {
+//     showAudioMsg();
+//     showWeakAlert();
+// }
 
-// 弹出语音信息时间间隔, ms
-audioTimer = setTimeout(start, audioInterval);
-setTimeout(showWeakAlert, 100);
-setTimeout(updateLocation, 100);
+// // 弹出语音信息时间间隔, ms
+// audioTimer = setTimeout(start, audioInterval);
+// setTimeout(showWeakAlert, 100);
+// setTimeout(updateLocation, 100);

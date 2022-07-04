@@ -67,31 +67,43 @@ public class BusInfoController : ControllerBase
     //更新实时数据
     [HttpPost]
     // [Authorize]
-    public void PostRealTimeData(RealTimeRecord realTimeRecord)
+    public IActionResult PostRealTimeData(RealTimeRecord realTimeRecord)
     {
-        //调用API获取结果，解析json写入
-        JObject json = (JObject)JsonConvert.DeserializeObject
+        try{
+            //调用API获取结果，解析json写入
+            JObject json = (JObject)JsonConvert.DeserializeObject
             (DriverBehaviorAnalysis.driver_behavior("img/" + realTimeRecord.RealPic));
-        DriverBehaviorAnalysis.parseJson(realTimeRecord, json);
-        RealTimeService.addRealTime(realTimeRecord);
+            DriverBehaviorAnalysis.parseJson(realTimeRecord, json);
+            RealTimeService.addRealTime(realTimeRecord);
+            return Ok("更新成功");
+        }
+        catch(FileNotFoundException ex)
+        {
+            return BadRequest("图片不存在");
+        }
+        catch(ArgumentNullException ex)
+        {
+            return BadRequest("被解析的json参数为空");
+        }
+        catch(JsonReaderException ex)
+        {
+            return BadRequest("被解析的json参数不是json格式");
+        }
+        catch(NullReferenceException ex)
+        {
+            return BadRequest("解析了json格式的参数，但不是期望的json结果，按照格式从中找不到需要的八个指标");
+        }
     }
 
 
     //查询道路信息
     [HttpGet]
     [Authorize]
-    public IActionResult getAllRoads()
+    public string getAllRoads()
     {
         RoadService roadService = new RoadService();
         List<Road> list = roadService.getAllRoads();
-        if (list.Count != 0)
-        {
-            return Ok(JsonConvert.SerializeObject(list));
-        }
-        else
-        {
-            return BadRequest("");
-        }
+        return JsonConvert.SerializeObject(list);
     }
 
     //获取某辆车的五个指标和八个行为分析

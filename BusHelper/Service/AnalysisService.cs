@@ -16,7 +16,7 @@ public class DriverBehaviorAnalysis
     private static String clientSecret = "NTR31Ct6FH6Hh65q84bQGUk8vGxVoSLH";
 
     //获得token
-    public static String getAccessToken() {
+    private static String getAccessToken() {
         String authHost = "https://aip.baidubce.com/oauth/2.0/token";
         HttpClient client = new HttpClient();
         List<KeyValuePair<String, String>> paraList = new List<KeyValuePair<string, string>>();
@@ -32,7 +32,6 @@ public class DriverBehaviorAnalysis
     // 驾驶行为分析
     public static string driver_behavior(String fileName)
     {
-
         JObject json = (JObject)JsonConvert.DeserializeObject(getAccessToken());
         string token=(string)json["access_token"];
         string host = "https://aip.baidubce.com/rest/2.0/image-classify/v1/driver_behavior?access_token=" + token;
@@ -65,7 +64,6 @@ public class DriverBehaviorAnalysis
 
     //解析json的结果
     public static void parseJson(RealTimeRecord realTimeRecord,JObject json){
-        try{
         realTimeRecord.DangerAction.Smoke=(float)json["person_info"][0]["attributes"]["smoke"]["score"];
         realTimeRecord.DangerAction.Yawn=(float)json["person_info"][0]["attributes"]["yawning"]["score"];
         realTimeRecord.DangerAction.NoSafetyBelt=(float)json["person_info"][0]["attributes"]["not_buckling_up"]["score"];
@@ -74,10 +72,6 @@ public class DriverBehaviorAnalysis
         realTimeRecord.DangerAction.UsingPhone=(float)json["person_info"][0]["attributes"]["cellphone"]["score"];
         realTimeRecord.DangerAction.LookAround=(float)json["person_info"][0]["attributes"]["not_facing_front"]["score"];
         realTimeRecord.DangerAction.Conflict=(float)json["person_info"][0]["attributes"]["head_lowered"]["score"];
-        }
-        catch(ArgumentOutOfRangeException ex){
-            Console.Write(ex.Message);
-        }
     }
 }
 
