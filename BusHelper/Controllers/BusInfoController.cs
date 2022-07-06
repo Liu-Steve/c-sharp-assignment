@@ -187,4 +187,25 @@ public class BusInfoController : ControllerBase
     {
         return DriverBehaviorAnalysis.getFileBase64("img/"+picId);
     }
+
+    //获取未读的全部警告信息
+    [HttpGet]
+    [Authorize]
+    public IEnumerable<Alert> GetUnreadAlerts()
+    {
+        List<Alert> list = AlertService.GetUnreadAlerts();
+        return list;
+    }
+
+    //将未读标记为已读
+    [HttpPost]
+    public IActionResult MarkAlertRead([FromBody] string alertId)
+    {
+        bool success = AlertService.MarkAlertRead(alertId);
+        if (success)
+        {
+            return Ok();
+        }
+        return NotFound("alert does not exist");
+    }
 }
