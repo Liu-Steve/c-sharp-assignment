@@ -143,7 +143,14 @@ public class BusInfoController : ControllerBase
             var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
             if (file.Length > 0)
             {
-                var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+                var header = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
+                var fileName = header.FileName.Trim('"');
+                string ext = Path.GetExtension(fileName);
+                if(ext == ".MP3")
+                {
+                    folderName = Path.Combine("audio");
+                    pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+                }
                 var fullPath = Path.Combine(pathToSave, fileName);
                 var dbPath = Path.Combine(folderName, fileName);
                 using (var stream = new FileStream(fullPath, FileMode.Create))
@@ -186,5 +193,26 @@ public class BusInfoController : ControllerBase
     public String getRealPic([FromBody] string picId)
     {
         return DriverBehaviorAnalysis.getFileBase64("img/"+picId);
+    }
+
+    //获取未读的全部警告信息
+    [HttpGet]
+    [Authorize]
+    public IEnumerable<Alert> GetUnreadAlerts()
+    {
+        List<Alert> list = AlertService.GetUnreadAlerts();
+        return list;
+    }
+
+    //将未读标记为已读
+    [HttpPost]
+    public IActionResult MarkAlertRead([FromBody] string alertId)
+    {
+        bool success = AlertService.MarkAlertRead(alertId);
+        if (success)
+        {
+            return Ok();
+        }
+        return NotFound("alert does not exist");
     }
 }

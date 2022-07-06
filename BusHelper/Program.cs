@@ -1,6 +1,9 @@
+using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.AspNetCore.Server.Kestrel.Https;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -33,6 +36,23 @@ builder.Services
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:SecretKey"]))
     };
 });
+
+//SSL证书及缓存
+builder.Services.AddAuthentication(
+        CertificateAuthenticationDefaults.AuthenticationScheme)
+    .AddCertificate()
+    .AddCertificateCache(options =>
+    {
+        options.CacheSize = 1024;
+        options.CacheEntryExpiration = TimeSpan.FromMinutes(2);
+    });
+
+// //Kestrel配置为索要证书
+// builder.Services.Configure<KestrelServerOptions>(options =>
+// {
+//     options.ConfigureHttpsDefaults(options =>
+//         options.ClientCertificateMode = ClientCertificateMode.RequireCertificate);
+// });
 
 builder.Services.Configure<FormOptions>(o =>
 {
