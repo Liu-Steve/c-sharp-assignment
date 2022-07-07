@@ -69,7 +69,8 @@ public class BusInfoController : ControllerBase
     // [Authorize]
     public IActionResult PostRealTimeData(RealTimeRecord realTimeRecord)
     {
-        try{
+        try
+        {
             //调用API获取结果，解析json写入
             JObject json = (JObject)JsonConvert.DeserializeObject
             (DriverBehaviorAnalysis.driver_behavior("img/" + realTimeRecord.RealPic));
@@ -77,23 +78,23 @@ public class BusInfoController : ControllerBase
             RealTimeService.addRealTime(realTimeRecord);
             return Ok("更新成功");
         }
-        catch(FileNotFoundException ex)
+        catch (FileNotFoundException ex)
         {
             return BadRequest("图片不存在");
         }
-        catch(ArgumentNullException ex)
+        catch (ArgumentNullException ex)
         {
             return BadRequest("被解析的json参数为空");
         }
-        catch(JsonReaderException ex)
+        catch (JsonReaderException ex)
         {
             return BadRequest("被解析的json参数不是json格式");
         }
-        catch(NullReferenceException ex)
+        catch (NullReferenceException ex)
         {
             return BadRequest("解析了json格式的参数，但不是期望的json结果，按照格式从中找不到需要的八个指标");
         }
-        catch(ArgumentOutOfRangeException ex)
+        catch (ArgumentOutOfRangeException ex)
         {
             return BadRequest("未找到人脸");
         }
@@ -128,9 +129,9 @@ public class BusInfoController : ControllerBase
 
     //获取某辆车的累计异常行为记录
     [HttpPost]
-    public IActionResult getRecord([FromBody]string busId)
+    public IActionResult getRecord([FromBody] string busId)
     {
-        var dangerRecord=RealTimeService.getRecord(busId);
+        var dangerRecord = RealTimeService.getRecord(busId);
         return Ok(JsonConvert.SerializeObject(dangerRecord));
     }
 
@@ -138,10 +139,10 @@ public class BusInfoController : ControllerBase
     [HttpGet]
     public IEnumerable<AudioUnread> getUnreadAudio()
     {
-            List<AudioUnread> list=LeavingMessageService.getUnreadAudio();
-            return list;
+        List<AudioUnread> list = LeavingMessageService.getUnreadAudio();
+        return list;
     }
-    
+
     //获取某辆车的司机信息
     [HttpPost]
     public IActionResult getBusInfo([FromBody] string busId)
@@ -167,7 +168,7 @@ public class BusInfoController : ControllerBase
                 var header = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
                 var fileName = header.FileName.Trim('"');
                 string ext = Path.GetExtension(fileName);
-                if(ext == ".MP3" || ext == ".ogg")
+                if (ext == ".MP3" || ext == ".ogg")
                 {
                     folderName = Path.Combine("audio");
                     pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
@@ -176,7 +177,7 @@ public class BusInfoController : ControllerBase
                 var dbPath = Path.Combine(folderName, fileName);
                 using (var stream = new FileStream(fullPath, FileMode.Create))
                 {
-                    file.CopyTo(stream);
+                    await file.CopyToAsync(stream);
                 }
                 return Ok(new { dbPath });
             }
@@ -213,7 +214,7 @@ public class BusInfoController : ControllerBase
     [HttpPost]
     public String getRealPic([FromBody] string picId)
     {
-        return DriverBehaviorAnalysis.getFileBase64("img/"+picId);
+        return DriverBehaviorAnalysis.getFileBase64("img/" + picId);
     }
 
     //获取未读的全部警告信息
@@ -242,18 +243,38 @@ public class BusInfoController : ControllerBase
     public async Task<IActionResult> DownAudio(string fileName)
     {
         var path = "audio/" + fileName;
-        if(!System.IO.File.Exists(path))
+        if (!System.IO.File.Exists(path))
             return NotFound(fileName + " not exist");
         var stream = await System.IO.File.ReadAllBytesAsync(path);
         return File(stream, "audio/mp3", fileName);
     }
 
+    [HttpPost]
+    public IActionResult PostManagerMsg(ManagerMsg msg)
+    {
+        bool ret = ManagerMsgService.AddManagerMsg(msg);
+        if(ret)
+            return Ok(msg.MsgId);
+        return BadRequest(msg.MsgId);
+    }
+
     //获取最新留言信息
     [HttpPost]
-    public async Task<IActionResult> GetManagerMsg(string BusId)
+    public async Task<IActionResult> GetManagerMsg([FromBody]string busId)
     {
-        //假数据
-        var stream = await System.IO.File.ReadAllBytesAsync("audio/fake.ogg");
-        return File(stream, "audio/ogg", "fake.ogg");
+        string? fileName = ManagerMsgService.GetLatestMsg(busId);
+        if (fileName == null)
+        {
+            return NotFound(busId + " has no Msg");
+        }
+        try
+        {
+            var stream = await System.IO.File.ReadAllBytesAsync("audio/" + fileName);
+            return File(stream, "audio/ogg", fileName);
+        }
+        catch(FileNotFoundException)
+        {
+            return NotFound(fileName + " not exist");
+        }
     }
 }

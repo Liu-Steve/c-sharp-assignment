@@ -40,9 +40,27 @@ function updateLocation() {
 
 //上传录音
 const sendAudioFile = blob => {
+    var fileName = "manager-" + (new Date().getTime()) + ".ogg";
+
+    var data = {
+        BusId: "鄂A·73788",
+        Content: fileName
+    }
+    $.ajax({
+        type: "POST",
+        url: "/BusInfo/PostManagerMsg",
+        data: JSON.stringify(data),
+        //dataType: "json",
+        contentType: "application/json",
+        timeout: 5000, //连接超时时间
+        success: function(data) {
+            console.log(data)
+        }
+    });
+
     var file = new window.File(
         [blob],
-        "test.ogg"
+        fileName
     );
     const formData = new FormData();
     formData.append('audio-file', file);

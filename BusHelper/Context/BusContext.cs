@@ -36,6 +36,8 @@ public class BusContext : DbContext
 
     public DbSet<LeavingMsg> LeavingMsgs { get; set; }
 
+    public DbSet<ManagerMsg> ManagerMsgs { get; set; }
+
     public DbSet<Manager> Managers { get; set; }
 
     public DbSet<RealTimeRecord> RealTimeRecords { get; set; }
