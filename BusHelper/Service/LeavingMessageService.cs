@@ -18,9 +18,11 @@ public class LeavingMessageService{
 
     public static List<AudioUnread>  getUnreadAudio()
     {
+        List<AudioUnread> audioUnreads=new List<AudioUnread>();
+        try{
         using(var context=new BusContext(new DbContextOptions<BusContext>()))
         {
-            List<AudioUnread> audioUnreads=new List<AudioUnread>();
+            
             List<LeavingMsg> list=context.LeavingMsgs.Where(l=>l.IsRead==false).ToList();
             for(int i=0;i<list.Count;i++)
             {
@@ -35,6 +37,13 @@ public class LeavingMessageService{
             }
             return audioUnreads;
         }
+        }
+        //开始的时候还没有录音信息，返回空
+        catch(InvalidOperationException ex)
+        {
+            return audioUnreads;
+        }
+
     }
 }
 

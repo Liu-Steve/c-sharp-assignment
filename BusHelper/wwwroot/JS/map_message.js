@@ -29,7 +29,7 @@ function showAudioMsg() {
     var tempNode = document.getElementsByTagName("template")[0].content.cloneNode(true);
     tempNode.getElementById("title").innerHTML = '来自' + audioMsg.name + "&nbsp;|&nbsp;" + audioMsg.busNo + "路&nbsp;|&nbsp;";
     tempNode.getElementById("busId-audio").innerHTML = exception.plateNum + '的语音';
-    tempNode.querySelector("audio").src = "/BusInfo/getUnreadAudio " + audioMsg.audioUrl;
+    tempNode.querySelector("source").src = "https://safengine.xyz/BusInfo/DownAudio?fileName=" + audioMsg.audioUrl;
     tempNode.querySelector("audio").setAttribute('id', audioMsg.name);
     docFrag.appendChild(tempNode);
     var rowRoot = document.getElementById("pop-msg-group");
@@ -117,7 +117,6 @@ function removeAlert(toDelete) {
 // audioTimer = setTimeout(start, audioInterval);
 // setTimeout(showWeakAlert, 100);
 // setTimeout(updateLocation, 100);
-
 
 //1s钟发送一次数据更新，请求最近的未读消息
 window.setInterval(() => {

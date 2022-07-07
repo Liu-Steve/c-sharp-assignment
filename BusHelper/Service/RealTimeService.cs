@@ -205,6 +205,65 @@ public class RealTimeService
         dangerRecord.Conflict += warning[7];
     }
 
+    //添加异常表信息，现阶段全部都当作低级警告
+    public static void addAlert(DangerRecord dangerRecord)
+    {
+        //如果不需要建立异常表
+        if(!ifHasAlert(dangerRecord))
+        {
+            return;
+        }
+        using(var context=new BusContext(new DbContextOptions<BusContext>()))
+        {
+            //没有警告表时建立警告表
+            if(context.Alerts.FirstOrDefault(a=>a.WorkInfoId==dangerRecord.WorkInfoId)==null)
+            {
+                if(dangerRecord.Smoke>=10)
+                {
+                    
+                }
+            }
+        }
+    }
+
+    //判断异常表是否需要建立，如果有指标大于10，就可能需要建立
+    public static bool ifHasAlert(DangerRecord dangerRecord)
+    {
+        if(dangerRecord.Smoke>=10)
+        {
+            return true;
+        }
+        else if(dangerRecord.Yawn>=10)
+        {
+            return true;
+        }
+        else if(dangerRecord.SafetyBelt>=10)
+        {
+            return true;
+        }
+        else if(dangerRecord.LeavingSteering>=10)
+        {
+            return true;
+        }
+        else if(dangerRecord.CloseEye>=10)
+        {
+            return true;
+        }
+        else if(dangerRecord.UsingPhone>=10)
+        {
+            return true;
+        }
+        else if(dangerRecord.LookAround>=10)
+        {
+            return true;
+        }
+        else if(dangerRecord.Conflict>=10)
+        {
+            return true;
+        }
+        return false;
+    }
+
     // 判断5个指标(heartRate, highBloodRate, lowBloodRate, temperature, bloodOxygen)是否异常
     // 异常为1
     public static int[] IndexIsAbnormal(RealTimeRecord record)

@@ -138,8 +138,8 @@ public class BusInfoController : ControllerBase
     [HttpGet]
     public IEnumerable<AudioUnread> getUnreadAudio()
     {
-        List<AudioUnread> list=LeavingMessageService.getUnreadAudio();
-        return list;
+            List<AudioUnread> list=LeavingMessageService.getUnreadAudio();
+            return list;
     }
     
     //获取某辆车的司机信息
