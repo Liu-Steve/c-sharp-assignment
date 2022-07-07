@@ -237,4 +237,14 @@ public class BusInfoController : ControllerBase
         return NotFound("alert does not exist");
     }
 
+    //获取音频文件
+    [HttpGet]
+    public async Task<IActionResult> DownAudio(string fileName)
+    {
+        var path = "audio/" + fileName;
+        if(!System.IO.File.Exists(path))
+            return NotFound(fileName + " not exist");
+        var stream = await System.IO.File.ReadAllBytesAsync(path);
+        return File(stream, "audio/mp3", fileName);
+    }
 }
