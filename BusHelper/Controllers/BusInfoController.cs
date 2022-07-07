@@ -167,7 +167,7 @@ public class BusInfoController : ControllerBase
                 var header = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
                 var fileName = header.FileName.Trim('"');
                 string ext = Path.GetExtension(fileName);
-                if(ext == ".MP3")
+                if(ext == ".MP3" || ext == ".ogg")
                 {
                     folderName = Path.Combine("audio");
                     pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);

@@ -38,6 +38,20 @@ function updateLocation() {
     }
 }
 
+//上传录音
+const sendAudioFile = blob => {
+    var file = new window.File(
+        [blob],
+        "test.ogg"
+    );
+    const formData = new FormData();
+    formData.append('audio-file', file);
+    return fetch('/BusInfo/Upload', {
+        method: 'POST',
+        body: formData
+    });
+};
+
 //绑定录音按钮
 var bindRecord = (btn, audio, sendBtn) => {
     if (navigator.mediaDevices.getUserMedia) {
@@ -57,11 +71,15 @@ var bindRecord = (btn, audio, sendBtn) => {
                         mediaRecorder.onstop = e => {
                             var blob = new Blob(chunks, {
                                 type: "audio/ogg; codecs=opus"
+                                    //type: "audio/mp3"
                             });
                             chunks = [];
                             var audioURL = window.URL.createObjectURL(blob);
                             const audioSrc = audio;
                             audioSrc.src = audioURL;
+                            sendBtn.onclick = function() {
+                                sendAudioFile(blob);
+                            };
                         };
                         recordBtn.textContent = "重录";
                         console.log("录音结束");
