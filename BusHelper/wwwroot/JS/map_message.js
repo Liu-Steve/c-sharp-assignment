@@ -24,6 +24,72 @@ var exception = {
 var audioInterval = 100;
 var audioTimer = null;
 
+//更新左下角消息的位置
+function updateLocation() {
+    var all = rowRoot.children;
+    var nextBottom = 10;
+    for (i = all.length - 1; i >= 0; i--) {
+        var window = all[i];
+        var bottom = parseInt(window.style.bottom);
+        bottom = nextBottom;
+        window.style.bottom = bottom + "px";
+        var hight = window.clientHeight + 10;
+        nextBottom += hight;
+    }
+}
+
+//绑定录音按钮
+var bindRecord = (btn, audio, sendBtn) => {
+    if (navigator.mediaDevices.getUserMedia) {
+        const constraints = {
+            audio: true
+        };
+        navigator.mediaDevices.getUserMedia(constraints).then(
+            stream => {
+                console.log("授权成功！");
+                const recordBtn = btn;
+                const mediaRecorder = new MediaRecorder(stream);
+                var chunks = [];
+                recordBtn.onclick = () => {
+                    if (mediaRecorder.state === "recording") {
+                        mediaRecorder.stop();
+                        console.log(chunks)
+                        mediaRecorder.onstop = e => {
+                            var blob = new Blob(chunks, {
+                                type: "audio/ogg; codecs=opus"
+                            });
+                            chunks = [];
+                            var audioURL = window.URL.createObjectURL(blob);
+                            const audioSrc = audio;
+                            audioSrc.src = audioURL;
+                        };
+                        recordBtn.textContent = "重录";
+                        console.log("录音结束");
+                        audio.setAttribute("style", "width: 98%; height: 45px; margin: 5px 0px");
+                        sendBtn.setAttribute("style", "margin: 0px 3px;");
+                        updateLocation();
+                    } else {
+                        mediaRecorder.start();
+                        mediaRecorder.ondataavailable = function(e) {
+                            chunks.push(e.data);
+                        };
+                        console.log(chunks)
+                        console.log("录音中...");
+                        recordBtn.textContent = "录音中";
+                    }
+                    console.log("录音器状态：", mediaRecorder.state);
+                };
+
+            },
+            () => {
+                console.error("授权失败！");
+            }
+        );
+    } else {
+        console.error("浏览器不支持 getUserMedia");
+    }
+};
+
 function showAudioMsg() {
     var docFrag = document.createDocumentFragment();
     var tempNode = document.getElementsByTagName("template")[0].content.cloneNode(true);
@@ -31,6 +97,10 @@ function showAudioMsg() {
     tempNode.getElementById("busId-audio").innerHTML = exception.plateNum + '的语音';
     tempNode.querySelector("source").src = "https://safengine.xyz/BusInfo/DownAudio?fileName=" + audioMsg.audioUrl;
     tempNode.querySelector("audio").setAttribute('id', audioMsg.name);
+    let recordBtn = tempNode.querySelector(".record");
+    let recordAudio = tempNode.querySelector(".audio-manager");
+    let sendBtn = tempNode.querySelector(".send");
+    bindRecord(recordBtn, recordAudio, sendBtn);
     docFrag.appendChild(tempNode);
     var rowRoot = document.getElementById("pop-msg-group");
     rowRoot.appendChild(docFrag);
@@ -54,20 +124,6 @@ function clearMsgCard(e) {
     rowRoot.removeChild(e);
     updateLocation();
     removeAudio(e.querySelector("audio").src);
-}
-
-//更新左下角消息的位置
-function updateLocation() {
-    var all = rowRoot.children;
-    var nextBottom = 10;
-    for (i = all.length - 1; i >= 0; i--) {
-        var window = all[i];
-        var bottom = parseInt(window.style.bottom);
-        bottom = nextBottom;
-        window.style.bottom = bottom + "px";
-        var hight = window.clientHeight + 10;
-        nextBottom += hight;
-    }
 }
 
 //携带ID信息跳转到新的网页
