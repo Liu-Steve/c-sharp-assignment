@@ -180,7 +180,10 @@ public class RealTimeService
                     dangerRecord => dangerRecord.WorkInfoId == workId
                 );
                 if (dangerRecord != null)
+                {
                     addWarning(warning, dangerRecord);
+                    addAlert(warning,dangerRecord);
+                }
                 context.SaveChanges();
             }
         }
@@ -206,23 +209,55 @@ public class RealTimeService
     }
 
     //添加异常表信息，现阶段全部都当作低级警告
-    public static void addAlert(DangerRecord dangerRecord)
+    public static void addAlert(int[] warning,DangerRecord dangerRecord)
     {
-        //如果不需要建立异常表
-        if(!ifHasAlert(dangerRecord))
-        {
-            return;
-        }
+
         using(var context=new BusContext(new DbContextOptions<BusContext>()))
         {
             //没有警告表时建立警告表
-            if(context.Alerts.FirstOrDefault(a=>a.WorkInfoId==dangerRecord.WorkInfoId)==null)
+            Alert alert=new Alert();
+            alert.IsRead=false;
+            alert.WorkInfoId=dangerRecord.WorkInfoId;
+            alert.Level=0;
+            alert.Content="";
+            if(warning[0]==1&&dangerRecord.Smoke==10)
             {
-                if(dangerRecord.Smoke>=10)
-                {
-                    
-                }
+                alert.Content="该司机多次抽烟，请验证后警示";
             }
+            else if(warning[1]==1&&dangerRecord.Yawn==10)
+            {
+                alert.Content="该司机多次打哈欠，请验证后提醒";
+            }
+            else if(warning[2]==1&&dangerRecord.SafetyBelt==10)
+            {
+                alert.Content="该司机多次不系安全带，请验证后警示";
+            }
+            else if(warning[3]==1&&dangerRecord.LeavingSteering==10)
+            {
+                alert.Content="该司机多次双手离开方向盘，请验证后提醒";
+            }
+            else if(warning[4]==1&&dangerRecord.CloseEye==20)
+            {
+                alert.Content="该司机多次闭眼，请验证后提醒";
+            }
+            else if(warning[5]==1&&dangerRecord.UsingPhone==10)
+            {
+                alert.Content="该司机多次使用手机，请验证后警示";
+            }
+            else if(warning[6]==1&&dangerRecord.LookAround==40)
+            {
+                alert.Content="该司机多次不正视前方，请验证后提醒";
+            }
+            else if(warning[7]==1&&dangerRecord.Conflict==10)
+            {
+                alert.Content="该司机疑似与乘客发生冲突，请确认情况，如有情况及时联系交警部门";
+            }
+            //内容不为空有异常的时候才需要加入异常记录
+            if(alert.Content!="")
+            {
+                context.Alerts.Add(alert);
+                context.SaveChanges();
+            }    
         }
     }
 
