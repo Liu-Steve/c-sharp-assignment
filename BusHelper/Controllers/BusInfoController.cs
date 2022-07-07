@@ -247,4 +247,13 @@ public class BusInfoController : ControllerBase
         var stream = await System.IO.File.ReadAllBytesAsync(path);
         return File(stream, "audio/mp3", fileName);
     }
+
+    //获取最新留言信息
+    [HttpPost]
+    public async Task<IActionResult> GetManagerMsg(string BusId)
+    {
+        //假数据
+        var stream = await System.IO.File.ReadAllBytesAsync("audio/fake.ogg");
+        return File(stream, "audio/ogg", "fake.ogg");
+    }
 }
