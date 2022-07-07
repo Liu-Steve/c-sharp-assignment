@@ -111,7 +111,7 @@ public class BusInfoController : ControllerBase
 
     //查询道路信息
     [HttpGet]
-    [Authorize]
+    //[Authorize]
     public string getAllRoads()
     {
         RoadService roadService = new RoadService();
@@ -137,9 +137,9 @@ public class BusInfoController : ControllerBase
 
     //查询所有未读信息
     [HttpGet]
-    public IEnumerable<AudioUnread> getUnreadAudio()
+    public async Task<IEnumerable<AudioUnread>> getUnreadAudio()
     {
-        List<AudioUnread> list = LeavingMessageService.getUnreadAudio();
+        List<AudioUnread> list = await LeavingMessageService.getUnreadAudio();
         return list;
     }
 
@@ -202,7 +202,7 @@ public class BusInfoController : ControllerBase
 
     //获取所有车辆当前的位置信息
     [HttpGet]
-    [Authorize]
+    //[Authorize]
     public IActionResult getBusLocation()
     {
         //接收匿名对象
@@ -219,7 +219,7 @@ public class BusInfoController : ControllerBase
 
     //获取未读的全部警告信息
     [HttpGet]
-    [Authorize]
+    //[Authorize]
     public IEnumerable<Alert> GetUnreadAlerts()
     {
         List<Alert> list = AlertService.GetUnreadAlerts();
