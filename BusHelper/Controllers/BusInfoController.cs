@@ -95,6 +95,14 @@ public class BusInfoController : ControllerBase
         }
     }
 
+    //更新实时数据
+    [HttpPost]
+    // [Authorize]
+    public IActionResult PostAudio(LeavingMsg msg)
+    {
+        LeavingMessageService.addLeavingMsg(msg);
+        return Ok();
+    }
 
     //查询道路信息
     [HttpGet]
@@ -121,6 +129,15 @@ public class BusInfoController : ControllerBase
         var dangerRecord=RealTimeService.getRecord(busId);
         return Ok(JsonConvert.SerializeObject(dangerRecord));
     }
+
+    //查询所有未读信息
+    [HttpGet]
+    public IEnumerable<AudioUnread> getUnreadAudio()
+    {
+        List<AudioUnread> list=LeavingMessageService.getUnreadAudio();
+        return list;
+    }
+    
     //获取某辆车的司机信息
     [HttpPost]
     public IActionResult getBusInfo([FromBody] string busId)
@@ -215,4 +232,5 @@ public class BusInfoController : ControllerBase
         }
         return NotFound("alert does not exist");
     }
+
 }

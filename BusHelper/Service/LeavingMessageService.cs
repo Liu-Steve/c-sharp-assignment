@@ -1,35 +1,54 @@
 // 用于识别司机语音，并转为文字
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
+using BusHelper.Context;
+using Microsoft.EntityFrameworkCore;
+using BusHelper.Models;
 
-namespace AudioDetect
-{
-    internal class Program
+
+namespace BusHelper.Service;
+
+public class LeavingMessageService{
+    public static void addLeavingMsg(LeavingMsg msg)
     {
-        
-        static void Main(string[] args)
+        using(var context=new BusContext(new DbContextOptions<BusContext>()))
         {
-            // var AppId = "26537660";
-            // var AppKey = "KBbd7K4QDN1NHjuepA1mqFuu";
-            // var SecretKey = "WX0j9pCOwH8StOOPImh2FFo0RgjT3ibv";
-            // var client = new Baidu.Aip.Speech.Asr(AppId, AppKey, SecretKey);
-            // var data = File.ReadAllBytes("./audio/16k.pcm");
-
-            // // 可选参数
-            // var options = new Dictionary<string, object>
-            //  {
-            //     {"dev_pid", 1537}        // 默认普通话
-            //  };
-            // client.Timeout = 12000; // 若语音较长，建议设置更大的超时时间. ms
-            // var result = client.Recognize(data, "pcm", 16000, options);     
-            // Console.Write(result);
-            // Console.ReadLine();
-
+            context.LeavingMsgs.Add(msg);
+            context.SaveChanges();
         }
-       
+    }
+
+    public static List<AudioUnread>  getUnreadAudio()
+    {
+        using(var context=new BusContext(new DbContextOptions<BusContext>()))
+        {
+            List<AudioUnread> audioUnreads=new List<AudioUnread>();
+            List<LeavingMsg> list=context.LeavingMsgs.Where(l=>l.IsRead==false).ToList();
+            for(int i=0;i<list.Count;i++)
+            {
+                String workInfoId=list[i].WorkInfoId;
+                WorkInfo workInfo=context.WorkInfos.FirstOrDefault(w=>w.WorkId==workInfoId);
+                String busId=workInfo.BusId;
+                Bus bus=context.Buses.FirstOrDefault(w=>w.BusId==busId);
+                Driver driver=context.Drivers.FirstOrDefault(d=>d.DriverId==workInfo.DriverId);
+                AudioUnread audioUnread=new  AudioUnread(driver.Name,
+                bus.RoadId,workInfo.BusId,list[i].Content);
+                audioUnreads.Add(audioUnread);
+            }
+            return audioUnreads;
+        }
+    }
+}
+
+public class AudioUnread{
+    public string name{get;set;}
+    public string busNo{get;set;}
+    public string plateNum{get;set;}
+    public string audioUrl{get;set;}
+
+    public AudioUnread(string name,string busNo,string plateNum,string audioUrl)
+    {
+        this.name=name;
+        this.busNo=busNo;
+        this.plateNum=plateNum;
+        this.audioUrl=audioUrl;
     }
 }
