@@ -93,6 +93,10 @@ public class BusInfoController : ControllerBase
         {
             return BadRequest("解析了json格式的参数，但不是期望的json结果，按照格式从中找不到需要的八个指标");
         }
+        catch(ArgumentOutOfRangeException ex)
+        {
+            return BadRequest("未找到人脸");
+        }
     }
 
     //更新实时数据

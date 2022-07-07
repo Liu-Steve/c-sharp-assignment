@@ -64,7 +64,6 @@ public class DriverBehaviorAnalysis
 
     //解析json的结果
     public static void parseJson(RealTimeRecord realTimeRecord,JObject json){
-        try{
         realTimeRecord.DangerAction.Smoke=(float)json["person_info"][0]["attributes"]["smoke"]["score"];
         realTimeRecord.DangerAction.Yawn=(float)json["person_info"][0]["attributes"]["yawning"]["score"];
         realTimeRecord.DangerAction.NoSafetyBelt=(float)json["person_info"][0]["attributes"]["not_buckling_up"]["score"];
@@ -73,10 +72,6 @@ public class DriverBehaviorAnalysis
         realTimeRecord.DangerAction.UsingPhone=(float)json["person_info"][0]["attributes"]["cellphone"]["score"];
         realTimeRecord.DangerAction.LookAround=(float)json["person_info"][0]["attributes"]["not_facing_front"]["score"];
         realTimeRecord.DangerAction.Conflict=(float)json["person_info"][0]["attributes"]["head_lowered"]["score"];
-        }
-        catch(IndexOutOfRangeException ex){
-            Console.WriteLine(json);
-        }
     }
 }
 
