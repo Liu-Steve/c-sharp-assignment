@@ -26,6 +26,7 @@ public class Alert
     {
         AlertId = Guid.NewGuid().ToString();
         Content = "";
+        Time = DateTime.Now;
         IsRead = false;
     }
 }
