@@ -13,7 +13,7 @@ public class BusContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseMySql("server=safengine.xyz;database=busafer;uid=root;pwd=root;",
+        optionsBuilder.UseMySql("server=119.13.81.183;database=busafer;uid=root;pwd=root;",
             new MySqlServerVersion(new Version(8, 0, 29)));
     }
 
