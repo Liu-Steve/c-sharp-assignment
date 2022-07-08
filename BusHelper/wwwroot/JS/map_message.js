@@ -17,8 +17,7 @@ var exception = {
     "name": "刘涛",
     "busNo": "33",
     "plateNum": "鄂A·JD343",
-    "info": "刘涛频繁打哈欠。",
-    "warn": true
+    "info": "刘涛频繁打哈欠。"
 };
 
 var audioInterval = 100;
@@ -95,12 +94,17 @@ function avoidAudioRepeat(data) {
 }
 
 //去重，避免每s发起请求，未处理的弱预警反复被推送到前端
-function avoidAlertRepeat() {
-    //如果在现存数组中找不到这个元素，就加进去
-    if (alreadyAlertUnread.indexOf(recording) == -1) {
-        alreadyAlertUnread.push(recording);
+function avoidAlertRepeat(data) {
+    var array = eval(data);
+    for (var i = 0; i < array.length; i++) {
+        //如果在现存数组中找不到这个元素，就加进去
+        if (alreadyAlertUnread.indexOf(array[i].info) == -1) {
+            alreadyAlertUnread.push(array[i].info);
+            exception = array[i];
+            showWeakAlert();
+        }
     }
-    showWeakAlert();
+    updateLocation();
 }
 
 //去掉音频去重表里面的元素
@@ -129,6 +133,21 @@ window.setInterval(() => {
             timeout: 5000, //连接超时时间
             success: function(data) { //成功则更新数据
                 avoidAudioRepeat(data);
+            }
+        });
+    }, 0)
+}, 1000)
+
+window.setInterval(() => {
+    setTimeout(() => {
+        $.ajax({
+            type: "GET",
+            url: "/BusInfo/getUnreadAlert",
+            //dataType: "json",
+            contentType: "application/json",
+            timeout: 5000, //连接超时时间
+            success: function(data) { //成功则更新数据
+                avoidAlertRepeat(data);
             }
         });
     }, 0)

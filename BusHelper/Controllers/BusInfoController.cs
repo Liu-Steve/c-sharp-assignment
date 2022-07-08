@@ -138,8 +138,15 @@ public class BusInfoController : ControllerBase
     [HttpGet]
     public IEnumerable<AudioUnread> getUnreadAudio()
     {
-            List<AudioUnread> list=LeavingMessageService.getUnreadAudio();
-            return list;
+        List<AudioUnread> list=LeavingMessageService.getUnreadAudio();
+        return list;
+    }
+
+    //查询所有未读预警
+    public IEnumerable<AlertUnread> getUnreadAlert()
+    {
+        IEnumerable<AlertUnread> list=AlertService.GetUnreadAlerts();
+        return list;
     }
     
     //获取某辆车的司机信息
@@ -219,9 +226,9 @@ public class BusInfoController : ControllerBase
     //获取未读的全部警告信息
     [HttpGet]
     [Authorize]
-    public IEnumerable<Alert> GetUnreadAlerts()
+    public IEnumerable<AlertUnread> GetUnreadAlerts()
     {
-        List<Alert> list = AlertService.GetUnreadAlerts();
+        List<AlertUnread> list = AlertService.GetUnreadAlerts();
         return list;
     }
 
