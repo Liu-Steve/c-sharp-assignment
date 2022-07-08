@@ -302,7 +302,7 @@ window.setInterval(() => {
                 con.alcohol = data.Alcohol;
                 Vue.set(con.color, 0, heartRateIsNormal(data.HeartRate) ? normalColor : abnormalColor);
                 Vue.set(con.color, 2, pressureIsNormal(data.HighBloodPressure, data.LowBloodPressure) ? normalColor : abnormalColor);
-                Vue.set(con.color, 3, temperatureIsNormal(data.temperature) ? normalColor : abnormalColor);
+                Vue.set(con.color, 3, temperatureIsNormal(data.Temperature) ? normalColor : abnormalColor);
                 Vue.set(con.color, 4, spo2IsNormal(data.BloodOxygen) ? normalColor : abnormalColor);
                 Vue.set(con.color, 5, alcoholIsNormal(data.Alcohol) ? normalColor : abnormalColor);
                 Vue.set(po.possible, 0, data.Smoke);

@@ -17,31 +17,36 @@ public class ManagerMsgService
             }
             return true;
         }
-        catch(Exception)
+        catch (Exception)
         {
             return false;
         }
     }
 
-        public static string? GetLatestMsg(string busId)
+    public static string? GetLatestMsg(string busId)
+    {
+        ManagerMsg? msg;
+        using (var context = new BusContext(new DbContextOptions<BusContext>()))
         {
-            ManagerMsg? msg;
-            using (var context = new BusContext(new DbContextOptions<BusContext>()))
-            {
-                var buses = context.ManagerMsgs
-                    .Where(m => m.BusId == busId);
-                if (buses.Count() == 0)
-                    return null;
-                var MaxValue = buses.Max(msg => msg.Time);
-                msg = context.ManagerMsgs
-                    .Where(m => (m.BusId == busId && m.Time == MaxValue))
-                    .FirstOrDefault();
-            }
+            var buses = context.ManagerMsgs
+                .Where(m => (m.BusId == busId && m.IsRead == false));
+            if (buses.Count() == 0)
+                return null;
+            var MaxValue = buses.Min(msg => msg.Time);
+            msg = context.ManagerMsgs
+                .Where(m => (
+                    m.BusId == busId && 
+                    m.Time == MaxValue && 
+                    m.IsRead == false))
+                .FirstOrDefault();
             if (msg == null)
             {
                 return null;
             }
-            return msg.Content;
+            msg.IsRead = true;
+            context.SaveChanges();
         }
-
+        return msg.Content;
     }
+
+}
