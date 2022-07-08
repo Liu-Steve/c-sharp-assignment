@@ -139,7 +139,14 @@ public class BusInfoController : ControllerBase
     [HttpGet]
     public async Task<IEnumerable<AudioUnread>> getUnreadAudio()
     {
-        List<AudioUnread> list = await LeavingMessageService.getUnreadAudio();
+        List<AudioUnread> list= await LeavingMessageService.getUnreadAudio();
+        return list;
+    }
+
+    //查询所有未读预警
+    public IEnumerable<AlertUnread> getUnreadAlert()
+    {
+        IEnumerable<AlertUnread> list=AlertService.GetUnreadAlerts();
         return list;
     }
 
@@ -217,14 +224,6 @@ public class BusInfoController : ControllerBase
         return DriverBehaviorAnalysis.getFileBase64("img/" + picId);
     }
 
-    //获取未读的全部警告信息
-    [HttpGet]
-    //[Authorize]
-    public IEnumerable<AlertUnread> GetUnreadAlerts()
-    {
-        List<AlertUnread> list = AlertService.GetUnreadAlerts();
-        return list;
-    }
 
     //将未读标记为已读
     [HttpPost]

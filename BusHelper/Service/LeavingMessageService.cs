@@ -32,7 +32,7 @@ public class LeavingMessageService{
                 Bus bus=context.Buses.FirstOrDefault(w=>w.BusId==busId);
                 Driver driver=context.Drivers.FirstOrDefault(d=>d.DriverId==workInfo.DriverId);
                 AudioUnread audioUnread=new  AudioUnread(driver.Name,
-                bus.RoadId,workInfo.BusId,list[i].Content);
+                bus.RoadId,workInfo.BusId,list[i].Content,list[i].MsgId);
                 audioUnreads.Add(audioUnread);
             }
             return audioUnreads;
@@ -52,12 +52,13 @@ public class AudioUnread{
     public string busNo{get;set;}
     public string plateNum{get;set;}
     public string audioUrl{get;set;}
-
-    public AudioUnread(string name,string busNo,string plateNum,string audioUrl)
+    public string msgId{get;set;}
+    public AudioUnread(string name,string busNo,string plateNum,string audioUrl,string msgId)
     {
         this.name=name;
         this.busNo=busNo;
         this.plateNum=plateNum;
         this.audioUrl=audioUrl;
+        this.msgId=msgId;
     }
 }

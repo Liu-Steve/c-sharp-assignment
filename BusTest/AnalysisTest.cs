@@ -82,5 +82,9 @@ public class AanlysisTest
         {
             Assert.IsType<NullReferenceException>(ex);
         }
+        catch(ArgumentOutOfRangeException ex)//无人脸，解析json报错
+        {
+            Assert.IsType<ArgumentOutOfRangeException>(ex);
+        }
     }
 }

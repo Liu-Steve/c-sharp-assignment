@@ -10,14 +10,16 @@ var audioMsg = {
     "name": "张三",
     "busNo": "8",
     "plateNum": "鄂A·73788",
-    "audioUrl": "./media/audio/music.mp3"
+    "audioUrl": "./media/audio/music.mp3",
+    "msgId": ""
 };
 
 var exception = {
     "name": "刘涛",
     "busNo": "33",
     "plateNum": "鄂A·JD343",
-    "info": "刘涛频繁打哈欠。"
+    "info": "刘涛频繁打哈欠。",
+    "alertId": ""
 };
 
 var audioInterval = 100;
@@ -70,7 +72,7 @@ const sendAudioFile = blob => {
 };
 
 //绑定录音按钮
-var bindRecord = (btn, audio, sendBtn) => {
+var bindRecord = (btn, audio, sendBtn, parent, msgId) => {
     if (navigator.mediaDevices.getUserMedia) {
         const constraints = {
             audio: true
@@ -95,7 +97,8 @@ var bindRecord = (btn, audio, sendBtn) => {
                             const audioSrc = audio;
                             audioSrc.src = audioURL;
                             sendBtn.onclick = function() {
-                                sendAudioFile(blob);
+                                //sendAudioFile(blob);
+                                setAudioRead(parent, msgId);
                             };
                         };
                         recordBtn.textContent = "重录";
@@ -131,11 +134,12 @@ function showAudioMsg() {
     tempNode.getElementById("title").innerHTML = '来自' + audioMsg.name + "&nbsp;|&nbsp;" + audioMsg.busNo + "路&nbsp;|&nbsp;";
     tempNode.getElementById("busId-audio").innerHTML = exception.plateNum + '的语音';
     tempNode.querySelector("source").src = "https://safengine.xyz/BusInfo/DownAudio?fileName=" + audioMsg.audioUrl;
-    tempNode.querySelector("audio").setAttribute('id', audioMsg.name);
+    // tempNode.querySelector("audio").setAttribute('id', audioMsg.msgId);
     let recordBtn = tempNode.querySelector(".record");
     let recordAudio = tempNode.querySelector(".audio-manager");
     let sendBtn = tempNode.querySelector(".send");
-    bindRecord(recordBtn, recordAudio, sendBtn);
+    let parent = tempNode.getElementById("parent");
+    bindRecord(recordBtn, recordAudio, sendBtn, parent, audioMsg.msgId);
     docFrag.appendChild(tempNode);
     var rowRoot = document.getElementById("pop-msg-group");
     rowRoot.appendChild(docFrag);
@@ -154,11 +158,11 @@ function showWeakAlert() {
     delete docFrag;
 }
 
-//去掉已经处理过的信息，在屏幕上去掉，调整位置，同时从保存信息的去重表中去掉
-function clearMsgCard(e) {
+//去掉已经处理过的信息，修改未读属性为已读，在屏幕上去掉，调整位置，同时从保存信息的去重表中去掉
+function clearMsgCard(e, msgId) {
     rowRoot.removeChild(e);
     updateLocation();
-    removeAudio(e.querySelector("audio").src);
+    removeAudio(msgId);
 }
 
 //携带ID信息跳转到新的网页
@@ -176,8 +180,8 @@ function avoidAudioRepeat(data) {
     var array = eval(data);
     for (var i = 0; i < array.length; i++) {
         //如果在现存数组中找不到这个元素，就加进去
-        if (alreadyAudioUnread.indexOf(array[i].audioUrl) == -1) {
-            alreadyAudioUnread.push(array[i].audioUrl);
+        if (alreadyAudioUnread.indexOf(array[i].msgId) == -1) {
+            alreadyAudioUnread.push(array[i].msgId);
             audioMsg = array[i];
             showAudioMsg();
         }
@@ -190,8 +194,8 @@ function avoidAlertRepeat(data) {
     var array = eval(data);
     for (var i = 0; i < array.length; i++) {
         //如果在现存数组中找不到这个元素，就加进去
-        if (alreadyAlertUnread.indexOf(array[i].info) == -1) {
-            alreadyAlertUnread.push(array[i].info);
+        if (alreadyAlertUnread.indexOf(array[i].alertId) == -1) {
+            alreadyAlertUnread.push(array[i].alertId);
             exception = array[i];
             showWeakAlert();
         }
@@ -209,10 +213,20 @@ function removeAlert(toDelete) {
     alreadyAlertUnread.splice(alreadyAlertUnread.indexOf(toDelete), 1);
 }
 
-// 弹出语音信息时间间隔, ms
-// audioTimer = setTimeout(start, audioInterval);
-// setTimeout(showWeakAlert, 100);
-// setTimeout(updateLocation, 100);
+//将未读语音消息设置为已读
+function setAudioRead(parent, msgId) {
+    $.ajax({
+        type: "POST",
+        url: "/BusInfo/getRealPic",
+        data: "'" + msgId + "'",
+        //dataType: "json",
+        contentType: "application/json",
+        timeout: 5000, //连接超时时间
+        success: function() { //成功则更新数据
+            clearMsgCard(parent, msgId);
+        }
+    });
+}
 
 //1s钟发送一次数据更新，请求最近的未读消息
 window.setInterval(() => {

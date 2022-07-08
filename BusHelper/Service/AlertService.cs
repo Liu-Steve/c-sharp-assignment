@@ -23,7 +23,7 @@ public class AlertService
                 Bus bus=context.Buses.FirstOrDefault(w=>w.BusId==busId);
                 Driver driver=context.Drivers.FirstOrDefault(d=>d.DriverId==workInfo.DriverId);
                 AlertUnread audioUnread= new AlertUnread(driver.Name,
-                bus.RoadId,workInfo.BusId,list[i].Content);
+                bus.RoadId,workInfo.BusId,list[i].Content,list[i].AlertId);
                 listAlert.Add(audioUnread);
             }
             return listAlert;
@@ -59,12 +59,14 @@ public class AlertUnread{
     public string busNo{get;set;}
     public string plateNum{get;set;}
     public string info{get;set;}
+    public string alertId{get;set;}
 
-    public AlertUnread(string name,string busNo,string plateNum,string info)
+    public AlertUnread(string name,string busNo,string plateNum,string info,string alertId)
     {
         this.name=name;
         this.busNo=busNo;
         this.plateNum=plateNum;
         this.info=info;
+        this.alertId=alertId;
     }
 }
