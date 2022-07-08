@@ -97,8 +97,66 @@ var bindRecord = (btn, audio, sendBtn, parent, msgId) => {
                             const audioSrc = audio;
                             audioSrc.src = audioURL;
                             sendBtn.onclick = function() {
-                                //sendAudioFile(blob);
+                                sendAudioFile(blob);
                                 setAudioRead(parent, msgId);
+                            };
+                        };
+                        recordBtn.textContent = "重录";
+                        console.log("录音结束");
+                        audio.setAttribute("style", "width: 98%; height: 45px; margin: 5px 0px");
+                        sendBtn.setAttribute("style", "margin: 0px 3px;");
+                        updateLocation();
+                    } else {
+                        mediaRecorder.start();
+                        mediaRecorder.ondataavailable = function(e) {
+                            chunks.push(e.data);
+                        };
+                        console.log(chunks)
+                        console.log("录音中...");
+                        recordBtn.textContent = "录音中";
+                    }
+                    console.log("录音器状态：", mediaRecorder.state);
+                };
+
+            },
+            () => {
+                console.error("授权失败！");
+            }
+        );
+    } else {
+        console.error("浏览器不支持 getUserMedia");
+    }
+};
+
+
+//绑定录音按钮
+var bindAlertRecord = (btn, audio, sendBtn, parent, alertId) => {
+    if (navigator.mediaDevices.getUserMedia) {
+        const constraints = {
+            audio: true
+        };
+        navigator.mediaDevices.getUserMedia(constraints).then(
+            stream => {
+                console.log("授权成功！");
+                const recordBtn = btn;
+                const mediaRecorder = new MediaRecorder(stream);
+                var chunks = [];
+                recordBtn.onclick = () => {
+                    if (mediaRecorder.state === "recording") {
+                        mediaRecorder.stop();
+                        console.log(chunks)
+                        mediaRecorder.onstop = e => {
+                            var blob = new Blob(chunks, {
+                                type: "audio/ogg; codecs=opus"
+                                    //type: "audio/mp3"
+                            });
+                            chunks = [];
+                            var audioURL = window.URL.createObjectURL(blob);
+                            const audioSrc = audio;
+                            audioSrc.src = audioURL;
+                            sendBtn.onclick = function() {
+                                sendAudioFile(blob);
+                                setAlertRead(parent, alertId);
                             };
                         };
                         recordBtn.textContent = "重录";
@@ -152,6 +210,11 @@ function showWeakAlert() {
     tempNode.getElementById("title").innerHTML = exception.name + "&nbsp;|&nbsp;" + exception.busNo + "路&nbsp;|&nbsp;";
     tempNode.getElementById("busId-weak").innerHTML = exception.plateNum;
     tempNode.getElementById("alertInfo").innerHTML = exception.info;
+    let recordBtn = tempNode.querySelector(".record");
+    let recordAudio = tempNode.querySelector(".audio-manager");
+    let sendBtn = tempNode.querySelector(".send");
+    let parent = tempNode.getElementById("parent");
+    bindAlertRecord(recordBtn, recordAudio, sendBtn, parent, exception.alertId);
     docFrag.appendChild(tempNode);
     var rowRoot = document.getElementById("pop-msg-group");
     rowRoot.appendChild(docFrag);
@@ -165,6 +228,11 @@ function clearMsgCard(e, msgId) {
     removeAudio(msgId);
 }
 
+function clearAlertCard(e, alertId) {
+    rowRoot.removeChild(e);
+    updateLocation();
+    removeAlert(alertId);
+}
 //携带ID信息跳转到新的网页
 function detail(info) {
     window.open("info.html?busId=" + info.innerHTML, "_blank");
@@ -224,6 +292,21 @@ function setAudioRead(parent, msgId) {
         timeout: 5000, //连接超时时间
         success: function() { //成功则更新数据
             clearMsgCard(parent, msgId);
+        }
+    });
+}
+
+//将未读语音消息设置为已读
+function setAlertRead(parent, alertId) {
+    $.ajax({
+        type: "POST",
+        url: "/BusInfo/MarkAlertRead",
+        data: "'" + alertId + "'",
+        //dataType: "json",
+        contentType: "application/json",
+        timeout: 5000, //连接超时时间
+        success: function() { //成功则更新数据
+            clearAlertCard(parent, alertId);
         }
     });
 }
