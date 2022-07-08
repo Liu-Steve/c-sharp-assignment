@@ -217,7 +217,7 @@ function removeAlert(toDelete) {
 function setAudioRead(parent, msgId) {
     $.ajax({
         type: "POST",
-        url: "/BusInfo/getRealPic",
+        url: "/BusInfo/MarkAudioRead",
         data: "'" + msgId + "'",
         //dataType: "json",
         contentType: "application/json",

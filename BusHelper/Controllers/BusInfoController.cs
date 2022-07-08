@@ -237,6 +237,18 @@ public class BusInfoController : ControllerBase
         return NotFound("alert does not exist");
     }
 
+        //将未读标记为已读
+    [HttpPost]
+    public IActionResult MarkAudioRead([FromBody] string msgId)
+    {
+        bool success = LeavingMessageService.MarkAudioRead(msgId);
+        if (success)
+        {
+            return Ok();
+        }
+        return NotFound("audio does not exist");
+    }
+
     //获取音频文件
     [HttpGet]
     public async Task<IActionResult> DownAudio(string fileName)

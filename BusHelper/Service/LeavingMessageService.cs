@@ -45,6 +45,20 @@ public class LeavingMessageService{
         }
 
     }
+        public static bool MarkAudioRead(string msgId)
+    {
+        using (var context = new BusContext(new DbContextOptions<BusContext>()))
+        {
+            var LeavingMsg = context.LeavingMsgs.FirstOrDefault(a => a.MsgId == msgId);
+            if(LeavingMsg == null)
+            {
+                return false;
+            }
+            LeavingMsg.IsRead = true;
+            context.SaveChanges();
+        }
+        return true;
+    }
 }
 
 public class AudioUnread{
