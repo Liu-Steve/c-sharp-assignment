@@ -16,11 +16,11 @@ public class LeavingMessageService{
         }
     }
 
-    public static List<AudioUnread>  getUnreadAudio()
+    public static async Task<List<AudioUnread>>  getUnreadAudio()
     {
         List<AudioUnread> audioUnreads=new List<AudioUnread>();
         try{
-        using(var context=new BusContext(new DbContextOptions<BusContext>()))
+        await using(var context=new BusContext(new DbContextOptions<BusContext>()))
         {
             
             List<LeavingMsg> list=context.LeavingMsgs.Where(l=>l.IsRead==false).ToList();

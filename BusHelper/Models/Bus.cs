@@ -22,6 +22,8 @@ public class Bus
 
     public List<RealTimeRecord>? RealTimeRecords { get; set; }//实时信息
 
+    public List<ManagerMsg>? ManagerMsgs { get; set; }//管理员留言
+
     public Bus()
     {
         BusId = Guid.NewGuid().ToString();

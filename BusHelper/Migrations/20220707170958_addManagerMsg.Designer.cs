@@ -3,6 +3,7 @@ using System;
 using BusHelper.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BusHelper.Migrations
 {
     [DbContext(typeof(BusContext))]
-    partial class BusContextModelSnapshot : ModelSnapshot
+    [Migration("20220707170958_addManagerMsg")]
+    partial class addManagerMsg
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
